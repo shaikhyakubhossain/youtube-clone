@@ -1,0 +1,13 @@
+.allContainers {
+    display: flex;
+}
+
+.mainContainer {
+    /* background-color: rgb(0, 0, 0); */
+    height: 56px;
+    padding: 0 16px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
