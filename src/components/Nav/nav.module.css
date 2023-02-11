@@ -3,7 +3,7 @@
 }
 
 .mainContainer {
-    /* background-color: rgb(0, 0, 0); */
+    /* background-color: rgb(214, 90, 90); */
     height: 56px;
     padding: 0 16px;
     justify-content: space-between;
@@ -11,3 +11,17 @@
     margin: 0;
 }
 
+.leftContainer {
+}
+
+.youtubeLogoIcon {
+    align-items: center;
+    padding-left: 13px;
+}
+
+.youtubeLogoIcon > div {
+    font-size: large;
+    font-weight: bold;
+    /* font-family:'gothic'; */
+    /* height: 20px; */
+}
