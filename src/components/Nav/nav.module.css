@@ -1,24 +1,24 @@
 .allContainers {
-    display: flex;
+  display: flex;
 }
 
 .mainContainer {
-    height: 56px;
-    padding: 0 16px;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
+  height: 56px;
+  padding: 0 16px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
 }
 
 .leftContainer {
 }
 
 .youtubeLogoIcon {
-    align-items: center;
-    padding-left: 13px;
+  align-items: center;
+  padding-left: 13px;
 }
 
 .youtubeLogoIcon > div {
-    font-size: larger;
-    font-weight: bold;
+  font-size: larger;
+  font-weight: bold;
 }
