@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../Nav/nav.module.css";
-import { IconButton } from "@mui/material/";
+import { Button, IconButton } from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { TextField } from "@mui/material";
@@ -33,6 +33,9 @@ const Nav = () => {
             }}
           />
         </div>
+        <Button size="small" sx={{borderRadius:"0 40px 40px 0", border:'1px solid rgb(48, 48, 48)', background:"hsla(0, 0%, 100%, 0.08)"}}>
+        <SearchIcon fontSize='medium' sx={{color:"#f1f1f1"}} />
+        </Button>
       </div>
       <div className={`${styles.rightContainer} ${styles.allContainers}`}></div>
     </div>
