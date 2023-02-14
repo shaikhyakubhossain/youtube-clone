@@ -3,13 +3,12 @@ import styles from "../Nav/nav.module.css";
 import { Button, IconButton } from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import  TextField  from "@mui/material/TextField";
+import TextField from "@mui/material/TextField";
 import { InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const Nav = () => {
-
   return (
     <div className={`${styles.mainContainer} ${styles.allContainers}`}>
       <div className={`${styles.leftContainer} ${styles.allContainers}`}>
