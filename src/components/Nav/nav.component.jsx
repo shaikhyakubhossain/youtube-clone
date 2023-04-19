@@ -26,6 +26,7 @@ const Nav = () => {
             placeholder="Search"
             size="small"
             InputProps={{
+              sx:{borderRadius: "40px 0 0 40px"},
               startAdornment: (
                 <InputAdornment position="start">
                   <SearchIcon />
