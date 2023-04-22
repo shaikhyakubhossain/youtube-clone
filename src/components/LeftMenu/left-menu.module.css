@@ -12,6 +12,10 @@
     padding: 16px 0 14px 11px; 
 }
 
+Button {
+    
+}
+
 .btnContainer > Button > div {
     display: flex;
     color: white;
@@ -19,6 +23,14 @@
     width:100%;
     /* line-height: 2rem; */
     /* padding-left: 12px; */
+}
+
+.btnIconContainer{
+    position: absolute;
+  top: 50%;
+  left: 12%;
+  transform: translate(-50%, -42%);
+
 }
 
 .btnContainer > Button > div > .btnFont {
@@ -34,4 +46,8 @@
     width: 100%;
     text-align: left;
     padding-left: 24px;
+    position: absolute;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%);
 }
