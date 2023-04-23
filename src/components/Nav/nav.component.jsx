@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useEffect} from "react";
 import styles from "../Nav/nav.module.css";
 import { Button, IconButton } from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -9,6 +9,24 @@ import SearchIcon from "@mui/icons-material/Search";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const Nav = () => {
+  const SearchIconRef = useRef(null);
+  const TextFieldRef = useRef(null);
+
+  const toggleSearchIcon = () => {
+    if (SearchIconRef.current.style.display === "block"){
+    SearchIconRef.current.style.display = "none";
+    }
+    else if (SearchIconRef.current.style.display === "none") {
+      SearchIconRef.current.style.display = "block"
+    }
+  }
+
+  useEffect(() => {
+   
+    SearchIconRef.current.style.display = "none";
+    // TextFieldRef.current;
+  }, [])
+
   return (
     <div className={`${styles.mainContainer} ${styles.allContainers}`}>
       <div className={`${styles.leftContainer} ${styles.allContainers}`}>
@@ -23,13 +41,18 @@ const Nav = () => {
       <div className={`${styles.middleContainer} ${styles.allContainers}`}>
         <div>
           <TextField
+            onFocus={toggleSearchIcon}
+            onBlur={toggleSearchIcon}
+            inputref={TextFieldRef}
             placeholder="Search"
             size="small"
             InputProps={{
-              sx:{borderRadius: "40px 0 0 40px"},
+              sx:{borderRadius: "40px 0 0 40px",
+                  width: "519.200px",
+                  Height: "38.400px"},
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon />
+                  <SearchIcon sx={{}} ref={SearchIconRef}/>
                 </InputAdornment>
               ),
             }}
