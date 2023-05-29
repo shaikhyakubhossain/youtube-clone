@@ -12,9 +12,7 @@
     padding: 16px 0 14px 11px; 
 }
 
-Button {
-    
-}
+
 
 .btnContainer > Button > div {
     display: flex;
@@ -38,9 +36,7 @@ Button {
     font-size: 10px;
 }
 
-.btnFont {
-        
-}
+
 
 .btnFontContainer {
     width: 100%;

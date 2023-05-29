@@ -5,11 +5,21 @@ import {leftMenuMainSectionRow1} from '../../constants/btn-list'
 
 function LeftMenu() {
   const toggleLeftMenu = () => {};
-  const [btnStyle, setBtnStyle] = useState({background: "rgb(39,39,39)",
+  const [btnStyle, setBtnStyle] = useState({background: "rgb(0,0,0)",
   width: "100%",
   height: "40px",
   justifyContent: "left",
   borderRadius: "10px",});
+  const [previousElemInBtnList, setPreviousElemInBtnList] = useState(null);
+
+  const toggleActiveLeftMenuBtn = (e) => {
+    if(previousElemInBtnList !== null){
+      previousElemInBtnList.style.background = "rgb(15  ,15 ,15  )"
+    }
+    e.currentTarget.style.background = "rgb(39,39,39)";
+    console.log("this", e.currentTarget, "style", e.currentTarget.style);  
+    setPreviousElemInBtnList(e.currentTarget);
+  }
 
   return (
     <>
@@ -22,6 +32,7 @@ function LeftMenu() {
               sx={
                 btnStyle
               }
+              onClick={(e) => toggleActiveLeftMenuBtn(e)}
             >
               <div>
                 <div className={styles.btnIconContainer}>
