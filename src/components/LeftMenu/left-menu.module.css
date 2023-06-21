@@ -14,13 +14,21 @@
 
 
 
-.btnContainer > Button > div {
+.btnContainerMainMax {
     display: flex;
     color: white;
     font-family: "Roboto","Arial",sans-serif;
     width:100%;
     /* line-height: 2rem; */
     /* padding-left: 12px; */
+}
+
+.btnContainerMainMin {
+    display: block;
+    color: white;
+    font-family: "Roboto","Arial",sans-serif;
+    width:100%;
+    /* font-size: 5px; */
 }
 
 .btnIconContainer{
