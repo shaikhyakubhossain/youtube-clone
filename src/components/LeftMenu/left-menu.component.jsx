@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "../LeftMenu/left-menu.module.css";
 import { Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { leftMenuMainSectionRow1 } from "../../constants/btn-list";
 
 function LeftMenu() {
-  const toggleLeftMenu = () => {};
+  const btnContainerMain = useRef(null);
+  const mainSection = useRef(null)
+
   const [btnStyle, setBtnStyle] = useState({
+    
     background: "rgb(0,0,0)",
     width: "100%",
-    height: "40px",
+    // height: "40px",
     justifyContent: "left",
     borderRadius: "10px",
   });
@@ -23,22 +27,30 @@ function LeftMenu() {
     setPreviousElemInBtnList(e.currentTarget);
   };
 
+  const toggleLeftMenu = () => {
+
+      
+
+
+  };
+
+
+
   return (
     <>
-      <div className={styles.mainSectionExpand}>
+      <div ref={mainSection} className={styles.mainSectionExpand}>
         <div className={styles.row1}>
           <div className={styles.btnContainer}>
             {leftMenuMainSectionRow1.map((item) => {
               return (
                 <Button
-                  variant="text"
+                  // variant="text"
                   sx={btnStyle}
                   onClick={(e) => toggleActiveLeftMenuBtn(e)}
                 >
-                  <div className={styles.btnContainerMainMin}>
-                    <div className={styles.btnIconContainer}>
-                      {item.logo}
-                    </div>
+                  <div ref={btnContainerMain} className={styles.btnContainerMainMax}>
+                    <div className={styles.btnIconContainer}>{item.logo}</div>
+                    
                     <div className={styles.btnFontContainer}>
                       <div className={styles.btnFont}>{item.name}</div>
                     </div>

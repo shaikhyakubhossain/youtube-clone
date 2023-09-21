@@ -30,7 +30,7 @@ const Nav = () => {
     <div className={`${styles.mainContainer} ${styles.allContainers}`}>
       <div className={`${styles.leftContainer} ${styles.allContainers}`}>
         <IconButton>
-          <MenuIcon />
+          <MenuIcon  />
         </IconButton>
         <div className={`${styles.youtubeLogoIcon} ${styles.allContainers}`}>
           <YouTubeIcon fontSize="large" sx={{ color: "red" }} />

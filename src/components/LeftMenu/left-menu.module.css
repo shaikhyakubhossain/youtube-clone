@@ -8,14 +8,36 @@
     width: 224px;
 }
 
+.mainSectionMinimize {
+    position: absolute;
+    top: 56px;
+    right: 915.200px;
+    bottom: 0;
+    left: 0;
+    padding: 1px 5px;
+    width: 64px;
+}
+
 .btnContainer {
     padding: 16px 0 14px 11px; 
 }
 
-
+.btnContainerMainMax > div{
+    display: block;
+}
 
 .btnContainerMainMax {
     display: flex;
+    /* flex-direction: column;  */
+    color: white;
+    font-family: "Roboto","Arial",sans-serif;
+    /* width:100%; */
+    /* font-size: 5px; */
+}
+
+.btnContainerMainMin {
+   
+    display: block;
     color: white;
     font-family: "Roboto","Arial",sans-serif;
     width:100%;
@@ -23,20 +45,15 @@
     /* padding-left: 12px; */
 }
 
-.btnContainerMainMin {
-    display: block;
-    color: white;
-    font-family: "Roboto","Arial",sans-serif;
-    width:100%;
-    /* font-size: 5px; */
-}
-
 .btnIconContainer{
-    position: absolute;
+    width: 24px;
+    height: 24px;
+    /* position: absolute;
   top: 50%;
   left: 12%;
-  transform: translate(-50%, -42%);
-
+  transform: translate(-50%, -42%); */
+    margin: auto;
+    padding-right: 12px;
 }
 
 .btnContainer > Button > div > .btnFont {
@@ -47,11 +64,11 @@
 
 
 .btnFontContainer {
-    width: 100%;
-    text-align: left;
-    padding-left: 24px;
-    position: absolute;
+    /* width: 100%; */
+    /* text-align: left; */
+    padding-left: 12px;
+    /* position: absolute;
   top: 50%;
   left: 65%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
