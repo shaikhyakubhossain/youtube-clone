@@ -1,4 +1,6 @@
 import React, { useRef, useEffect } from "react";
+import { connect } from "react-redux";
+import { toggleMinMax } from "../../redux/index";
 import styles from "../Nav/nav.module.css";
 import { Button, IconButton } from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -9,7 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MicIcon from "@mui/icons-material/Mic";
 
-const Nav = () => {
+const Nav = (props) => {
   const SearchIconRef = useRef(null);
   const TextFieldRef = useRef(null);
 
@@ -30,7 +32,7 @@ const Nav = () => {
     <div className={`${styles.mainContainer} ${styles.allContainers}`}>
       <div className={`${styles.leftContainer} ${styles.allContainers}`}>
         <IconButton>
-          <MenuIcon  />
+          <MenuIcon onClick={props.toggleMinMax} />
         </IconButton>
         <div className={`${styles.youtubeLogoIcon} ${styles.allContainers}`}>
           <YouTubeIcon fontSize="large" sx={{ color: "red" }} />
@@ -82,4 +84,10 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleMinMax: () => dispatch(toggleMinMax())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Nav);

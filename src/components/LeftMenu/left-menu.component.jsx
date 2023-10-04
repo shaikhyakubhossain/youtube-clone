@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { connect } from "react-redux";
 import styles from "../LeftMenu/left-menu.module.css";
 import { Button } from "@mui/material";
-import { Box } from "@mui/material";
 import { leftMenuMainSectionRow1 } from "../../constants/btn-list";
 
-function LeftMenu() {
+function LeftMenu(props) {
   const btnContainerMain = useRef(null);
   const mainSection = useRef(null)
 
@@ -15,25 +15,43 @@ function LeftMenu() {
     // height: "40px",
     justifyContent: "left",
     borderRadius: "10px",
+    padding: "16px 0 14px"
   });
   const [previousElemInBtnList, setPreviousElemInBtnList] = useState(null);
+
+  useEffect(() => {
+    toggleMaxMinOfLeftMenu()
+  }, [props.isMaximized]);
 
   const toggleActiveLeftMenuBtn = (e) => {
     if (previousElemInBtnList !== null) {
       previousElemInBtnList.style.background = "rgb(15, 15, 15)";
     }
     e.currentTarget.style.background = "rgb(39,39,39)";
-    console.log("this", e.currentTarget, "style", e.currentTarget.style);
+    // console.log("this", e.currentTarget, "style", e.currentTarget.style);
     setPreviousElemInBtnList(e.currentTarget);
   };
 
-  const toggleLeftMenu = () => {
+  const toggleMaxMinOfLeftMenu = () => {
+    if(!props.isMaximized){
+      mainSection.current.className = styles.mainSectionExpand;
+      leftMenuMainSectionRow1.forEach((item, index) => {
+        mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMax;
+      });
 
-      
-
-
-  };
-
+      console.log(mainSection.current.className);
+    }
+    if(props.isMaximized){
+      mainSection.current.className = styles.mainSectionMinimize;
+      leftMenuMainSectionRow1.forEach((item, index) => {
+        mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMin;
+      });
+      console.log(mainSection.current.className);
+    }
+    console.log(mainSection.current.children[0].children[0].children[2].children[0]);
+  }
+ 
+  // console.log(props.isMaximized);
 
 
   return (
@@ -48,7 +66,7 @@ function LeftMenu() {
                   sx={btnStyle}
                   onClick={(e) => toggleActiveLeftMenuBtn(e)}
                 >
-                  <div ref={btnContainerMain} className={styles.btnContainerMainMax}>
+                  <div className={styles.btnContainerMainMax}>
                     <div className={styles.btnIconContainer}>{item.logo}</div>
                     
                     <div className={styles.btnFontContainer}>
@@ -68,4 +86,12 @@ function LeftMenu() {
   );
 }
 
-export default LeftMenu;
+const mapStateToProps = (state) => {
+  return {
+    isMaximized: state.isMaximized
+  }
+}
+
+
+
+export default connect(mapStateToProps)(LeftMenu);

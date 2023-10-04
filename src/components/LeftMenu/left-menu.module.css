@@ -41,6 +41,7 @@
     color: white;
     font-family: "Roboto","Arial",sans-serif;
     width:100%;
+    font-size: 10px;
     /* line-height: 2rem; */
     /* padding-left: 12px; */
 }
@@ -66,7 +67,7 @@
 .btnFontContainer {
     /* width: 100%; */
     /* text-align: left; */
-    padding-left: 12px;
+    /* padding-left: 12px; */
     /* position: absolute;
   top: 50%;
   left: 65%;

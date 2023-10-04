@@ -1,0 +1,1 @@
+export const TOGGLE_MIN_MAX = "TOGGLE_MIN_MAX";

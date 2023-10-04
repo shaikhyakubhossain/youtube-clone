@@ -1,0 +1,1 @@
+export { toggleMinMax } from './leftMenu/left-menu-action';
