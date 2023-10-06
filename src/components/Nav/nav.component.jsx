@@ -31,8 +31,8 @@ const Nav = (props) => {
   return (
     <div className={`${styles.mainContainer} ${styles.allContainers}`}>
       <div className={`${styles.leftContainer} ${styles.allContainers}`}>
-        <IconButton>
-          <MenuIcon onClick={props.toggleMinMax} />
+        <IconButton onClick={props.toggleMinMax}>
+          <MenuIcon />
         </IconButton>
         <div className={`${styles.youtubeLogoIcon} ${styles.allContainers}`}>
           <YouTubeIcon fontSize="large" sx={{ color: "red" }} />

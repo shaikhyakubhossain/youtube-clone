@@ -9,13 +9,12 @@ function LeftMenu(props) {
   const mainSection = useRef(null)
 
   const [btnStyle, setBtnStyle] = useState({
-    
     background: "rgb(0,0,0)",
     width: "100%",
     // height: "40px",
     justifyContent: "left",
     borderRadius: "10px",
-    padding: "16px 0 14px"
+    padding: "0"
   });
   const [previousElemInBtnList, setPreviousElemInBtnList] = useState(null);
 
@@ -37,7 +36,14 @@ function LeftMenu(props) {
       mainSection.current.className = styles.mainSectionExpand;
       leftMenuMainSectionRow1.forEach((item, index) => {
         mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMax;
+        mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMax;
+
       });
+
+      // setBtnStyle({
+      //   ...setBtnStyle,
+      //   padding: "0 0 0 12px"
+      // });
 
       console.log(mainSection.current.className);
     }
@@ -45,10 +51,20 @@ function LeftMenu(props) {
       mainSection.current.className = styles.mainSectionMinimize;
       leftMenuMainSectionRow1.forEach((item, index) => {
         mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMin;
+        mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMin;
+
       });
       console.log(mainSection.current.className);
+
+      // setBtnStyle({
+      //   ...setBtnStyle,
+      //   padding: "16px 0 14px 0"
+      // });
+
     }
     console.log(mainSection.current.children[0].children[0].children[2].children[0]);
+
+    
   }
  
   // console.log(props.isMaximized);
@@ -67,7 +83,7 @@ function LeftMenu(props) {
                   onClick={(e) => toggleActiveLeftMenuBtn(e)}
                 >
                   <div className={styles.btnContainerMainMax}>
-                    <div className={styles.btnIconContainer}>{item.logo}</div>
+                    <div className={styles.btnIconContainerMax}>{item.logo}</div>
                     
                     <div className={styles.btnFontContainer}>
                       <div className={styles.btnFont}>{item.name}</div>

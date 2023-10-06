@@ -4,7 +4,7 @@
     right: 915.200px;
     bottom: 0;
     left: 0;
-    padding: 1px 5px;
+    padding: 12px;
     width: 224px;
 }
 
@@ -14,12 +14,12 @@
     right: 915.200px;
     bottom: 0;
     left: 0;
-    padding: 1px 5px;
+    padding: 0 4px 0 4px;
     width: 64px;
 }
 
 .btnContainer {
-    padding: 16px 0 14px 11px; 
+    /* padding: 16px 0 14px 11px;  */
 }
 
 .btnContainerMainMax > div{
@@ -28,11 +28,13 @@
 
 .btnContainerMainMax {
     display: flex;
+    height: 40px;
     /* flex-direction: column;  */
     color: white;
     font-family: "Roboto","Arial",sans-serif;
     /* width:100%; */
     /* font-size: 5px; */
+    padding: 0 12px 0 12px;
 }
 
 .btnContainerMainMin {
@@ -43,10 +45,10 @@
     width:100%;
     font-size: 10px;
     /* line-height: 2rem; */
-    /* padding-left: 12px; */
+    padding: 16px 0 14px;
 }
 
-.btnIconContainer{
+.btnIconContainerMin{
     width: 24px;
     height: 24px;
     /* position: absolute;
@@ -54,6 +56,17 @@
   left: 12%;
   transform: translate(-50%, -42%); */
     margin: auto;
+    /* padding-right: 12px; */
+}
+
+.btnIconContainerMax{
+    width: 24px;
+    height: 24px;
+    /* position: absolute;
+  top: 50%;
+  left: 12%;
+  transform: translate(-50%, -42%); */
+    margin: 0 24px 0 0;
     padding-right: 12px;
 }
 
