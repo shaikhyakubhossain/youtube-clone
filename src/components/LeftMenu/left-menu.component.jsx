@@ -40,12 +40,9 @@ function LeftMenu(props) {
 
       });
 
-      // setBtnStyle({
-      //   ...setBtnStyle,
-      //   padding: "0 0 0 12px"
-      // });
+      
 
-      console.log(mainSection.current.className);
+      // console.log(mainSection.current.className);
     }
     if(props.isMaximized){
       mainSection.current.className = styles.mainSectionMinimize;
@@ -54,12 +51,9 @@ function LeftMenu(props) {
         mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMin;
 
       });
-      console.log(mainSection.current.className);
+      // console.log(mainSection.current.className);
 
-      // setBtnStyle({
-      //   ...setBtnStyle,
-      //   padding: "16px 0 14px 0"
-      // });
+     
 
     }
     console.log(mainSection.current.children[0].children[0].children[2].children[0]);
@@ -75,9 +69,10 @@ function LeftMenu(props) {
       <div ref={mainSection} className={styles.mainSectionExpand}>
         <div className={styles.row1}>
           <div className={styles.btnContainer}>
-            {leftMenuMainSectionRow1.map((item) => {
+            {leftMenuMainSectionRow1.map((item, index) => {
               return (
                 <Button
+                  key={index}
                   // variant="text"
                   sx={btnStyle}
                   onClick={(e) => toggleActiveLeftMenuBtn(e)}
