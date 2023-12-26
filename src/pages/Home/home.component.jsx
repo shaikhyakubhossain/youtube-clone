@@ -31,6 +31,7 @@ const Home = (props) => {
             <div key={index} className={styles.containerCard}>
                   <div className={styles.cardImg} ><img src={item.snippet.thumbnails.standard.url} /></div>
                   <div className={styles.videoTitle}>{item.snippet.title}</div>
+                  <div className={styles.channelTitle}>{item.snippet.channelTitle}</div>
             </div>
            ); 
         }
