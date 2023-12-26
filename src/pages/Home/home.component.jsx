@@ -8,11 +8,11 @@ const Home = (props) => {
   const [apiData, setApiData] = useState(null);
 
   useEffect(() => {
-    fetchData();
+    apiData === null  && fetchData();
   }, [apiData]);
 
   const fetchData = async () => {
-    const response = await fetch('');
+    const response = await fetch('http://localhost:4000/mostPopularVideos');
     const json = await response.json();
 
     if(response.ok){
@@ -24,17 +24,17 @@ const Home = (props) => {
 
   return (
     <div className={props.isMaximized ? styles.mainHomeContainerExpand : styles.mainHomeContainerMinimize}>
-      {apiData && apiData.map((item) => {
-       return (
-        <div key={item.id}>
-        <div >
-          // json data here...
-          </div>
-        </div>
-       );
-        
-      
-        
+      {apiData && apiData.items && apiData.items.map && apiData.items.map((item, index) => {
+        console.log("apiData.lenght", apiData.items.lenght);
+        if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
+          return (
+            <div key={index} className={styles.containerCard}>
+                  <div className={styles.cardImg} ><img src={item.snippet.thumbnails.standard.url} /></div>
+                  <div className={styles.videoTitle}>{item.snippet.title}</div>
+            </div>
+           ); 
+        }
+       
       })}
     </div>
   );
