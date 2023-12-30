@@ -55,3 +55,7 @@
     cursor: pointer;
     color: rgb(255, 255, 255)
 }
+
+.viewCount {
+    color: rgba(255, 255, 255, 0.721)
+}

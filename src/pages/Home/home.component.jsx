@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from './home.module.css';
 import { connect } from "react-redux";
+import numberShortener from 'https://cdn.skypack.dev/number-shortener';
 
 
 const Home = (props) => {
@@ -12,13 +13,14 @@ const Home = (props) => {
   }, [apiData]);
 
   const fetchData = async () => {
-    const response = await fetch('http://localhost:4000/mostPopularVideos');
+    const response = await fetch('http://localhost:5000/mostPopularVideos');
     const json = await response.json();
 
     if(response.ok){
       setApiData(json);
     }
   };
+
 
   // console.log(props.isMaximized);
 
@@ -32,6 +34,7 @@ const Home = (props) => {
                   <div className={styles.cardImg} ><img src={item.snippet.thumbnails.standard.url} /></div>
                   <div className={styles.videoTitle}>{item.snippet.title}</div>
                   <div className={styles.channelTitle}>{item.snippet.channelTitle}</div>
+                  <div className={styles.viewCount}>{numberShortener(item.statistics.viewCount) } views</div>
             </div>
            ); 
         }
