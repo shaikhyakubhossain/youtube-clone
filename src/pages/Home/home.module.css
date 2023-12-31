@@ -25,18 +25,31 @@
 }
 
 .containerCard {
-    text-align: center;
+    /* text-align: center; */
     margin: 8px 3px 8px 3px;
 }
 
-.cardImg {
+.cardImgMinimize {
     width: 399.987px;
     height: 224.988px;
     
     
 }
 
-.cardImg > img {
+.cardImgExpand{
+    width: 337.987px;
+    height: 190.113px;
+    
+    
+}
+
+.cardImgExpand > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.cardImgMinimize > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -58,4 +71,17 @@
 
 .viewCount {
     color: rgba(255, 255, 255, 0.721)
+}
+
+.mainCardDetailContainerFlex {
+    display: flex;
+    padding: 4px;
+}
+
+.channelLogo {
+    background: white;
+    min-width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin: 4px;
 }

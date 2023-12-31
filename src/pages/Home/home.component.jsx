@@ -13,7 +13,7 @@ const Home = (props) => {
   }, [apiData]);
 
   const fetchData = async () => {
-    const response = await fetch('http://localhost:5000/mostPopularVideos');
+    const response = await fetch('http://localhost:4000/mostPopularVideos');
     const json = await response.json();
 
     if(response.ok){
@@ -22,7 +22,6 @@ const Home = (props) => {
   };
 
 
-  // console.log(props.isMaximized);
 
   return (
     <div className={props.isMaximized ? styles.mainHomeContainerExpand : styles.mainHomeContainerMinimize}>
@@ -31,10 +30,15 @@ const Home = (props) => {
         if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
           return (
             <div key={index} className={styles.containerCard}>
-                  <div className={styles.cardImg} ><img src={item.snippet.thumbnails.standard.url} /></div>
+                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} ><img src={item.snippet.thumbnails.standard.url} /></div>
+                  <div className={styles.mainCardDetailContainerFlex}>
+                    <div className={styles.channelLogo}></div>
+                  <div className={styles.cardDetailContainer}>
                   <div className={styles.videoTitle}>{item.snippet.title}</div>
                   <div className={styles.channelTitle}>{item.snippet.channelTitle}</div>
-                  <div className={styles.viewCount}>{numberShortener(item.statistics.viewCount) } views</div>
+                  <div className={styles.viewCount}>{ numberShortener(item.statistics.viewCount)} views</div>
+                  </div>
+                  </div>
             </div>
            ); 
         }
