@@ -6,7 +6,7 @@
     right: 0;
     bottom: 0;
     left: 64px;
-    margin: 0;
+    margin: 10px;
 }
 
 .mainHomeContainerMinimize {
@@ -17,7 +17,8 @@
     right: 0;
     bottom: 0;
     left: 224px;
-    margin: 0;
+    margin: 10px;
+
 }
 
 .heading1 {
@@ -27,6 +28,8 @@
 .containerCard {
     /* text-align: center; */
     margin: 8px 3px 8px 3px;
+    color: white;
+    text-decoration: none;
 }
 
 .cardImgMinimize {

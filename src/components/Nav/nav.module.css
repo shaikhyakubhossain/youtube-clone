@@ -3,22 +3,39 @@
 }
 
 .mainContainer {
+  position: fixed;
+  background: #121212;
+  width: 100%;
   height: 56px;
   padding: 0 16px;
-  justify-content: space-between;
+  /* justify-content: ; */
   align-items: center;
   margin: 0;
+  z-index: 2;
 }
 
 .leftContainer {
+  /* margin */
 }
 
 .youtubeLogoIcon {
   align-items: center;
   padding-left: 13px;
+  text-decoration: none;
+
 }
 
 .youtubeLogoIcon > div {
+  color: white;
   font-size: larger;
   font-weight: bold;
+  
+}
+
+.middleContainer {
+  margin: auto;
+}
+
+.rightContainer {
+
 }

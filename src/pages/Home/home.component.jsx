@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from './home.module.css';
 import { connect } from "react-redux";
 import numberShortener from 'https://cdn.skypack.dev/number-shortener';
+import { Link } from "react-router-dom";
 
 
 const Home = (props) => {
@@ -29,7 +30,7 @@ const Home = (props) => {
         console.log("apiData.lenght", apiData.items.lenght);
         if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
           return (
-            <div key={index} className={styles.containerCard}>
+            <Link to="/watch-video" key={index} className={styles.containerCard}>
                   <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} ><img src={item.snippet.thumbnails.standard.url} /></div>
                   <div className={styles.mainCardDetailContainerFlex}>
                     <div className={styles.channelLogo}></div>
@@ -39,7 +40,7 @@ const Home = (props) => {
                   <div className={styles.viewCount}>{ numberShortener(item.statistics.viewCount)} views</div>
                   </div>
                   </div>
-            </div>
+            </Link>
            ); 
         }
        

@@ -10,6 +10,7 @@ import { InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MicIcon from "@mui/icons-material/Mic";
+import { Link } from "react-router-dom";
 
 const Nav = (props) => {
   const SearchIconRef = useRef(null);
@@ -34,10 +35,10 @@ const Nav = (props) => {
         <IconButton onClick={props.toggleMinMax}>
           <MenuIcon />
         </IconButton>
-        <div className={`${styles.youtubeLogoIcon} ${styles.allContainers}`}>
+        <Link to="/" className={`${styles.youtubeLogoIcon} ${styles.allContainers}`}>
           <YouTubeIcon fontSize="large" sx={{ color: "red" }} />
           <div>YouTube-Clone</div>
-        </div>
+        </Link>
       </div>
       <div className={`${styles.middleContainer} ${styles.allContainers}`}>
         <div>

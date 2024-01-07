@@ -1,5 +1,6 @@
 .mainSectionExpand {
-    position: absolute;
+    background: #121212;
+    position: fixed;
     top: 56px;
     right: 915.200px;
     bottom: 0;
@@ -9,7 +10,8 @@
 }
 
 .mainSectionMinimize {
-    position: absolute;
+    background: #121212;
+    position: fixed;
     top: 56px;
     right: 915.200px;
     bottom: 0;
