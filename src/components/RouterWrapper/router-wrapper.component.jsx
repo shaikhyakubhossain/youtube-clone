@@ -12,7 +12,7 @@ export const RouterWrapper = () => {
     <LeftMenu />
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="watch-video" element={<WatchVideo />} />
+      <Route path="watch-video/:id" element={<WatchVideo />} />
     </Routes>
     </>
   );

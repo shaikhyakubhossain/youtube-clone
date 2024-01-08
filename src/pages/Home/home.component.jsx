@@ -30,7 +30,7 @@ const Home = (props) => {
         console.log("apiData.lenght", apiData.items.lenght);
         if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
           return (
-            <Link to="/watch-video" key={index} className={styles.containerCard}>
+            <Link to={"/watch-video/" + item.id} key={index} className={styles.containerCard}>
                   <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} ><img src={item.snippet.thumbnails.standard.url} /></div>
                   <div className={styles.mainCardDetailContainerFlex}>
                     <div className={styles.channelLogo}></div>

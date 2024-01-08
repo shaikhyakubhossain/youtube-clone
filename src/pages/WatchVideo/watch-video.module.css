@@ -1,0 +1,11 @@
+.videoPlayer {
+    background: white;
+    width: 853px;
+    height: 480px;
+    border-radius: 8px;
+    
+}
+
+.mainContainer {
+    padding: 80px 120px 0 120px;
+}
