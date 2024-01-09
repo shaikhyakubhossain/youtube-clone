@@ -14,7 +14,7 @@ const Home = (props) => {
   }, [apiData]);
 
   const fetchData = async () => {
-    const response = await fetch('http://localhost:4000/mostPopularVideos');
+    const response = await fetch('https://youtube-clone-backend-u2zy.onrender.com/mostPopularVideos');
     const json = await response.json();
 
     if(response.ok){
