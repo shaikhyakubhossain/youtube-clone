@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from './home.module.css';
 import { connect } from "react-redux";
-import numberShortener from 'https://cdn.skypack.dev/number-shortener';
+import shortNumber from 'short-number';
 import { Link } from "react-router-dom";
 
 
@@ -37,7 +37,7 @@ const Home = (props) => {
                   <div className={styles.cardDetailContainer}>
                   <div className={styles.videoTitle}>{item.snippet.title}</div>
                   <div className={styles.channelTitle}>{item.snippet.channelTitle}</div>
-                  <div className={styles.viewCount}>{ numberShortener(item.statistics.viewCount)} views</div>
+                  <div className={styles.viewCount}>{ shortNumber(parseInt(item.statistics.viewCount))} views</div>
                   </div>
                   </div>
             </Link>

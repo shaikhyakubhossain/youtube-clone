@@ -9,7 +9,6 @@ const VideoPlayer = ({ embedId }) => {
         src={"https://www.youtube.com/embed/" + embedId}
         width="853"
         height="480"
-        frameborder="0"
       ></iframe>
     </div>
   );
