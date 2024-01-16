@@ -7,6 +7,8 @@
     left: 0;
     padding: 12px;
     width: 224px;
+    transform: translateX(0px);
+    transition: 200ms transform;
 }
 
 .mainSectionMinimize {
@@ -18,6 +20,19 @@
     left: 0;
     padding: 0 4px 0 4px;
     width: 64px;
+}
+
+.mainSectionHidden {
+    background: #121212;
+    position: fixed;
+    top: 56px;
+    right: 915.200px;
+    bottom: 0;
+    left: 0;
+    padding: 12px;
+    width: 224px;
+    transform: translateX(-224px);
+    transition: 200ms transform;
 }
 
 .btnContainer {

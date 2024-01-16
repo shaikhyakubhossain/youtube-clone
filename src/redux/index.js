@@ -1,1 +1,1 @@
-export { toggleMinMax } from './leftMenu/left-menu-action';
+export { toggleMinMax, setTrue, setFalse } from './leftMenu/left-menu-action';

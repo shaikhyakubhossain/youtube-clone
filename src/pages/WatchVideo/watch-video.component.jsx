@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import styles from './watch-video.module.css';
 import VideoPlayer from '../../components/VideoPlayer/video-player.component';
 import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
+import { setFalse } from "../../redux/index";
 
 const WatchVideo = (props) => {
 
@@ -9,7 +11,8 @@ const WatchVideo = (props) => {
 
 
     useEffect((() => {
-        console.log(params.id);
+        props.setFalse();
+        // console.log(params);
     }),[params]);
 
 
@@ -20,4 +23,10 @@ const WatchVideo = (props) => {
     )
 }
 
-export default WatchVideo;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setFalse: () => dispatch(setFalse())
+    }
+  }
+
+export default connect(null, mapDispatchToProps)(WatchVideo);

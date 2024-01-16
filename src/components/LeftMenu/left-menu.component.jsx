@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import styles from "../LeftMenu/left-menu.module.css";
 import { Button } from "@mui/material";
 import { leftMenuMainSectionRow1 } from "../../constants/btn-list";
-
+import { useLocation } from "react-router-dom";
+ 
 function LeftMenu(props) {
+  const location = useLocation();
   const btnContainerMain = useRef(null);
   const mainSection = useRef(null)
 
@@ -19,8 +21,9 @@ function LeftMenu(props) {
   const [previousElemInBtnList, setPreviousElemInBtnList] = useState(null);
 
   useEffect(() => {
-    toggleMaxMinOfLeftMenu()
-  }, [props.isMaximized]);
+    toggleMaxMinOfLeftMenu();
+    console.log("location", location.pathname.slice(1, 12));
+  }, [props.isMaximized, location.pathname]);
 
   const toggleActiveLeftMenuBtn = (e) => {
     if (previousElemInBtnList !== null) {
@@ -32,37 +35,57 @@ function LeftMenu(props) {
   };
 
   const toggleMaxMinOfLeftMenu = () => {
-    if(!props.isMaximized){
-      mainSection.current.className = styles.mainSectionExpand;
-      leftMenuMainSectionRow1.forEach((item, index) => {
-        mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMax;
-        mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMax;
 
-      });
-
-      
-
-      // console.log(mainSection.current.className);
+    if(location.pathname.slice(1, 12) === "watch-video"){
+      if(!props.isMaximized){
+        mainSection.current.className = styles.mainSectionHidden;
+        leftMenuMainSectionRow1.forEach((item, index) => {
+          mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMax;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMax;
+        });
+      }
+      if(props.isMaximized){
+        mainSection.current.className = styles.mainSectionExpand;
+        leftMenuMainSectionRow1.forEach((item, index) => {
+          mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMax;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMax;
+        });
+      }
     }
-    if(props.isMaximized){
-      mainSection.current.className = styles.mainSectionMinimize;
-      leftMenuMainSectionRow1.forEach((item, index) => {
-        mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMin;
-        mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMin;
-
-      });
-      // console.log(mainSection.current.className);
-
-     
-
+    else{
+      if(!props.isMaximized){
+        mainSection.current.className = styles.mainSectionExpand;
+        leftMenuMainSectionRow1.forEach((item, index) => {
+          mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMax;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMax;
+  
+        });
+  
+        
+  
+        // console.log(mainSection.current.className);
+      }
+      if(props.isMaximized){
+        mainSection.current.className = styles.mainSectionMinimize;
+        leftMenuMainSectionRow1.forEach((item, index) => {
+          mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMin;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMin;
+  
+        });
+        // console.log(mainSection.current.className);
+  
+       
+  
+      }
     }
-    console.log(mainSection.current.children[0].children[0].children[2].children[0]);
+
+    
+    // console.log(mainSection.current.children[0].children[0].children[2].children[0]);
 
     
   }
  
   // console.log(props.isMaximized);
-
 
   return (
     <>

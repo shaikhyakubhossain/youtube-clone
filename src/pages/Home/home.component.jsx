@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import shortNumber from 'short-number';
 import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
-
+import { setFalse } from '../../redux/index';
 
 const Home = (props) => {
-
   const [apiData, setApiData] = useState(null);
   const [dummyArrayForLoading, setDummyArrayForLoading] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
 
   useEffect(() => {
+    props.setFalse();
     apiData === null  && fetchData();
   }, [apiData]);
 
@@ -28,8 +28,8 @@ const Home = (props) => {
   const loadMuiSkeletonForVideo = () => {
     
       return (
-        <div className={styles.containerCard}>
-                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} > <Skeleton sx={{background: "grey"}} variant="rounded" width={"100%"} height={"100%"}/> </div>
+        <>
+          <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} > <Skeleton sx={{background: "grey"}} variant="rounded" width={"100%"} height={"100%"}/> </div>
           <div className={styles.mainCardDetailContainerFlex}>
           <Skeleton sx={{background: "grey", margin: "15px 4px 4px 4px"}} variant="circular" width={40} height={40}/>
           <div className={styles.cardDetailContainer}>
@@ -38,11 +38,11 @@ const Home = (props) => {
           <Skeleton sx={{background: "grey", margin: "4px"}} variant="text" width={"150px"} height={40}/>
           </div>
           </div>
-          
-        </div>
+          </>
 
       )
   }
+  
 
   return (
     <div className={props.isMaximized ? styles.mainHomeContainerExpand : styles.mainHomeContainerMinimize}>
@@ -63,8 +63,12 @@ const Home = (props) => {
             </Link>
            ); 
         }
-      }) :  dummyArrayForLoading.map(() => {
-        return loadMuiSkeletonForVideo();
+      }) :  dummyArrayForLoading.map((items, index) => {
+        return (
+          <div key={index} className={styles.containerCard}>
+            {loadMuiSkeletonForVideo()}
+          </div>
+        )
       })
       
       }
@@ -78,6 +82,12 @@ const mapStateToProps = (state) => {
     isMaximized: state.isMaximized
   }
 
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFalse: () => dispatch(setFalse())
+  }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
