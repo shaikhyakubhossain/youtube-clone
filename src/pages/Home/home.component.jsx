@@ -5,6 +5,7 @@ import shortNumber from 'short-number';
 import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
 import { setFalse } from '../../redux/index';
+import axios from "axios";
 
 const Home = (props) => {
   const [apiData, setApiData] = useState(null);
@@ -15,14 +16,17 @@ const Home = (props) => {
     apiData === null  && fetchData();
   }, [apiData]);
 
-  const fetchData = async () => {
-    const response = await fetch('https://youtube-clone-backend-u2zy.onrender.com/mostPopularVideos');
-    const json = await response.json();
-
-    if(response.ok){
-      setApiData(json);
-    }
-  };
+  const fetchData = () => {
+      axios.get('https://youtube-clone-backend-u2zy.onrender.com/mostPopularVideos')
+      .then((response) => {
+        const json = response.data;
+        if(response.status === 200){
+        console.log(typeof response.status);
+        setApiData(json);
+      }
+      })
+      
+  }
 
 
   const loadMuiSkeletonForVideo = () => {
