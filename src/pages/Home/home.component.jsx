@@ -21,7 +21,6 @@ const Home = (props) => {
       .then((response) => {
         const json = response.data;
         if(response.status === 200){
-        console.log(typeof response.status);
         setApiData(json);
       }
       })
@@ -51,7 +50,7 @@ const Home = (props) => {
   return (
     <div className={props.isMaximized ? styles.mainHomeContainerExpand : styles.mainHomeContainerMinimize}>
       { apiData && apiData.items && apiData.items.map ? apiData.items.map((item, index) => {
-        console.log("apiData.lenght", apiData.items.lenght);
+        // console.log("apiData.lenght", apiData.items.lenght);
         if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
           return (
             <Link to={"/watch-video/" + item.id} key={index} className={styles.containerCard}>

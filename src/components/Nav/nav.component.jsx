@@ -32,7 +32,7 @@ const Nav = (props) => {
   return (
     <div className={`${styles.mainContainer} ${styles.allContainers}`}>
       <div className={`${styles.leftContainer} ${styles.allContainers}`}>
-        <IconButton onClick={props.toggleMinMax}>
+        <IconButton id="LeftMenuController" onClick={props.toggleMinMax}>
           <MenuIcon />
         </IconButton>
         <Link to="/" className={`${styles.youtubeLogoIcon} ${styles.allContainers}`}>

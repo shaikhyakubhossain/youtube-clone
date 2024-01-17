@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { setFalse } from "../../redux";
 import styles from "../LeftMenu/left-menu.module.css";
 import { Button } from "@mui/material";
 import { leftMenuMainSectionRow1 } from "../../constants/btn-list";
@@ -23,6 +24,13 @@ function LeftMenu(props) {
   useEffect(() => {
     toggleMaxMinOfLeftMenu();
     // console.log("location", location.pathname.slice(1, 12));
+    window.addEventListener('click', (e) => {
+      if(location.pathname.slice(1, 12) === "watch-video" && e.target.id !== "LeftMenuController" && e.target.parentNode.id !== "LeftMenuController" && e.target.parentNode.parentNode.id !== "LeftMenuController" && e.target !== mainSection.current && props.isMaximized === true){
+        props.setFalse();
+        console.log(e.target, " ", props.isMaximized);
+      }
+
+    });
   }, [props.isMaximized, location.pathname]);
 
   const toggleActiveLeftMenuBtn = (e) => {
@@ -128,6 +136,12 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFalse: () => dispatch(setFalse())
+  }
+}
 
 
-export default connect(mapStateToProps)(LeftMenu);
+
+export default connect(mapStateToProps, mapDispatchToProps)(LeftMenu);
