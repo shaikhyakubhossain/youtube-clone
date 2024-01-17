@@ -89,7 +89,7 @@
     padding-right: 12px;
 }
 
-.btnContainer > Button > div > .btnFont {
+.btnContainer > .link > Button > div > .btnFont {
     font-weight: 500;
     font-size: 10px;
 }
@@ -104,4 +104,8 @@
   top: 50%;
   left: 65%;
   transform: translate(-50%, -50%); */
+}
+
+.link {
+    
 }

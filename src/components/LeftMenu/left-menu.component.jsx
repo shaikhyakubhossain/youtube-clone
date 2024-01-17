@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styles from "../LeftMenu/left-menu.module.css";
 import { Button } from "@mui/material";
 import { leftMenuMainSectionRow1 } from "../../constants/btn-list";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
  
 function LeftMenu(props) {
   const location = useLocation();
@@ -22,7 +22,7 @@ function LeftMenu(props) {
 
   useEffect(() => {
     toggleMaxMinOfLeftMenu();
-    console.log("location", location.pathname.slice(1, 12));
+    // console.log("location", location.pathname.slice(1, 12));
   }, [props.isMaximized, location.pathname]);
 
   const toggleActiveLeftMenuBtn = (e) => {
@@ -35,20 +35,20 @@ function LeftMenu(props) {
   };
 
   const toggleMaxMinOfLeftMenu = () => {
-
+    
     if(location.pathname.slice(1, 12) === "watch-video"){
       if(!props.isMaximized){
         mainSection.current.className = styles.mainSectionHidden;
         leftMenuMainSectionRow1.forEach((item, index) => {
-          mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMax;
-          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMax;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnContainerMainMax;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].children[0].className = styles.btnIconContainerMax;
         });
       }
       if(props.isMaximized){
         mainSection.current.className = styles.mainSectionExpand;
         leftMenuMainSectionRow1.forEach((item, index) => {
-          mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMax;
-          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMax;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnContainerMainMax;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].children[0].className = styles.btnIconContainerMax;
         });
       }
     }
@@ -56,8 +56,8 @@ function LeftMenu(props) {
       if(!props.isMaximized){
         mainSection.current.className = styles.mainSectionExpand;
         leftMenuMainSectionRow1.forEach((item, index) => {
-          mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMax;
-          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMax;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnContainerMainMax;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].children[0].className = styles.btnIconContainerMax;
   
         });
   
@@ -68,9 +68,9 @@ function LeftMenu(props) {
       if(props.isMaximized){
         mainSection.current.className = styles.mainSectionMinimize;
         leftMenuMainSectionRow1.forEach((item, index) => {
-          mainSection.current.children[0].children[0].children[index].children[0].className = styles.btnContainerMainMin;
-          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnIconContainerMin;
-  
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnContainerMainMin;
+          mainSection.current.children[0].children[0].children[index].children[0].children[0].children[0].className = styles.btnIconContainerMin;
+          
         });
         // console.log(mainSection.current.className);
   
@@ -94,8 +94,9 @@ function LeftMenu(props) {
           <div className={styles.btnContainer}>
             {leftMenuMainSectionRow1.map((item, index) => {
               return (
+                <Link className={styles.link} to={item.link} key={index}>
                 <Button
-                  key={index}
+                  
                   // variant="text"
                   sx={btnStyle}
                   onClick={(e) => toggleActiveLeftMenuBtn(e)}
@@ -108,6 +109,7 @@ function LeftMenu(props) {
                     </div>
                   </div>
                 </Button>
+                </Link>
               );
             })}
           </div>
