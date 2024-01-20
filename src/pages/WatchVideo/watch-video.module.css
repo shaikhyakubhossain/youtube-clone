@@ -9,3 +9,12 @@
 .mainContainer {
     padding: 80px 120px 0 120px;
 }
+
+.title {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.videoDetail {
+    margin: 4px 0 0 0;
+}

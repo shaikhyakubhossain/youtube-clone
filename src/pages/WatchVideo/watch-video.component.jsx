@@ -4,21 +4,58 @@ import VideoPlayer from '../../components/VideoPlayer/video-player.component';
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { setFalse } from "../../redux/index";
+import axios from "axios";
 
 const WatchVideo = (props) => {
 
     const params = useParams();
+    const [apiData, setApiData] = useState(null);
 
 
     useEffect((() => {
         props.setFalse();
-        // console.log(params);
+        fetchData();
+        // console.log("apiData", apiData, "params.id", params.id);
     }),[params]);
 
+    const fetchData = () => {
+        axios.get('https://youtube-clone-backend-five.vercel.app//videoDetail' + params.id)
+        .then((response) => {
+          const json = response.data;
+          if(response.status === 200){
+            setApiData(json);
+        }
+        })
+        
+    }
+
+    const whenVideoDetailIsLoaded = () => {
+        return (
+            <>
+            <div className={styles.title} >{ apiData && apiData.snippet.title }</div>
+
+            </>
+        );
+    }
+
+    const whenVideoDetailIsLoading = () => {
+        return (
+            <>
+            
+            </>
+        );
+    }
 
     return (
         <div className={styles.mainContainer}>
+            <div className={styles.leftContainer}>
             <VideoPlayer embedId={params ? params.id : null} className={styles.videoPlayer} ></VideoPlayer>
+            <div className={styles.videoDetail}>
+                {
+                   apiData ? whenVideoDetailIsLoaded() : whenVideoDetailIsLoading
+                }
+            </div>
+            </div>
         </div>
     )
 }
