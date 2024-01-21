@@ -19,6 +19,7 @@ const WatchVideo = (props) => {
     }),[params]);
 
     const fetchData = () => {
+        // axios.get('http://localhost:4000/videoDetail' + params.id)
         axios.get('https://youtube-clone-backend-five.vercel.app/videoDetail' + params.id)
         .then((response) => {
           const json = response.data;
@@ -33,7 +34,13 @@ const WatchVideo = (props) => {
         return (
             <>
             <div className={styles.title} >{ apiData && apiData.snippet.title }</div>
-
+            <div className={styles.subContainer1}>
+                <div className={styles.channelLogo}></div>
+                <div className={styles.channelTitleAndSubscribersCountContainer}>
+                    <div className={styles.channelTitle}>{apiData.snippet.channelTitle}</div>
+                    {/* <div className={styles.subscribersCount}>{} subscribers</div> */}
+                </div>
+            </div>
             </>
         );
     }
