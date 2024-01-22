@@ -28,8 +28,13 @@
     margin: 8px 8px 4px 1px;
 }
 
-.subContainer1 {
+.subContainer1Main {
     display: flex;
+}
+
+.subContainer1LeftPart {
+    display: flex;
+
 }
 
 .channelTitle {
@@ -44,4 +49,10 @@
 
 .channelTitleAndSubscribersCountContainer {
     margin: 8px 8px 4px 1px;
+}
+
+.subscribeBtn {
+    width: 94.5px;
+    height: 36px;
+    margin: 12px 8px 4px 24px;
 }
