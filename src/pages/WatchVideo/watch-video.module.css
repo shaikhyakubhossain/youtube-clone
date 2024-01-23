@@ -58,5 +58,9 @@
 }
 
 .rightPartBtn {
-    margin: 12px 8px 4px 24px;
+    margin: 12px 0 4px 0;
+}
+
+.subContainer1RightPart {
+    display: flex;
 }

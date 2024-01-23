@@ -7,6 +7,7 @@ import { setFalse } from "../../redux/index";
 import axios from "axios";
 import { Button } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import shortNumber from "short-number";
 
 const WatchVideo = (props) => {
@@ -75,6 +76,18 @@ const WatchVideo = (props) => {
             }}>
               {shortNumber(parseInt(apiData.statistics.likeCount))}
             </Button>
+            </div>
+            <div className={styles.rightPartBtn}>
+            <Button startIcon={<ThumbDownOutlinedIcon />} sx={{
+              ...muiBtnSx,
+              background: "rgba(255, 255, 255, 0.1)",
+              color: "white",
+              borderTopLeftRadius: "0",
+              borderBottomLeftRadius: "0",
+              ":hover": {
+                  background: "rgba(255, 255, 255, 0.2)",
+                }
+            }} />
             </div>
           </div>
         </div>
