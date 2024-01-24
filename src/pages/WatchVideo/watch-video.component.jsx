@@ -7,13 +7,14 @@ import { setFalse } from "../../redux/index";
 import axios from "axios";
 import { Button } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
-import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
+import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import shortNumber from "short-number";
+import {subContainer1RightPart} from "../../constants/btn-list";
 
 const WatchVideo = (props) => {
   const params = useParams();
   const [apiData, setApiData] = useState(null);
-  const [muiBtnSx, setMuiBtnSx] = useState({
+  const [subscribeBtnSX, setSubscribeBtnSX] = useState({
     fontSize: "14px",
     fontWeight: "500",
     color: "black",
@@ -25,6 +26,17 @@ const WatchVideo = (props) => {
       background: "rgba(255, 255, 255, 0.8)",
     },
   });
+  const [
+    subContainer1RightPartStaticBtnSX,
+    SetSubContainer1RightPartStaticBtnSX,
+  ] = useState({
+    ...subscribeBtnSX,
+    color: "white",
+    background: "rgba(255, 255, 255, 0.1)",
+    ":hover": {
+      background: "rgba(255, 255, 255, 0.2)",
+    },
+  });
 
   useEffect(() => {
     props.setFalse();
@@ -33,8 +45,9 @@ const WatchVideo = (props) => {
   }, [params]);
 
   const fetchData = () => {
-    // axios.get("http://localhost:4000/videoDetail" + params.id)
-      axios.get('https://youtube-clone-backend-five.vercel.app/videoDetail' + params.id)
+    axios
+      .get("http://localhost:4000/videoDetail" + params.id)
+      // axios.get('https://youtube-clone-backend-five.vercel.app/videoDetail' + params.id)
       .then((response) => {
         const json = response.data;
         if (response.status === 200) {
@@ -57,38 +70,55 @@ const WatchVideo = (props) => {
               {/* <div className={styles.subscribersCount}>{} subscribers</div> */}
             </div>
             <div className={styles.subscribeBtn}>
-              <Button variant="text" sx={muiBtnSx}>
+              <Button variant="text" sx={subscribeBtnSX}>
                 Subscribe
               </Button>
             </div>
           </div>
           <div className={styles.subContainer1RightPart}>
             <div className={styles.rightPartBtn}>
-            <Button startIcon={<ThumbUpOutlinedIcon />} sx={{
-              ...muiBtnSx,
-              background: "rgba(255, 255, 255, 0.1)",
-              color: "white",
-              borderTopRightRadius: "0",
-              borderBottomRightRadius: "0",
-              ":hover": {
-                  background: "rgba(255, 255, 255, 0.2)",
-                }
-            }}>
-              {shortNumber(parseInt(apiData.statistics.likeCount))}
-            </Button>
+              <Button
+                startIcon={<ThumbUpOutlinedIcon />}
+                sx={{
+                  ...subscribeBtnSX,
+                  background: "rgba(255, 255, 255, 0.1)",
+                  color: "white",
+                  borderTopRightRadius: "0",
+                  borderBottomRightRadius: "0",
+                  ":hover": {
+                    background: "rgba(255, 255, 255, 0.2)",
+                  },
+                }}
+              >
+                {shortNumber(parseInt(apiData.statistics.likeCount))}
+              </Button>
             </div>
             <div className={styles.rightPartBtn}>
-            <Button startIcon={<ThumbDownOutlinedIcon />} sx={{
-              ...muiBtnSx,
-              background: "rgba(255, 255, 255, 0.1)",
-              color: "white",
-              borderTopLeftRadius: "0",
-              borderBottomLeftRadius: "0",
-              ":hover": {
-                  background: "rgba(255, 255, 255, 0.2)",
-                }
-            }} />
+              <Button
+                startIcon={<ThumbDownOutlinedIcon />}
+                sx={{
+                  ...subscribeBtnSX,
+                  background: "rgba(255, 255, 255, 0.1)",
+                  color: "white",
+                  borderTopLeftRadius: "0",
+                  borderBottomLeftRadius: "0",
+                  ":hover": {
+                    background: "rgba(255, 255, 255, 0.2)",
+                  },
+                }}
+              />
             </div>
+            {subContainer1RightPart
+              ? subContainer1RightPart.map((item, index) => {
+                  return (
+                    <div className={styles.rightPartBtn}>
+                      <Button startIcon={item.logo} sx={subContainer1RightPartStaticBtnSX}>
+                        {item.value}
+                      </Button>
+                    </div>
+                  );
+                })
+              : null}
           </div>
         </div>
       </>
