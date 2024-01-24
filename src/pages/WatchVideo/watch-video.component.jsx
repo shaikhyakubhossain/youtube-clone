@@ -45,8 +45,7 @@ const WatchVideo = (props) => {
   }, [params]);
 
   const fetchData = () => {
-    axios
-      // .get("http://localhost:4000/videoDetail" + params.id)
+    // axios.get("http://localhost:4000/videoDetail" + params.id)
       axios.get('https://youtube-clone-backend-five.vercel.app/videoDetail' + params.id)
       .then((response) => {
         const json = response.data;

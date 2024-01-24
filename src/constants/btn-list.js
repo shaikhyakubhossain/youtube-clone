@@ -3,7 +3,7 @@ import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFil
 import SubscriptionsOutlinedIcon from '@mui/icons-material/SubscriptionsOutlined';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 export const leftMenuMainSectionRow1 = [{
     name: "Home",
@@ -31,7 +31,7 @@ export const subContainer1RightPart = [
     },
     {
         value: "",
-        logo: <MoreVertIcon />
+        logo: <MoreHorizIcon />
     }
     
 ]
