@@ -10,6 +10,10 @@
     padding: 80px 120px 0 120px;
 }
 
+.leftContainer {
+    width: 853.325px;
+}
+
 .title {
     font-size: 19px;
     font-weight: bold;
@@ -30,6 +34,7 @@
 
 .subContainer1Main {
     display: flex;
+    justify-content: space-between;
 }
 
 .subContainer1LeftPart {
@@ -59,6 +64,10 @@
 
 .rightPartBtn {
     margin: 12px 0 4px 0;
+}
+
+.rightPartBtnStatic {
+    margin: 12px 0 4px 8px;
 }
 
 .subContainer1RightPart {

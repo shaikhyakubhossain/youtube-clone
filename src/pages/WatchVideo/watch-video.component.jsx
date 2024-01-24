@@ -46,8 +46,8 @@ const WatchVideo = (props) => {
 
   const fetchData = () => {
     axios
-      .get("http://localhost:4000/videoDetail" + params.id)
-      // axios.get('https://youtube-clone-backend-five.vercel.app/videoDetail' + params.id)
+      // .get("http://localhost:4000/videoDetail" + params.id)
+      axios.get('https://youtube-clone-backend-five.vercel.app/videoDetail' + params.id)
       .then((response) => {
         const json = response.data;
         if (response.status === 200) {
@@ -111,7 +111,7 @@ const WatchVideo = (props) => {
             {subContainer1RightPart
               ? subContainer1RightPart.map((item, index) => {
                   return (
-                    <div className={styles.rightPartBtn}>
+                    <div className={styles.rightPartBtnStatic}>
                       <Button startIcon={item.logo} sx={subContainer1RightPartStaticBtnSX}>
                         {item.value}
                       </Button>

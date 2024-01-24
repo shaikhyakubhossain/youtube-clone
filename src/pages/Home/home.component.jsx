@@ -17,8 +17,8 @@ const Home = (props) => {
   }, [apiData]);
 
   const fetchData = () => {
-      axios.get('http://localhost:4000/mostPopularVideos')
-      // axios.get('https://youtube-clone-backend-five.vercel.app/mostPopularVideos')
+      // axios.get('http://localhost:4000/mostPopularVideos')
+      axios.get('https://youtube-clone-backend-five.vercel.app/mostPopularVideos')
       .then((response) => {
         const json = response.data;
         if(response.status === 200){
