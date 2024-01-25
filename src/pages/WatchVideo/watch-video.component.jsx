@@ -120,6 +120,10 @@ const WatchVideo = (props) => {
               : null}
           </div>
         </div>
+        <div className={styles.subContainer2Main}>
+            <div className={styles.viewCount}>{apiData.statistics.viewCount} views</div>
+            <div className={styles.description}>{apiData.snippet.description}</div>
+          </div>
       </>
     );
   };
