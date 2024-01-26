@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./watch-video.module.css";
 import VideoPlayer from "../../components/VideoPlayer/video-player.component";
 import { useParams } from "react-router-dom";
@@ -9,11 +9,14 @@ import { Button } from "@mui/material";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import shortNumber from "short-number";
-import {subContainer1RightPart} from "../../constants/btn-list";
+import { subContainer1RightPart } from "../../constants/btn-list";
 
 const WatchVideo = (props) => {
   const params = useParams();
   const [apiData, setApiData] = useState(null);
+  const descriptionRef = useRef(null);
+  const descriptionShowLessBtnRef = useRef(null);
+  const [shouldToggleDescriptionWindow, SetShouldToggleDescriptionWindow] = useState(true);
   const [subscribeBtnSX, setSubscribeBtnSX] = useState({
     fontSize: "14px",
     fontWeight: "500",
@@ -53,6 +56,34 @@ const WatchVideo = (props) => {
           setApiData(json);
         }
       });
+  };
+
+  const descriptionStyle = (e) => {
+    // console.log("descriptionStyle");
+    
+    if (shouldToggleDescriptionWindow) {
+      // console.log("if");
+
+      descriptionRef.current.className = styles.descriptionExpand;
+      descriptionShowLessBtnRef.current.className =
+        styles.descriptionShowLessBtnEnabled;
+      descriptionShowLessBtnRef.current.parentNode.className = styles.subContainer2MainExpand;
+        SetShouldToggleDescriptionWindow(false);
+    }
+    // if(){
+
+    // }
+  };
+
+  const descriptionShowLessBtnStyle = () => {
+    if(!shouldToggleDescriptionWindow){
+    descriptionRef.current.className = styles.descriptionMinimize;
+    descriptionShowLessBtnRef.current.className =
+      styles.descriptionShowLessBtnDisabled;
+      descriptionShowLessBtnRef.current.parentNode.className = styles.subContainer2MainMinimize;
+      SetShouldToggleDescriptionWindow(true);
+    }
+    
   };
 
   const whenVideoDetailIsLoaded = () => {
@@ -111,7 +142,10 @@ const WatchVideo = (props) => {
               ? subContainer1RightPart.map((item, index) => {
                   return (
                     <div className={styles.rightPartBtnStatic}>
-                      <Button startIcon={item.logo} sx={subContainer1RightPartStaticBtnSX}>
+                      <Button
+                        startIcon={item.logo}
+                        sx={subContainer1RightPartStaticBtnSX}
+                      >
                         {item.value}
                       </Button>
                     </div>
@@ -120,10 +154,26 @@ const WatchVideo = (props) => {
               : null}
           </div>
         </div>
-        <div className={styles.subContainer2Main}>
-            <div className={styles.viewCount}>{apiData.statistics.viewCount} views</div>
-            <div className={styles.description}>{apiData.snippet.description}</div>
+        <div
+          className={styles.subContainer2MainMinimize}
+          onClick={(e) => {
+            descriptionStyle(e);
+          }}
+        >
+          <div className={styles.viewCount}>
+            {apiData.statistics.viewCount} views
           </div>
+          <div className={styles.descriptionMinimize} ref={descriptionRef}>
+            {apiData.snippet.description}
+          </div>
+          <div
+            className={styles.descriptionShowLessBtnDisabled}
+            onClick={descriptionShowLessBtnStyle}
+            ref={descriptionShowLessBtnRef}
+          >
+            <Button>Show less</Button>
+          </div>
+        </div>
       </>
     );
   };

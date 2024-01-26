@@ -74,14 +74,43 @@
     display: flex;
 }
 
-.description {
+.descriptionMinimize {
     white-space: pre-line;
+    height: 60px;
 }
 
-.subContainer2Main {
+.descriptionExpand {
+    white-space: pre-line;
+    height: 100%;
+}
+
+.subContainer2MainExpand {
     font-size: 14px;
     background: rgb(39, 39, 39);
     padding: 12px;
     margin: 12px 0 0 0;
     border-radius: 12px;
+    overflow: hidden;
+}
+
+.subContainer2MainMinimize {
+    font-size: 14px;
+    background: rgb(39, 39, 39);
+    padding: 12px;
+    margin: 12px 0 0 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.subContainer2MainMinimize:hover {
+    background: rgb(67, 67, 67);
+    
+}
+
+.descriptionShowLessBtnDisabled {
+    display: none;
+}
+
+.descriptionShowLessBtnEnabled {
+    display: block;
 }
