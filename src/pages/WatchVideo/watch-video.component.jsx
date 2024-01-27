@@ -174,6 +174,9 @@ const WatchVideo = (props) => {
             <Button>Show less</Button>
           </div>
         </div>
+        <div className={styles.subContainer3}>
+          <div className={styles.commentCount}>{apiData.statistics.commentCount} Comments</div>
+        </div>
       </>
     );
   };

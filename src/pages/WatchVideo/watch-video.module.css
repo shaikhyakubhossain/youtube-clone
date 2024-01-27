@@ -114,3 +114,13 @@
 .descriptionShowLessBtnEnabled {
     display: block;
 }
+
+.subContainer3 {
+    margin: 24px 0 32px 0;
+}
+
+.commentCount {
+    font-size: 19px;
+    font-weight: bold;
+}
+
