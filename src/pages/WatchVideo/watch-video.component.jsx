@@ -13,7 +13,9 @@ import { subContainer1RightPart } from "../../constants/btn-list";
 
 const WatchVideo = (props) => {
   const params = useParams();
-  const [apiData, setApiData] = useState(null);
+  const [apiDataVideoDetail, setApiDataVideoDetail] = useState(null);
+  const [apiDataMostPopularVideos, setApiDataMostPopularVideos] = useState(null);
+
   const descriptionRef = useRef(null);
   const descriptionShowLessBtnRef = useRef(null);
   const [shouldToggleDescriptionWindow, SetShouldToggleDescriptionWindow] = useState(true);
@@ -43,20 +45,33 @@ const WatchVideo = (props) => {
 
   useEffect(() => {
     props.setFalse();
-    fetchData();
+    fetchDataForVideoDetail();
+    fetchDataForMostPopularVideos();
     // console.log("apiData", apiData, "params.id", params.id);
   }, [params]);
 
-  const fetchData = () => {
+  const fetchDataForVideoDetail = () => {
     // axios.get("http://localhost:4000/videoDetail" + params.id)
       axios.get('https://youtube-clone-backend-five.vercel.app/videoDetail' + params.id)
       .then((response) => {
         const json = response.data;
         if (response.status === 200) {
-          setApiData(json);
+          setApiDataVideoDetail(json);
         }
       });
   };
+
+  const fetchDataForMostPopularVideos = () => {
+    // axios.get('http://localhost:4000/mostPopularVideos')
+    axios.get('https://youtube-clone-backend-five.vercel.app/mostPopularVideos')
+    .then((response) => {
+      const json = response.data;
+      if(response.status === 200){
+        setApiDataMostPopularVideos(json);
+    }
+    })
+    
+}
 
   const descriptionStyle = (e) => {
     // console.log("descriptionStyle");
@@ -89,13 +104,13 @@ const WatchVideo = (props) => {
   const whenVideoDetailIsLoaded = () => {
     return (
       <>
-        <div className={styles.title}>{apiData && apiData.snippet.title}</div>
+        <div className={styles.title}>{apiDataVideoDetail && apiDataVideoDetail.snippet.title}</div>
         <div className={styles.subContainer1Main}>
           <div className={styles.subContainer1LeftPart}>
             <div className={styles.channelLogo}></div>
             <div className={styles.channelTitleAndSubscribersCountContainer}>
               <div className={styles.channelTitle}>
-                {apiData.snippet.channelTitle}
+                {apiDataVideoDetail.snippet.channelTitle}
               </div>
               {/* <div className={styles.subscribersCount}>{} subscribers</div> */}
             </div>
@@ -120,7 +135,7 @@ const WatchVideo = (props) => {
                   },
                 }}
               >
-                {shortNumber(parseInt(apiData.statistics.likeCount))}
+                {shortNumber(parseInt(apiDataVideoDetail.statistics.likeCount))}
               </Button>
             </div>
             <div className={styles.rightPartBtn}>
@@ -161,10 +176,10 @@ const WatchVideo = (props) => {
           }}
         >
           <div className={styles.viewCount}>
-            {apiData.statistics.viewCount} views
+            {apiDataVideoDetail.statistics.viewCount} views
           </div>
           <div className={styles.descriptionMinimize} ref={descriptionRef}>
-            {apiData.snippet.description}
+            {apiDataVideoDetail.snippet.description}
           </div>
           <div
             className={styles.descriptionShowLessBtnDisabled}
@@ -175,7 +190,7 @@ const WatchVideo = (props) => {
           </div>
         </div>
         <div className={styles.subContainer3}>
-          <div className={styles.commentCount}>{apiData.statistics.commentCount} Comments</div>
+          <div className={styles.commentCount}>{apiDataVideoDetail.statistics.commentCount} Comments</div>
         </div>
       </>
     );
@@ -185,6 +200,28 @@ const WatchVideo = (props) => {
     return <></>;
   };
 
+  const whenVideoSuggestionIsLoaded = () => {
+    console.log("hello", apiDataMostPopularVideos.items[0].snippet.thumbnails.maxres.url)
+    return apiDataMostPopularVideos.items.map((item) => {
+      return (
+        <div className={styles.videoSuggestionItemContainer}>
+          <div className={styles.videoSuggestionThumbnail}><img src={item.snippet.thumbnails.maxres.url} /></div>
+          {item.snippet.title.length >= 59 ? <div>{item.snippet.title.slice(0, 58)}...</div> : <div>{item.snippet.title}</div>}
+          <div></div>
+        </div>
+      )
+    })
+   
+  }
+
+  const whenVideoSuggestionIsLoading = () => {
+    return (
+      <>
+      </>
+    )
+  }
+
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.leftContainer}>
@@ -193,8 +230,11 @@ const WatchVideo = (props) => {
           className={styles.videoPlayer}
         ></VideoPlayer>
         <div className={styles.videoDetail}>
-          {apiData ? whenVideoDetailIsLoaded() : whenVideoDetailIsLoading}
+          {apiDataVideoDetail ? whenVideoDetailIsLoaded() : whenVideoDetailIsLoading}
         </div>
+      </div>
+      <div className={styles.rightContainer}>
+      {apiDataMostPopularVideos && apiDataMostPopularVideos.items ? whenVideoSuggestionIsLoaded() : whenVideoSuggestionIsLoading}
       </div>
     </div>
   );

@@ -14,19 +14,22 @@ const Home = (props) => {
   useEffect(() => {
     props.setFalse();
     apiData === null  && fetchData();
+    console.log(apiData);
   }, [apiData]);
 
+ 
   const fetchData = () => {
-      // axios.get('http://localhost:4000/mostPopularVideos')
-      axios.get('https://youtube-clone-backend-five.vercel.app/mostPopularVideos')
-      .then((response) => {
-        const json = response.data;
-        if(response.status === 200){
+    // axios.get('http://localhost:4000/mostPopularVideos')
+    axios.get('https://youtube-clone-backend-five.vercel.app/mostPopularVideos')
+    .then((response) => {
+      const json = response.data;
+      if(response.status === 200){
         setApiData(json);
-      }
-      })
-      
-  }
+    }
+    })
+    
+}
+
 
 
   const loadMuiSkeletonForVideo = () => {
