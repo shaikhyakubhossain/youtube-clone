@@ -206,8 +206,13 @@ const WatchVideo = (props) => {
       return (
         <div className={styles.videoSuggestionItemContainer}>
           <div className={styles.videoSuggestionThumbnail}><img src={item.snippet.thumbnails.maxres.url} /></div>
-          {item.snippet.title.length >= 59 ? <div>{item.snippet.title.slice(0, 58)}...</div> : <div>{item.snippet.title}</div>}
-          <div></div>
+          <div>
+          {item.snippet.title.length >= 59 ? <div className={styles.videoSuggestionTitle}>{item.snippet.title.slice(0, 58)}...</div> : <div className={styles.videoSuggestionTitle}>{item.snippet.title}</div>}
+          <div className={styles.videoSuggestionChannelName}>{item.snippet.channelTitle}</div>
+          <div>
+            <div></div>
+          </div>
+          </div>
         </div>
       )
     })
