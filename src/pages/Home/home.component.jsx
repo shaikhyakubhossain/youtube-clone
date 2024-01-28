@@ -7,6 +7,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { setFalse } from '../../redux/index';
 import axios from "axios";
 import { mostPopularVideos } from "../../constants/url-list";
+import { fetchMaxAvailableThumbnailResolution } from "../../constants/utils";
 
 const Home = (props) => {
   const [apiData, setApiData] = useState(null);
@@ -50,6 +51,8 @@ const Home = (props) => {
 
       )
   }
+
+  
   
 
   return (
@@ -59,7 +62,7 @@ const Home = (props) => {
         if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
           return (
             <Link to={"/watch-video/" + item.id} key={index} className={styles.containerCard}>
-                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} ><img src={item.snippet.thumbnails.standard.url} /></div>
+                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} ><img src={fetchMaxAvailableThumbnailResolution(item).url} /></div>
                   <div className={styles.mainCardDetailContainerFlex}>
                   <div className={styles.channelLogo}></div>
                   <div className={styles.cardDetailContainer}>
