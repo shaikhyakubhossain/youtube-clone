@@ -10,11 +10,13 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import shortNumber from "short-number";
 import { subContainer1RightPart } from "../../constants/btn-list";
+import { mostPopularVideos, videoDetail } from "../../constants/url-list";
 
 const WatchVideo = (props) => {
   const params = useParams();
   const [apiDataVideoDetail, setApiDataVideoDetail] = useState(null);
   const [apiDataMostPopularVideos, setApiDataMostPopularVideos] = useState(null);
+  const [urlList, setUrlList] = useState([mostPopularVideos, videoDetail + params.id]);
 
   const descriptionRef = useRef(null);
   const descriptionShowLessBtnRef = useRef(null);
@@ -45,33 +47,26 @@ const WatchVideo = (props) => {
 
   useEffect(() => {
     props.setFalse();
-    fetchDataForVideoDetail();
-    fetchDataForMostPopularVideos();
+    fetchData();
+    // fetchDataForVideoDetail();
+    // fetchDataForMostPopularVideos();
     // console.log("apiData", apiData, "params.id", params.id);
+    // console.log(apiDataMostPopularVideos.items.snippet);
   }, [params]);
 
-  const fetchDataForVideoDetail = () => {
-    // axios.get("http://localhost:4000/videoDetail" + params.id)
-      axios.get('https://youtube-clone-backend-five.vercel.app/videoDetail' + params.id)
-      .then((response) => {
-        const json = response.data;
-        if (response.status === 200) {
-          setApiDataVideoDetail(json);
-        }
-      });
-  };
-
-  const fetchDataForMostPopularVideos = () => {
-    // axios.get('http://localhost:4000/mostPopularVideos')
-    axios.get('https://youtube-clone-backend-five.vercel.app/mostPopularVideos')
-    .then((response) => {
-      const json = response.data;
-      if(response.status === 200){
-        setApiDataMostPopularVideos(json);
-    }
-    })
+  const fetchData = () => {
+    axios.all(urlList.map((endpoint) => axios.get(endpoint))).then(
+      (response) => {
+        // console.log(response[0].data);
+        console.log(response[0].data);
+        setApiDataVideoDetail(response[1].data);
+        setApiDataMostPopularVideos(response[0].data);
+      }
+    );
+   
     
 }
+
 
   const descriptionStyle = (e) => {
     // console.log("descriptionStyle");
@@ -85,9 +80,7 @@ const WatchVideo = (props) => {
       descriptionShowLessBtnRef.current.parentNode.className = styles.subContainer2MainExpand;
         SetShouldToggleDescriptionWindow(false);
     }
-    // if(){
-
-    // }
+    
   };
 
   const descriptionShowLessBtnStyle = () => {
@@ -201,11 +194,11 @@ const WatchVideo = (props) => {
   };
 
   const whenVideoSuggestionIsLoaded = () => {
-    console.log("hello", apiDataMostPopularVideos.items[0].snippet.thumbnails.maxres.url)
+    console.log("hi", apiDataMostPopularVideos.items[0].snippet.thumbnails.maxres.url);
     return apiDataMostPopularVideos.items.map((item) => {
       return (
         <div className={styles.videoSuggestionItemContainer}>
-          <div className={styles.videoSuggestionThumbnail}><img src={item.snippet.thumbnails.maxres.url} /></div>
+          <div className={styles.videoSuggestionThumbnail}>{item.snippet.thumbnails.maxres ? <img src={item.snippet.thumbnails.maxres.url} /> :null }</div>
           <div>
           {item.snippet.title.length >= 59 ? <div className={styles.videoSuggestionTitle}>{item.snippet.title.slice(0, 58)}...</div> : <div className={styles.videoSuggestionTitle}>{item.snippet.title}</div>}
           <div className={styles.videoSuggestionChannelName}>{item.snippet.channelTitle}</div>
@@ -235,11 +228,11 @@ const WatchVideo = (props) => {
           className={styles.videoPlayer}
         ></VideoPlayer>
         <div className={styles.videoDetail}>
-          {apiDataVideoDetail ? whenVideoDetailIsLoaded() : whenVideoDetailIsLoading}
+          {apiDataVideoDetail ? whenVideoDetailIsLoaded() : whenVideoDetailIsLoading()}
         </div>
       </div>
       <div className={styles.rightContainer}>
-      {apiDataMostPopularVideos && apiDataMostPopularVideos.items ? whenVideoSuggestionIsLoaded() : whenVideoSuggestionIsLoading}
+      {apiDataMostPopularVideos && apiDataMostPopularVideos.items.length > 19 ? whenVideoSuggestionIsLoaded() : whenVideoSuggestionIsLoading()}
       </div>
     </div>
   );

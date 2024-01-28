@@ -6,11 +6,12 @@ import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
 import { setFalse } from '../../redux/index';
 import axios from "axios";
+import { mostPopularVideos } from "../../constants/url-list";
 
 const Home = (props) => {
   const [apiData, setApiData] = useState(null);
   const [dummyArrayForLoading, setDummyArrayForLoading] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
-
+  const [url, setUrl] = useState(mostPopularVideos)
   useEffect(() => {
     props.setFalse();
     apiData === null  && fetchData();
@@ -19,8 +20,8 @@ const Home = (props) => {
 
  
   const fetchData = () => {
-    // axios.get('http://localhost:4000/mostPopularVideos')
-    axios.get('https://youtube-clone-backend-five.vercel.app/mostPopularVideos')
+    axios.get(url)
+    
     .then((response) => {
       const json = response.data;
       if(response.status === 200){
