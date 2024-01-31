@@ -196,7 +196,6 @@ const WatchVideo = (props) => {
   };
 
   const whenVideoSuggestionIsLoaded = () => {
-    console.log("hi", apiDataMostPopularVideos.items[0].snippet.thumbnails.maxres.url);
     return apiDataMostPopularVideos.items.map((item) => {
       return (
         <div className={styles.videoSuggestionItemContainer}>
@@ -204,7 +203,8 @@ const WatchVideo = (props) => {
           <div>
           {item.snippet.title.length >= 59 ? <div className={styles.videoSuggestionTitle}>{item.snippet.title.slice(0, 58)}...</div> : <div className={styles.videoSuggestionTitle}>{item.snippet.title}</div>}
           <div className={styles.videoSuggestionChannelName}>{item.snippet.channelTitle}</div>
-          <div>
+          <div className={styles.videoSuggestionViewAndTimeContainer} >
+            <div>{shortNumber(parseInt(item.statistics.viewCount))} views</div>
             <div></div>
           </div>
           </div>
