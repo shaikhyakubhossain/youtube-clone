@@ -158,9 +158,36 @@
 
 .videoSuggestionViewAndTimeContainer {
     display: flex;
+    justify-content: space-between;
 }
 
 .videoSuggestionViewAndTimeContainer > div{
     font-size: 12px;
     color: #AAAAAA;
+}
+
+.videoDetailFlex1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.videoDetailFlex1 > div {
+    display: flex;
+}
+
+.videoDetailLoadingFlex {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.videoDetailLoadingFlex > div > div {
+    margin: auto 6px;
+}
+
+.subscribeBtnSkeleton {
+}
+
+.videoDetailLoadingFlex > div {
+    display: flex;
 }
