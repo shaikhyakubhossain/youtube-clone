@@ -135,6 +135,15 @@
     margin: 8px 0 0 0;
 }
 
+.videoSuggestionDetailContainer > div {
+    color: white;
+    
+}
+
+.videoSuggestionDetailContainer > div:active {
+
+}
+
 .videoSuggestionThumbnail {
     min-width: 168px;
     height: 94px;
@@ -149,11 +158,13 @@
 
 .videoSuggestionTitle {
     font-size: 14px;
+    
 }
 
 .videoSuggestionChannelName {
     font-size: 12px;
     color: #AAAAAA;
+    
 }
 
 .videoSuggestionViewAndTimeContainer {

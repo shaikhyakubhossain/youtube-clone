@@ -13,10 +13,12 @@ import { subContainer1RightPart } from "../../constants/btn-list";
 import { mostPopularVideos, videoDetail } from "../../constants/url-list";
 import { fetchMaxAvailableThumbnailResolution } from "../../constants/utils";
 import Skeleton from '@mui/material/Skeleton';
+import {Link} from 'react-router-dom';
 
 
 const WatchVideo = (props) => {
   const params = useParams();
+  const [videoId, setVideoId] = useState({id: params.id})
   const [apiDataVideoDetail, setApiDataVideoDetail] = useState(null);
   const [apiDataMostPopularVideos, setApiDataMostPopularVideos] = useState(null);
   const [urlList, setUrlList] = useState([mostPopularVideos, videoDetail + params.id]);
@@ -51,11 +53,11 @@ const WatchVideo = (props) => {
   useEffect(() => {
     props.setFalse();
     fetchData();
-    // fetchDataForVideoDetail();
-    // fetchDataForMostPopularVideos();
+    console.log("videoId ",videoId);
     // console.log("apiData", apiData, "params.id", params.id);
     // console.log(apiDataMostPopularVideos.items.snippet);
-  }, [params]);
+    console.log("params ", params);
+  }, [params, videoId]);
 
   const fetchData = () => {
     axios.all(urlList.map((endpoint) => axios.get(endpoint))).then(
@@ -66,8 +68,6 @@ const WatchVideo = (props) => {
         setApiDataMostPopularVideos(response[0].data);
       }
     );
-   
-    
 }
 
 
@@ -232,17 +232,19 @@ const WatchVideo = (props) => {
   const whenVideoSuggestionIsLoaded = () => {
     return apiDataMostPopularVideos.items.map((item) => {
       return (
+        <Link to={"/watch-video/" + item.id} reloadDocument >
         <div className={styles.videoSuggestionItemContainer}>
           <div className={styles.videoSuggestionThumbnail}><img src={fetchMaxAvailableThumbnailResolution(item).url} /></div>
-          <div>
+          <div className={styles.videoSuggestionDetailContainer}>
           {item.snippet.title.length >= 58 ? <div className={styles.videoSuggestionTitle}>{item.snippet.title.slice(0, 57)}...</div> : <div className={styles.videoSuggestionTitle}>{item.snippet.title}</div>}
           <div className={styles.videoSuggestionChannelName}>{item.snippet.channelTitle}</div>
           <div className={styles.videoSuggestionViewAndTimeContainer} >
             <div>{shortNumber(parseInt(item.statistics.viewCount))} views</div>
-            <div></div>
+            {/* <div>Upload Time here</div> */}
           </div>
           </div>
         </div>
+        </Link>
       )
     })
    
