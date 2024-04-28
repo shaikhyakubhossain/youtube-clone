@@ -240,7 +240,7 @@ const WatchVideo = (props) => {
           <div className={styles.videoSuggestionChannelName}>{item.snippet.channelTitle}</div>
           <div className={styles.videoSuggestionViewAndTimeContainer} >
             <div>{shortNumber(parseInt(item.statistics.viewCount))} views</div>
-            {/* <div>Upload Time here</div> */}
+            {/* <div>Video Upload Time here</div> */}
           </div>
           </div>
         </div>
