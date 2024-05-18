@@ -1,11 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { setFalse } from "../../redux";
-import styles from "../LeftMenu/left-menu.module.css";
+import { setFalse } from "../../../redux";
+import styles from "../hybrid/left-menu.module.css";
 import { Button } from "@mui/material";
-import { leftMenuMainSectionRow1 } from "../../constants/btn-list";
+import { leftMenuMainSectionRow1 } from "../../../constants/btn-list";
 import { useLocation, Link } from "react-router-dom";
  
+
+// hybrid left menu component
 function LeftMenu(props) {
   const location = useLocation();
   const btnContainerMain = useRef(null);

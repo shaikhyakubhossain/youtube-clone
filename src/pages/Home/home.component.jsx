@@ -66,7 +66,7 @@ const Home = (props) => {
                   <div className={styles.mainCardDetailContainerFlex}>
                   <div className={styles.channelLogo}></div>
                   <div className={styles.cardDetailContainer}>
-                  <div className={styles.videoTitle}>{item.snippet.title}</div>
+                  <div className={styles.videoTitle}>{item.snippet.title.length > 98 ? item.snippet.title.slice(0, 97) + "...": item.snippet.title }</div>
                   <div className={styles.channelTitle}>{item.snippet.channelTitle}</div>
                   <div className={styles.viewCount}>{ shortNumber(parseInt(item.statistics.viewCount))} views</div>
                   </div>

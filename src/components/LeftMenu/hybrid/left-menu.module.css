@@ -22,6 +22,11 @@
     width: 64px;
 }
 
+@media screen and (max-width: 1312px){
+
+    
+}
+
 .mainSectionHidden {
     background: #121212;
     position: fixed;
