@@ -126,7 +126,7 @@
 
 .cardImgMinimize {
     width: 100%;
-    height: auto;
+    height: 100%;
      /* min-width: 419px;
      max-width: 418.388px;
      min-height: 245px;
@@ -161,7 +161,7 @@
     max-height: 235.337px !important;  
    min-width: 1.850px !important; 
    max-width: 418.388px !important;  */
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
 }
 .cardImgMinimize > img {
@@ -173,7 +173,7 @@
     max-height: 235.337px; 
    min-width: 1.850px;
    max-width: 418.388px; */
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
 }
 

@@ -62,7 +62,7 @@ const Home = (props) => {
         if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
           return (
             <Link to={"/watch-video/" + item.id} key={index} className={styles.containerCard}>
-                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} ><img src={ checkIfMaxResAvailableInAllItems(apiData.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.standard.url } /></div>
+                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} ><img src={ checkIfMaxResAvailableInAllItems(apiData.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.medium.url } /></div>
                   <div className={styles.mainCardDetailContainerFlex}>
                   <div className={styles.channelLogo}></div>
                   <div className={styles.cardDetailContainer}>
