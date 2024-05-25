@@ -48,10 +48,13 @@ const Nav = (props) => {
             inputref={TextFieldRef}
             placeholder="Search"
             size="small"
+            sx={{
+              width: "519.200px",
+            }}
             InputProps={{
               sx: {
                 borderRadius: "40px 0 0 40px",
-                width: "519.200px",
+                // maxWidth: "519.200px",
                 Height: "38.400px",
               },
               startAdornment: (

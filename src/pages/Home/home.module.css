@@ -12,6 +12,7 @@
 .mainHomeContainerMinimize {
     display: grid;
     grid-template-columns: repeat(4,  1fr);
+    /* grid-template-rows: ; */
     position: absolute;
     top: 56px;
     right: 0;
@@ -109,6 +110,9 @@
 }
 
 .containerCard {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row:  span 2;  
     /* text-align: center; */
     /* max-width: 418.388px;
     max-height: 335.337px;
@@ -121,17 +125,24 @@
 }
 
 .cardImgMinimize {
-     /* width: auto; */
+    width: 100%;
+    height: auto;
+     /* min-width: 419px;
+     max-width: 418.388px;
+     min-height: 245px;
+     max-height: 235.337px; */
     /* height: 235.337px; */
     /* min-width: 309.850px; */
-     min-height: 0px; 
+     /* min-height: 0px; 
      max-height: 235.337px; 
     min-width: 0px;
-    max-width: 418.388px;
+    max-width: 418.388px; */
     
 }
 
 .cardImgExpand {
+    width: 100%;
+    height: 100%;
     /* min-height: 1.288px; 
     max-height: 235.337px; 
    min-width: 1.850px;
@@ -150,19 +161,19 @@
     max-height: 235.337px !important;  
    min-width: 1.850px !important; 
    max-width: 418.388px !important;  */
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 8px;
 }
 .cardImgMinimize > img {
     /* display: block; */
     /* min-width: 100%; */
-    max-width: 100%;
-    max-height: 100%;
+    width: 100%;
+    height: 100%;
     /* min-height: 1.288px; 
     max-height: 235.337px; 
    min-width: 1.850px;
    max-width: 418.388px; */
-    object-fit: contain;
+    object-fit: cover;
     border-radius: 8px;
 }
 

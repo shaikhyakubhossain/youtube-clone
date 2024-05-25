@@ -7,7 +7,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { setFalse } from '../../redux/index';
 import axios from "axios";
 import { mostPopularVideos } from "../../constants/url-list";
-import { fetchMaxAvailableThumbnailResolution } from "../../constants/utils";
+import { checkIfMaxResAvailableInAllItems } from "../../constants/utils";
 
 const Home = (props) => {
   const [apiData, setApiData] = useState(null);
@@ -62,11 +62,11 @@ const Home = (props) => {
         if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
           return (
             <Link to={"/watch-video/" + item.id} key={index} className={styles.containerCard}>
-                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} ><img src={fetchMaxAvailableThumbnailResolution(item).url} /></div>
+                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} ><img src={ checkIfMaxResAvailableInAllItems(apiData.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.standard.url } /></div>
                   <div className={styles.mainCardDetailContainerFlex}>
                   <div className={styles.channelLogo}></div>
                   <div className={styles.cardDetailContainer}>
-                  <div className={styles.videoTitle}>{item.snippet.title.length > 98 ? item.snippet.title.slice(0, 97) + "...": item.snippet.title }</div>
+                  <div className={styles.videoTitle}>{item.snippet.title.length > 58 ? item.snippet.title.slice(0, 57) + "...": item.snippet.title }</div>
                   <div className={styles.channelTitle}>{item.snippet.channelTitle}</div>
                   <div className={styles.viewCount}>{ shortNumber(parseInt(item.statistics.viewCount))} views</div>
                   </div>
