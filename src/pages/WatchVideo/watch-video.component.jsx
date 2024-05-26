@@ -10,8 +10,8 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import shortNumber from "short-number";
 import { subContainer1RightPart } from "../../constants/btn-list";
-import { mostPopularVideos, videoDetail } from "../../constants/url-list";
-import { checkIfMaxResAvailableInAllItems } from "../../constants/utils";
+import { localMostPopularVideos, localVideoDetail, globalMostPopularVideos, globalvideoDetail } from "../../constants/url-list";
+import { checkIfMaxResAvailableInAllItems, toggleURL } from "../../constants/utils";
 import Skeleton from '@mui/material/Skeleton';
 import {Link} from 'react-router-dom';
 
@@ -21,7 +21,9 @@ const WatchVideo = (props) => {
   const [videoId, setVideoId] = useState({id: params.id})
   const [apiDataVideoDetail, setApiDataVideoDetail] = useState(null);
   const [apiDataMostPopularVideos, setApiDataMostPopularVideos] = useState(null);
-  const [urlList, setUrlList] = useState([mostPopularVideos, videoDetail + params.id]);
+  const [urlsForMostPopularVideos, setUrlsForMostPopularVideos] = useState([globalMostPopularVideos, localMostPopularVideos])
+  const [urlsForVideoDetail, setUrlsForVideoDetail] = useState([globalvideoDetail, localVideoDetail])
+  const [urlListForAxios, setUrlListForAxios] = useState([toggleURL(urlsForMostPopularVideos), toggleURL(urlsForVideoDetail) + params.id]);
 
   const descriptionRef = useRef(null);
   const descriptionShowLessBtnRef = useRef(null);
@@ -60,12 +62,12 @@ const WatchVideo = (props) => {
   }, [params, videoId]);
 
   const fetchData = () => {
-    axios.all(urlList.map((endpoint) => axios.get(endpoint))).then(
+    axios.all(urlListForAxios.map((endpoint) => axios.get(endpoint))).then(
       (response) => {
         // console.log(response[0].data);
         console.log(response[0].data);
-        setApiDataVideoDetail(response[1].data);
         setApiDataMostPopularVideos(response[0].data);
+        setApiDataVideoDetail(response[1].data);
       }
     );
 }

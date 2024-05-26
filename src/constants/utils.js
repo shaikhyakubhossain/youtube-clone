@@ -8,8 +8,6 @@ export const checkIfMaxResAvailableInAllItems = (items) => {
       });
 }
 
-
-
 // export const fetchMaxAvailableThumbnailResolutionForEachItem = (item) => {
 //     const path = item.snippet.thumbnails;
 //     if(path.maxres){
@@ -28,3 +26,16 @@ export const checkIfMaxResAvailableInAllItems = (items) => {
 //       return path.default;
 //     }
 //   }
+
+export const toggleURL = (urls) => {
+  const baseURL = window.location.href;
+  const globalURL = urls[0]
+  const localURL = urls[1]
+  // console.log("hiiiiii", baseURL.slice(0, 17));
+    if(baseURL.slice(0, 17) === localURL.slice(0, 17)){
+        return localURL;
+    }
+    else{
+      return globalURL;
+    }
+}

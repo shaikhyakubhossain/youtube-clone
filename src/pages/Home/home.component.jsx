@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
 import { setFalse } from '../../redux/index';
 import axios from "axios";
-import { mostPopularVideos } from "../../constants/url-list";
-import { checkIfMaxResAvailableInAllItems } from "../../constants/utils";
+import { globalMostPopularVideos, localMostPopularVideos } from "../../constants/url-list";
+import { checkIfMaxResAvailableInAllItems, toggleURL } from "../../constants/utils";
 
 const Home = (props) => {
   const [apiData, setApiData] = useState(null);
   const [dummyArrayForLoading, setDummyArrayForLoading] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
-  const [url, setUrl] = useState(mostPopularVideos)
+  const [urls, setUrl] = useState([globalMostPopularVideos, localMostPopularVideos])
   useEffect(() => {
     props.setFalse();
     apiData === null  && fetchData();
@@ -21,7 +21,7 @@ const Home = (props) => {
 
  
   const fetchData = () => {
-    axios.get(url)
+    axios.get(toggleURL(urls))
     
     .then((response) => {
       const json = response.data;
