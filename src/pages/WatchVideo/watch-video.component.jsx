@@ -234,7 +234,7 @@ const WatchVideo = (props) => {
       return (
         <Link to={"/watch-video/" + item.id} reloadDocument >
         <div className={styles.videoSuggestionItemContainer}>
-          <div className={styles.videoSuggestionThumbnail}><img src={checkIfMaxResAvailableInAllItems(apiDataMostPopularVideos.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.standard.url } /></div>
+          <div className={styles.videoSuggestionThumbnail}><img src={checkIfMaxResAvailableInAllItems(apiDataMostPopularVideos.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.medium.url } /></div>
           <div className={styles.videoSuggestionDetailContainer}>
           {item.snippet.title.length >= 58 ? <div className={styles.videoSuggestionTitle}>{item.snippet.title.slice(0, 57)}...</div> : <div className={styles.videoSuggestionTitle}>{item.snippet.title}</div>}
           <div className={styles.videoSuggestionChannelName}>{item.snippet.channelTitle}</div>
