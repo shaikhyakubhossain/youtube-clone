@@ -41,7 +41,7 @@ const Nav = (props) => {
         </Link>
       </div>
       <div className={`${styles.middleContainer} ${styles.allContainers}`}>
-        <div>
+        <div className={styles.textFieldContainer}>
           <TextField
             onFocus={toggleSearchIcon}
             onBlur={toggleSearchIcon}
@@ -49,7 +49,7 @@ const Nav = (props) => {
             placeholder="Search"
             size="small"
             sx={{
-              width: "519.200px",
+              width: "100%",
             }}
             InputProps={{
               sx: {

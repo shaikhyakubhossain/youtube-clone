@@ -33,7 +33,14 @@
 }
 
 .middleContainer {
+  flex-grow: 1;
+  max-width: 732px;
+
   /* margin: auto; */
+}
+
+.textFieldContainer {
+  width: 100%;
 }
 
 .rightContainer {
