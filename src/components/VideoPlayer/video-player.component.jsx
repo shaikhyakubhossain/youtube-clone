@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import PropsTypes from "prop-types";
 import styles from "./video-player..module.css";
 
-const VideoPlayer = ({ embedId }) => {
+const VideoPlayer = (props) => {
 
   // useEffect(() => {
   //   player = new YT.Player('YTIframeAPI', {
@@ -18,12 +18,10 @@ const VideoPlayer = ({ embedId }) => {
   // }  
 
   return (
-    <div className={styles.videoPlayer}>
-      <iframe
+    <div className={props.className}>
+      <iframe className={styles.iframe1}
         id="YTIframeAPI"
-        src={"https://www.youtube.com/embed/" + embedId + "?autoplay=1"}
-        width="853"
-        height="480"
+        src={"https://www.youtube.com/embed/" + props.embedId + "?autoplay=1"}
         
       ></iframe>
     </div>
