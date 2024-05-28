@@ -14,6 +14,7 @@ import { localMostPopularVideos, localVideoDetail, globalMostPopularVideos, glob
 import { checkIfMaxResAvailableInAllItems, toggleURL } from "../../constants/utils";
 import Skeleton from '@mui/material/Skeleton';
 import {Link} from 'react-router-dom';
+import { Download } from "@mui/icons-material";
 
 
 const WatchVideo = (props) => {
@@ -155,11 +156,11 @@ const WatchVideo = (props) => {
               ? subContainer1RightPart.map((item, index) => {
                   return (
                     <div className={styles.rightPartBtnStatic}>
-                      <Button
+                      <Button className={ item.value === "Download" ? `${styles.downloadBtn} ${styles.subContainer1RightPartBtns}` : styles.subContainer1RightPartBtns}
                         startIcon={item.logo}
                         sx={subContainer1RightPartStaticBtnSX}
                       >
-                        {item.value}
+                        {item.value ? item.value : null}
                       </Button>
                     </div>
                   );
