@@ -7,7 +7,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { setFalse } from '../../redux/index';
 import axios from "axios";
 import { globalMostPopularVideos, localMostPopularVideos } from "../../constants/url-list";
-import { checkIfMaxResAvailableInAllItems, toggleURL } from "../../constants/utils";
+import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
 
 const Home = (props) => {
   const [apiData, setApiData] = useState(null);
@@ -62,7 +62,10 @@ const Home = (props) => {
         if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
           return (
             <Link to={"/watch-video/" + item.id} key={index} className={styles.containerCard}>
-                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} ><img src={ checkIfMaxResAvailableInAllItems(apiData.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.medium.url } /></div>
+                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} >
+                    <img src={ checkIfMaxResAvailableInAllItems(apiData.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.medium.url } />
+                    <div className={styles.videoDuration}>{ videoDurationCalculator(item.contentDetails.duration) }</div>
+                  </div>
                   <div className={styles.mainCardDetailContainerFlex}>
                   <div className={styles.channelLogo}></div>
                   <div className={styles.cardDetailContainer}>

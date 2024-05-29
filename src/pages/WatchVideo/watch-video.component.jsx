@@ -11,7 +11,7 @@ import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import shortNumber from "short-number";
 import { subContainer1RightPart } from "../../constants/btn-list";
 import { localMostPopularVideos, localVideoDetail, globalMostPopularVideos, globalvideoDetail } from "../../constants/url-list";
-import { checkIfMaxResAvailableInAllItems, toggleURL } from "../../constants/utils";
+import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
 import Skeleton from '@mui/material/Skeleton';
 import {Link} from 'react-router-dom';
 import { Download } from "@mui/icons-material";
@@ -237,7 +237,10 @@ const WatchVideo = (props) => {
       return (
         <Link to={"/watch-video/" + item.id} style={{textDecoration: "none"}} reloadDocument >
         <div className={styles.videoSuggestionItemContainer}>
-          <div className={styles.videoSuggestionThumbnail}><img src={checkIfMaxResAvailableInAllItems(apiDataMostPopularVideos.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.medium.url } /></div>
+          <div className={styles.videoSuggestionThumbnail}>
+            <img src={checkIfMaxResAvailableInAllItems(apiDataMostPopularVideos.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.medium.url } />
+            <div className={styles.videoDuration}>{ videoDurationCalculator(item.contentDetails.duration) }</div>
+          </div>
           <div className={styles.videoSuggestionDetailContainer}>
           {item.snippet.title.length >= 58 ? <div className={styles.videoSuggestionTitle}>{item.snippet.title.slice(0, 57)}...</div> : <div className={styles.videoSuggestionTitle}>{item.snippet.title}</div>}
           <div className={styles.videoSuggestionChannelName}>{item.snippet.channelTitle}</div>

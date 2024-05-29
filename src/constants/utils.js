@@ -39,3 +39,25 @@ export const toggleURL = (urls) => {
       return globalURL;
     }
 }
+
+export const videoDurationCalculator = (duration) => {
+  let finalDuration = "";
+    if (duration.length <= 5 && duration[duration.length - 1] === "S") {
+      finalDuration = "0:" + duration.slice(2, duration.length - 1)
+      return finalDuration;
+    }
+    if (duration.length > 5) {
+
+      for(let i = duration.length - 2; i > 1 ; i--){
+        if (!Number.isInteger(parseInt(duration[i - 1]))) {
+          finalDuration = (duration[i - 1] !== "T" ? ":" : "") + (duration[i - 1] !== "T" ? "0" : "") + duration[i] + finalDuration;
+          i--;
+        }
+        else if (Number.isInteger(parseInt(duration[i - 1]))) {
+          finalDuration = (duration[i - 2] !== "T" ? ":" : "") + duration[i - 1] + duration[i] + finalDuration;
+          i = i - 2;
+        }
+      }
+      return finalDuration;
+    }
+}

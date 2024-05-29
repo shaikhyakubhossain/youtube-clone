@@ -193,9 +193,22 @@
 }
 
 .videoSuggestionThumbnail {
+    position: relative;
     min-width: 168px;
     height: 94px;
     margin: 0 8px 0 0;
+}
+
+.videoDuration {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-size: 12px;
+    margin: 8px;
+    padding: 1px 4px 1px 4px;
+    border-radius: 4px;
 }
 
 .videoSuggestionThumbnail > img {
