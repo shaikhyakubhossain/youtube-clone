@@ -61,7 +61,7 @@ const Home = (props) => {
         // console.log("apiData.lenght", apiData.items.lenght);
         if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
           return (
-            <Link to={"/watch-video/" + item.id} key={index} className={styles.containerCard}>
+            <Link key={index} to={"/watch-video/" + item.id} className={styles.containerCard}>
                   <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} >
                     <img src={ checkIfMaxResAvailableInAllItems(apiData.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.medium.url } />
                     <div className={styles.videoDuration}>{ videoDurationCalculator(item.contentDetails.duration) }</div>

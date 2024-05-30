@@ -233,9 +233,9 @@ const WatchVideo = (props) => {
   };
 
   const whenVideoSuggestionIsLoaded = () => {
-    return apiDataMostPopularVideos.items.map((item) => {
+    return apiDataMostPopularVideos.items.map((item, index) => {
       return (
-        <Link to={"/watch-video/" + item.id} style={{textDecoration: "none"}} reloadDocument >
+        <Link key={index} to={"/watch-video/" + item.id} style={{textDecoration: "none"}} reloadDocument >
         <div className={styles.videoSuggestionItemContainer}>
           <div className={styles.videoSuggestionThumbnail}>
             <img src={checkIfMaxResAvailableInAllItems(apiDataMostPopularVideos.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.medium.url } />
