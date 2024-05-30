@@ -22,7 +22,8 @@ const VideoPlayer = (props) => {
       <iframe className={styles.iframe1}
         id="YTIframeAPI"
         src={"https://www.youtube.com/embed/" + props.embedId + "?autoplay=1"}
-        
+        allow="autoplay; encrypted-media"
+        allowfullscreen
       ></iframe>
     </div>
   );
