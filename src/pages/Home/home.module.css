@@ -226,3 +226,13 @@
 .cardDetailContainer {
     /* margin-left: 10px; */
 }
+
+.cardImgSkeletonExpand {
+    width: 317.987px;
+    height: 178.863px;
+}
+
+.cardImgSkeletonMinimize {
+    width: 373.312px;
+    height: 209.988px;
+}

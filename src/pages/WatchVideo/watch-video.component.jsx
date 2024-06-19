@@ -269,7 +269,7 @@ const WatchVideo = (props) => {
         <VideoPlayer
           embedId={params ? params.id : null}
           className={styles.videoPlayer}
-        ></VideoPlayer>
+        ></VideoPlayer> 
         <div className={styles.videoDetail}>
           {apiDataVideoDetail ? whenVideoDetailIsLoaded() : whenVideoDetailIsLoading()}
         </div>
