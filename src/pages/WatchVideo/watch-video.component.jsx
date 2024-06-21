@@ -10,7 +10,7 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import shortNumber from "short-number";
 import { subContainer1RightPart } from "../../constants/btn-list";
-import { localMostPopularVideos, localVideoDetail, globalMostPopularVideos, globalvideoDetail } from "../../constants/url-list";
+import { localReactJSVideos, localVideoDetail, globalReactJSVideos, globalvideoDetail } from "../../constants/url-list";
 import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
 import Skeleton from '@mui/material/Skeleton';
 import {Link} from 'react-router-dom';
@@ -21,10 +21,10 @@ const WatchVideo = (props) => {
   const params = useParams();
   const [videoId, setVideoId] = useState({id: params.id})
   const [apiDataVideoDetail, setApiDataVideoDetail] = useState(null);
-  const [apiDataMostPopularVideos, setApiDataMostPopularVideos] = useState(null);
-  const [urlsForMostPopularVideos, setUrlsForMostPopularVideos] = useState([globalMostPopularVideos, localMostPopularVideos])
+  const [apiDataReactJSVideos, setApiDataReactJSVideos] = useState(null);
+  const [urlsForReactJSVideos, setUrlsForReactJSVideos] = useState([globalReactJSVideos, localReactJSVideos])
   const [urlsForVideoDetail, setUrlsForVideoDetail] = useState([globalvideoDetail, localVideoDetail])
-  const [urlListForAxios, setUrlListForAxios] = useState([toggleURL(urlsForMostPopularVideos), toggleURL(urlsForVideoDetail) + params.id]);
+  const [urlListForAxios, setUrlListForAxios] = useState([toggleURL(urlsForReactJSVideos), toggleURL(urlsForVideoDetail) + params.id]);
 
   const descriptionRef = useRef(null);
   const descriptionShowLessBtnRef = useRef(null);
@@ -58,7 +58,7 @@ const WatchVideo = (props) => {
     fetchData();
     console.log("videoId ",videoId);
     // console.log("apiData", apiData, "params.id", params.id);
-    // console.log(apiDataMostPopularVideos.items.snippet);
+    // console.log(apiDataReactJSVideos.items.snippet);
     console.log("params ", params);
   }, [params, videoId]);
 
@@ -67,7 +67,7 @@ const WatchVideo = (props) => {
       (response) => {
         // console.log(response[0].data);
         console.log(response[0].data);
-        setApiDataMostPopularVideos(response[0].data);
+        setApiDataReactJSVideos(response[0].data);
         setApiDataVideoDetail(response[1].data);
       }
     );
@@ -103,13 +103,13 @@ const WatchVideo = (props) => {
   const whenVideoDetailIsLoaded = () => {
     return (
       <>
-        <div className={styles.title}>{apiDataVideoDetail && apiDataVideoDetail.snippet.title}</div>
+        <div className={styles.title}>{apiDataVideoDetail && apiDataVideoDetail.title}</div>
         <div className={styles.subContainer1Main}>
           <div className={styles.subContainer1LeftPart}>
             <div className={styles.channelLogo}></div>
             <div className={styles.channelTitleAndSubscribersCountContainer}>
               <div className={styles.channelTitle}>
-                {apiDataVideoDetail.snippet.channelTitle}
+                {apiDataVideoDetail.channelTitle}
               </div>
               {/* <div className={styles.subscribersCount}>{} subscribers</div> */}
             </div>
@@ -134,7 +134,7 @@ const WatchVideo = (props) => {
                   },
                 }}
               >
-                {shortNumber(parseInt(apiDataVideoDetail.statistics.likeCount))}
+                {shortNumber(parseInt(apiDataVideoDetail.likeCount))}
               </Button>
             </div>
             <div className={styles.rightPartBtn}>
@@ -175,10 +175,10 @@ const WatchVideo = (props) => {
           }}
         >
           <div className={styles.viewCount}>
-            {apiDataVideoDetail.statistics.viewCount} views
+            {apiDataVideoDetail.viewCount} views
           </div>
           <div className={styles.descriptionMinimize} ref={descriptionRef}>
-            {apiDataVideoDetail.snippet.description}
+            {apiDataVideoDetail.description}
           </div>
           <div
             className={styles.descriptionShowLessBtnDisabled}
@@ -189,7 +189,7 @@ const WatchVideo = (props) => {
           </div>
         </div>
         <div className={styles.subContainer3}>
-          <div className={styles.commentCount}>{apiDataVideoDetail.statistics.commentCount} Comments</div>
+          <div className={styles.commentCount}>{apiDataVideoDetail.commentCount} Comments</div>
         </div>
       </>
     );
@@ -233,19 +233,20 @@ const WatchVideo = (props) => {
   };
 
   const whenVideoSuggestionIsLoaded = () => {
-    return apiDataMostPopularVideos.items.map((item, index) => {
+    console.log("apiDataReactJSVideos: ", apiDataReactJSVideos);
+    return apiDataReactJSVideos.map((item, index) => {
       return (
-        <Link key={index} to={"/watch-video/" + item.id} style={{textDecoration: "none"}} reloadDocument >
+        <Link key={index} to={"/watch-video/" + item.videoId} style={{textDecoration: "none"}} reloadDocument >
         <div className={styles.videoSuggestionItemContainer}>
           <div className={styles.videoSuggestionThumbnail}>
-            <img src={checkIfMaxResAvailableInAllItems(apiDataMostPopularVideos.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.medium.url } />
-            <div className={styles.videoDuration}>{ videoDurationCalculator(item.contentDetails.duration) }</div>
+            <img src={checkIfMaxResAvailableInAllItems(apiDataReactJSVideos) ? item.thumbnails.maxres.url : item.thumbnails.medium.url } />
+            <div className={styles.videoDuration}>{ videoDurationCalculator(item.duration) }</div>
           </div>
           <div className={styles.videoSuggestionDetailContainer}>
-          {item.snippet.title.length >= 58 ? <div className={styles.videoSuggestionTitle}>{item.snippet.title.slice(0, 57)}...</div> : <div className={styles.videoSuggestionTitle}>{item.snippet.title}</div>}
-          <div className={styles.videoSuggestionChannelName}>{item.snippet.channelTitle}</div>
+          {item.title.length >= 58 ? <div className={styles.videoSuggestionTitle}>{item.title.slice(0, 57)}...</div> : <div className={styles.videoSuggestionTitle}>{item.title}</div>}
+          <div className={styles.videoSuggestionChannelName}>{item.channelTitle}</div>
           <div className={styles.videoSuggestionViewAndTimeContainer} >
-            <div>{shortNumber(parseInt(item.statistics.viewCount))} views</div>
+            <div>{shortNumber(parseInt(item.viewCount))} views</div>
             {/* <div>Video Upload Time here</div> */}
           </div>
           </div>
@@ -275,7 +276,7 @@ const WatchVideo = (props) => {
         </div>
       </div>
       <div className={styles.rightContainer}>
-      {apiDataMostPopularVideos && apiDataMostPopularVideos.items.length > 19 ? whenVideoSuggestionIsLoaded() : whenVideoSuggestionIsLoading()}
+      {apiDataReactJSVideos && apiDataReactJSVideos.length > 14 ? whenVideoSuggestionIsLoaded() : whenVideoSuggestionIsLoading()}
       </div>
     </div>
   );

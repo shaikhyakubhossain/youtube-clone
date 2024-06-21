@@ -1,7 +1,7 @@
 export const checkIfMaxResAvailableInAllItems = (items) => {
       let hasMaxRes = true;
       items.forEach((item) => {
-        if(item.snippet.thumbnails.maxres === undefined){
+        if(item.thumbnails.maxres === undefined){
           hasMaxRes = false;
           return hasMaxRes;
         }

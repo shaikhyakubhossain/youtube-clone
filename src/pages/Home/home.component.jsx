@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
 import { setFalse } from '../../redux/index';
 import axios from "axios";
-import { globalMostPopularVideos, localMostPopularVideos } from "../../constants/url-list";
+import { globalReactJSVideos, localReactJSVideos } from "../../constants/url-list";
 import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
 
 const Home = (props) => {
   const [apiData, setApiData] = useState(null);
   const [dummyArrayForLoading, setDummyArrayForLoading] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
-  const [urls, setUrl] = useState([globalMostPopularVideos, localMostPopularVideos])
+  const [urls, setUrl] = useState([globalReactJSVideos, localReactJSVideos])
   useEffect(() => {
     props.setFalse();
     apiData === null  && fetchData();
@@ -57,26 +57,26 @@ const Home = (props) => {
 
   return (
     <div className={props.isMaximized ? styles.mainHomeContainerExpand : styles.mainHomeContainerMinimize}>
-      { apiData && apiData.items && apiData.items.map ? apiData.items.map((item, index) => {
+      { apiData && apiData.map ? apiData.map((item, index) => {
         // console.log("apiData.lenght", apiData.items.lenght);
-        if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
+        // if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
           return (
-            <Link key={index} to={"/watch-video/" + item.id} className={styles.containerCard}>
+            <Link key={index} to={"/watch-video/" + item.videoId} className={styles.containerCard}>
                   <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} >
-                    <img src={ checkIfMaxResAvailableInAllItems(apiData.items) ? item.snippet.thumbnails.maxres.url : item.snippet.thumbnails.medium.url } />
-                    <div className={styles.videoDuration}>{ videoDurationCalculator(item.contentDetails.duration) }</div>
+                    <img src={ checkIfMaxResAvailableInAllItems(apiData) ? item.thumbnails.maxres.url : item.thumbnails.medium.url } />
+                    <div className={styles.videoDuration}>{ videoDurationCalculator(item.duration) }</div>
                   </div>
                   <div className={styles.mainCardDetailContainerFlex}>
                   <div className={styles.channelLogo}></div>
                   <div className={styles.cardDetailContainer}>
-                  <div className={styles.videoTitle}>{item.snippet.title.length > 58 ? item.snippet.title.slice(0, 57) + "...": item.snippet.title }</div>
-                  <div className={styles.channelTitle}>{item.snippet.channelTitle}</div>
-                  <div className={styles.viewCount}>{ shortNumber(parseInt(item.statistics.viewCount))} views</div>
+                  <div className={styles.videoTitle}>{item.title.length > 58 ? item.title.slice(0, 57) + "...": item.title }</div>
+                  <div className={styles.channelTitle}>{item.channelTitle}</div>
+                  <div className={styles.viewCount}>{ shortNumber(parseInt(item.viewCount))} views</div>
                   </div>
                   </div>
             </Link>
            ); 
-        }
+        // }
       }) :  dummyArrayForLoading.map((items, index) => {
         return (
           <div key={index} className={styles.containerCard}>
