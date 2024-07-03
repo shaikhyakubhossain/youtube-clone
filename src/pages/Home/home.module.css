@@ -175,7 +175,7 @@
    min-width: 1.850px !important; 
    max-width: 418.388px !important;  */
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 18px;
 }
 .cardImgMinimize > img {
     /* display: block; */
@@ -187,7 +187,7 @@
    min-width: 1.850px;
    max-width: 418.388px; */
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 18px;
 }
 
 .videoTitle {

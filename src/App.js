@@ -1,5 +1,5 @@
 import "./App.css";
-import { RouterWrapper } from "./components/RouterWrapper/router-wrapper.component";
+import RouterWrapper from "./components/RouterWrapper/router-wrapper.component";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Provider } from "react-redux";
