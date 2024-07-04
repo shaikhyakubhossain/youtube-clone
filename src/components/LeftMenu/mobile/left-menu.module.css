@@ -1,0 +1,112 @@
+/* .mainSectionExpand {
+    background: #121212;
+    position: fixed;
+    top: 56px;
+    right: 915.200px;
+    bottom: 0;
+    left: 0;
+    padding: 12px;
+    width: 224px;
+    transform: translateX(0px);
+    transition: 200ms transform;
+} */
+
+.mainSectionMinimize {
+    background: #121212;
+    position: fixed;
+    top: 56px;
+    right: 915.200px;
+    bottom: 0;
+    left: 0;
+    padding: 0 4px 0 4px;
+    width: 64px;
+}
+
+@media screen and (max-width: 1312px){
+
+    
+}
+
+.mainSectionHidden {
+    background: #121212;
+    position: fixed;
+    top: 56px;
+    right: 915.200px;
+    bottom: 0;
+    left: 0;
+    padding: 12px;
+    width: 224px;
+    transform: translateX(-224px);
+    transition: 200ms transform;
+}
+
+.btnContainer {
+    /* padding: 16px 0 14px 11px;  */
+}
+
+.btnContainerMainMax > div{
+    display: block;
+}
+
+.btnContainerMainMax {
+    display: flex;
+    height: 40px;
+    /* flex-direction: column;  */
+    color: white;
+    font-family: "Roboto","Arial",sans-serif;
+    /* width:100%; */
+    /* font-size: 5px; */
+    padding: 0 12px 0 12px;
+    transform: translateY(19.5%);
+}
+
+.btnContainerMainMin {
+   
+    display: block;
+    color: white;
+    font-family: "Roboto","Arial",sans-serif;
+    width:100%;
+    font-size: 10px;
+    /* line-height: 2rem; */
+    padding: 16px 0 14px;
+    
+}
+
+/* .btnIconContainerMin{
+    width: 24px;
+    height: 24px;
+   
+    margin: auto;
+} */
+
+.btnIconContainerMax{
+    width: 24px;
+    height: 24px;
+    /* position: absolute;
+  top: 50%;
+  left: 12%;
+  transform: translate(-50%, -42%); */
+    margin: 0 24px 0 0;
+    padding-right: 12px;
+}
+
+.btnContainer > .link > Button > div > .btnFont {
+    font-weight: 500;
+    font-size: 10px;
+}
+
+
+
+.btnFontContainer {
+    /* width: 100%; */
+    /* text-align: left; */
+    /* padding-left: 12px; */
+    /* position: absolute;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%); */
+}
+
+.link {
+    
+}

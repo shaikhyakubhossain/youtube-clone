@@ -7,8 +7,8 @@ import { leftMenuMainSectionRow1 } from "../../../constants/btn-list";
 import { useLocation, Link } from "react-router-dom";
  
 
-// desktop left menu component
-function LeftMenuForDesktop() {
+// mobile left menu component
+function LeftMenuForMobile() {
   const location = useLocation();
   const btnContainerMain = useRef(null);
   const mainSection = useRef(null)
@@ -146,4 +146,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(LeftMenuForDesktop);
+export default connect(mapStateToProps, mapDispatchToProps)(LeftMenuForMobile);
