@@ -99,7 +99,7 @@ function LeftMenuForMobile() {
 
   return (
     <>
-      <div ref={mainSection} className={styles.mainSectionExpand}>
+      <div ref={mainSection} className={styles.mainSectionMinimize}>
         <div className={styles.row1}>
           <div className={styles.btnContainer}>
             {leftMenuMainSectionRow1.map((item, index) => {
@@ -111,8 +111,8 @@ function LeftMenuForMobile() {
                   sx={btnStyle}
                   onClick={(e) => toggleActiveLeftMenuBtn(e)}
                 >
-                  <div className={styles.btnContainerMainMax}>
-                    <div className={styles.btnIconContainerMax}>{item.logo}</div>
+                  <div className={styles.btnContainerMainMin}>
+                    <div className={styles.btnIconContainerMin}>{item.logo}</div>
                     
                     <div className={styles.btnFontContainer}>
                       <div className={styles.btnFont}>{item.name}</div>

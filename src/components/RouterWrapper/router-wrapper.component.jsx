@@ -66,8 +66,7 @@ const RouterWrapper = (props) => {
   return (
     <>
     <Nav />
-    
-    <div ref={LeftMenuForDesktopRef}><LeftMenuForDesktop /></div>
+    <div className={styles.LeftMenuForDesktopInactive} ref={LeftMenuForDesktopRef}><LeftMenuForDesktop /></div>
     <div ref={LeftMenuForMobileRef}><LeftMenuForMobile /></div>
     <Routes>
       <Route path="/" element={<Home />} />
