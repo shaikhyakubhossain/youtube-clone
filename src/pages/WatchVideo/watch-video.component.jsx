@@ -14,7 +14,6 @@ import { localReactJSVideos, localVideoDetail, globalReactJSVideos, globalvideoD
 import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
 import Skeleton from '@mui/material/Skeleton';
 import {Link} from 'react-router-dom';
-import { Download } from "@mui/icons-material";
 
 
 const WatchVideo = (props) => {
@@ -54,19 +53,20 @@ const WatchVideo = (props) => {
   });
 
   useEffect(() => {
+    console.log("watch");
     props.setFalse();
     fetchData();
-    console.log("videoId ",videoId);
+    // console.log("videoId ",videoId);
     // console.log("apiData", apiData, "params.id", params.id);
     // console.log(apiDataReactJSVideos.items.snippet);
-    console.log("params ", params);
-  }, [params, videoId]);
+    // console.log("params ", params);
+  }, [videoId]);
 
   const fetchData = () => {
     axios.all(urlListForAxios.map((endpoint) => axios.get(endpoint))).then(
       (response) => {
         // console.log(response[0].data);
-        console.log(response[0].data);
+        // console.log(response[0].data);
         setApiDataReactJSVideos(response[0].data);
         setApiDataVideoDetail(response[1].data);
       }
@@ -233,7 +233,7 @@ const WatchVideo = (props) => {
   };
 
   const whenVideoSuggestionIsLoaded = () => {
-    console.log("apiDataReactJSVideos: ", apiDataReactJSVideos);
+    // console.log("apiDataReactJSVideos: ", apiDataReactJSVideos);
     return apiDataReactJSVideos.map((item, index) => {
       return (
         <Link key={index} to={"/watch-video/" + item.videoId} style={{textDecoration: "none"}} reloadDocument >
