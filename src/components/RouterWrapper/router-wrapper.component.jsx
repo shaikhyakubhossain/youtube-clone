@@ -26,15 +26,14 @@ const RouterWrapper = (props) => {
 
 
   const toggleMaxMinOfLeftMenu = (props) => {
-
-    if(screenSize.width < 650 && location.pathname.slice(1, 12) !== "watch-video"){
+    if(screenSize.width < 650 && location.pathname === "/"){
       // console.log("650: ", 650);
       leftMenuForMobileRef.current.style.display = "none";
       homeComponent.current.children[0].style.left = "0";
     }
 
 
-    if(screenSize.width < 1312 && location.pathname.slice(1, 12) !== "watch-video"){
+    if(screenSize.width < 1312 && location.pathname === "/"){
       // console.log("home: ", homeComponent.current.style);
       // leftMenuForDesktopRef.current.style.zIndex = 2;
       if(screenSize.width >= 650){
@@ -45,7 +44,7 @@ const RouterWrapper = (props) => {
       }
     }
 
-    if(location.pathname.slice(1, 12) !== "watch-video" || screenSize.width < 1312){
+    if(location.pathname === "/" || screenSize.width < 1312){
 
       if(!props.isMaximized){
       toggleMinMax();
@@ -79,7 +78,7 @@ const RouterWrapper = (props) => {
         // console.log("noned");
       }
     }
-    if(location.pathname.slice(1, 12) !== "watch-video" && screenSize.width >= 1312){
+    if(location.pathname === "/" && screenSize.width >= 1312){
       leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopInactive;
       // console.log("hiiiiiii")
       if(!props.isMaximized){
