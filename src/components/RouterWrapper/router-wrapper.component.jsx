@@ -27,12 +27,22 @@ const RouterWrapper = (props) => {
 
   const toggleMaxMinOfLeftMenu = (props) => {
 
+    if(screenSize.width < 650 && location.pathname.slice(1, 12) !== "watch-video"){
+      // console.log("650: ", 650);
+      leftMenuForMobileRef.current.style.display = "none";
+      homeComponent.current.children[0].style.left = "0";
+    }
+
 
     if(screenSize.width < 1312 && location.pathname.slice(1, 12) !== "watch-video"){
-      homeComponent.current.children[0].style.left = "64px";
       // console.log("home: ", homeComponent.current.style);
       // leftMenuForDesktopRef.current.style.zIndex = 2;
-      leftMenuForMobileRef.current.style.display = "block";
+      if(screenSize.width >= 650){
+      homeComponent.current.children[0].style.left = "64px";
+
+        leftMenuForMobileRef.current.style.display = "block";
+
+      }
     }
 
     if(location.pathname.slice(1, 12) !== "watch-video" || screenSize.width < 1312){
@@ -43,41 +53,41 @@ const RouterWrapper = (props) => {
         leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopActive;
         //  leftMenuForDesktopRef.current.style.display = "block";
         // setLeftMenuStyle("block")
-        console.log("blocked");
+        // console.log("blocked");
       }
       if(props.isMaximized){
         leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopInactive;
         //  leftMenuForDesktopRef.current.style.display = "none";
         // setLeftMenuStyle("none")
-        console.log("noned");
+        // console.log("noned");
       }
 
     }
     if(location.pathname.slice(1, 12) === "watch-video"){
       toggleMinMax();
-      console.log("hello");
+      // console.log("hello");
       if(!props.isMaximized){
         leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopActive;
         //  leftMenuForDesktopRef.current.style.display = "block";
         // setLeftMenuStyle("block")
-        console.log("blocked");
+        // console.log("blocked");
       }
       if(props.isMaximized){
         leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopInactive;
         //  leftMenuForDesktopRef.current.style.display = "none";
         // setLeftMenuStyle("none")
-        console.log("noned");
+        // console.log("noned");
       }
     }
     if(location.pathname.slice(1, 12) !== "watch-video" && screenSize.width >= 1312){
       leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopInactive;
-      console.log("hiiiiiii")
+      // console.log("hiiiiiii")
       if(!props.isMaximized){
         homeComponent.current.children[0].style.left = "244px";
          leftMenuForDesktopRef.current.style.display = "block";
          leftMenuForMobileRef.current.style.display = "none";
         // setLeftMenuStyle("block")
-        console.log("blocked");
+        // console.log("blocked");
       }
       if(props.isMaximized){
          toggleMinMax();
@@ -85,7 +95,7 @@ const RouterWrapper = (props) => {
          leftMenuForDesktopRef.current.style.display = "none";
          leftMenuForMobileRef.current.style.display = "block";
         // setLeftMenuStyle("none")
-        console.log("noned");
+        // console.log("noned");
       }
     }
   }
