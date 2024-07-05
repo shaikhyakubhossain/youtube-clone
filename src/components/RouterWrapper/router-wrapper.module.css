@@ -1,9 +1,11 @@
 .LeftMenuForDesktopActive > div {
     transform: translateX(-224px);
+    z-index: 2;
     transition: transform 200ms;
 }
 
 .LeftMenuForDesktopInactive > div {
     transform: translateX(0px);
+    z-index: 2;
     transition: transform 200ms;
 }

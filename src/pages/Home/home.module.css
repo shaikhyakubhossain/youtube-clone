@@ -5,19 +5,18 @@
     top: 56px;
     right: 0;
     bottom: 0;
-    left: 64px;
-    margin: 10px;
+    /* left: 64px; */
+    margin: ;
 }
 
 .mainHomeContainerMinimize {
     display: grid;
     grid-template-columns: repeat(4,  1fr);
-    /* grid-template-rows: ; */
     position: absolute;
     top: 56px;
     right: 0;
     bottom: 0;
-    left: 224px;
+    /* left: 224px; */
     margin: 10px;
 
 }
