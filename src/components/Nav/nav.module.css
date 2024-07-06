@@ -2,6 +2,8 @@
   display: flex;
 }
 
+
+
 .mainContainer {
   position: fixed;
   background: #121212;
@@ -15,10 +17,11 @@
 }
 
 .leftContainer {
-  /* margin */
+  margin-right: 30px;
 }
 
 .youtubeLogoIcon {
+  width: 189px;
   align-items: center;
   padding-left: 13px;
   text-decoration: none;
@@ -37,6 +40,29 @@
   max-width: 732px;
 
   /* margin: auto; */
+}
+
+@media screen and (max-width: 650px){
+.middleContainer {
+  /* flex-start: right; */
+  flex-grow: 0;
+
+
+}
+.mainContainer {
+  /* justify-content: start; */
+}
+.allContainers:nth-child(1) {
+  margin-right: auto;
+}
+
+.allContainers:nth-child(2) {
+  margin-right: 0;
+}
+
+.allContainers:nth-child(3) {
+  margin-right: 0;
+}
 }
 
 .textFieldContainer {

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { toggleMinMax } from "../../redux/index";
 import styles from "../Nav/nav.module.css";
@@ -13,21 +13,55 @@ import MicIcon from "@mui/icons-material/Mic";
 import { Link } from "react-router-dom";
 
 const Nav = (props) => {
-  const SearchIconRef = useRef(null);
+  const internalSearchIconRef = useRef(null);
+  const externalSearchIconRef = useRef(null)
   const TextFieldRef = useRef(null);
+  const textFieldContainerRef = useRef(null)
+  
+
+  const [screenSize, setscreenSize] = useState({
+    width: window.innerWidth
+  })
 
   const toggleSearchIcon = () => {
-    if (SearchIconRef.current.style.display === "block") {
-      SearchIconRef.current.style.display = "none";
-    } else if (SearchIconRef.current.style.display === "none") {
-      SearchIconRef.current.style.display = "block";
+    if (internalSearchIconRef.current.style.display === "block") {
+      internalSearchIconRef.current.style.display = "none";
+    } else if (internalSearchIconRef.current.style.display === "none") {
+      internalSearchIconRef.current.style.display = "block";
     }
   };
 
+  const toggleSearchBarMobile = () => {
+    if(screenSize.width < 650){
+      textFieldContainerRef.current.style.display = "none";
+      // externalSearchIconRef.current.style.borderRadius = "40px 40px 40px 40px";
+      externalSearchIconRef.current.style.borderRadius = "100%";
+
+
+    }
+    if(screenSize.width >= 650){
+      textFieldContainerRef.current.style.display = "block";
+      externalSearchIconRef.current.style.borderRadius = "0 40px 40px 0";
+
+    }
+
+  }
+
+  const handleResize = () => {
+    setscreenSize({
+      width: window.innerWidth
+    })
+  } 
+
   useEffect(() => {
-    SearchIconRef.current.style.display = "none";
+    internalSearchIconRef.current.style.display = "none";
+    window.addEventListener('resize', handleResize);
+    toggleSearchBarMobile();
     // TextFieldRef.current;
-  }, []);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [screenSize]);
 
   return (
     <div className={`${styles.mainContainer} ${styles.allContainers}`}>
@@ -41,7 +75,7 @@ const Nav = (props) => {
         </Link>
       </div>
       <div className={`${styles.middleContainer} ${styles.allContainers}`}>
-        <div className={styles.textFieldContainer}>
+        <div className={styles.textFieldContainer} ref={textFieldContainerRef}>
           <TextField
             onFocus={toggleSearchIcon}
             onBlur={toggleSearchIcon}
@@ -59,18 +93,20 @@ const Nav = (props) => {
               },
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{}} ref={SearchIconRef} />
+                  <SearchIcon sx={{}} ref={internalSearchIconRef} />
                 </InputAdornment>
               ),
             }}
           />
         </div>
         <Button
-          size="small"
+          ref={externalSearchIconRef}
+          // size="small"
           sx={{
             borderRadius: "0 40px 40px 0",
+            // borderRadius: "40px 40px 40px 40px",
             border: "1px solid rgb(48, 48, 48)",
-            background: "hsla(0, 0%, 100%, 0.08)",
+            background: "hsla(0, 0%, 100%, 0.08)"
           }}
         >
           <SearchIcon fontSize="medium" sx={{ color: "#f1f1f1" }} />

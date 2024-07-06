@@ -45,42 +45,59 @@ const RouterWrapper = (props) => {
     }
 
     if(location.pathname === "/" || screenSize.width < 1312){
+      leftMenuForDesktopRef.current.style.display = "block";
+      
 
-      if(!props.isMaximized){
-      toggleMinMax();
+      if(props.isMaximized){
+      // toggleMinMax();
+      leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopInactive;
 
-        leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopActive;
         //  leftMenuForDesktopRef.current.style.display = "block";
         // setLeftMenuStyle("block")
         // console.log("blocked");
       }
-      if(props.isMaximized){
-        leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopInactive;
+
+      if(!props.isMaximized){
+        leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopActive;
+
         //  leftMenuForDesktopRef.current.style.display = "none";
         // setLeftMenuStyle("none")
         // console.log("noned");
       }
+
+      // if(location.pathname.slice(1, 12) !== "watch-video" && shouldAutoHideLeftMenuForMobile){
+      //   leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopActive;
+      //   }
 
     }
     if(location.pathname.slice(1, 12) === "watch-video"){
-      toggleMinMax();
-      // console.log("hello");
+      // if(leftMenuForDesktopRef.current.className === styles.LeftMenuForDesktopInactive){
+        leftMenuForDesktopRef.current.style.display = "block";
+
+        leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopInactive;
+
+      // }
+       toggleMinMax();
+      leftMenuForMobileRef.current.style.display = "none";
+      
+      console.log("hello");
       if(!props.isMaximized){
         leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopActive;
         //  leftMenuForDesktopRef.current.style.display = "block";
         // setLeftMenuStyle("block")
-        // console.log("blocked");
       }
       if(props.isMaximized){
         leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopInactive;
         //  leftMenuForDesktopRef.current.style.display = "none";
         // setLeftMenuStyle("none")
         // console.log("noned");
+        console.log("test", leftMenuForDesktopRef.current.children[0]);
+
       }
     }
     if(location.pathname === "/" && screenSize.width >= 1312){
       leftMenuForDesktopRef.current.className = styles.LeftMenuForDesktopInactive;
-      // console.log("hiiiiiii")
+      console.log("hiiiiiii")
       if(!props.isMaximized){
         homeComponent.current.children[0].style.left = "244px";
          leftMenuForDesktopRef.current.style.display = "block";

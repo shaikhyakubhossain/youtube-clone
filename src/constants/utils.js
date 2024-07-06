@@ -1,3 +1,5 @@
+
+
 export const checkIfMaxResAvailableInAllItems = (items) => {
       let hasMaxRes = true;
       items.forEach((item) => {
