@@ -6,7 +6,7 @@
     right: 0;
     bottom: 0;
     /* left: 64px; */
-    margin: ;
+    margin: 10px;
 }
 
 .mainHomeContainerMinimize {
@@ -97,7 +97,7 @@
     }
 
     .mainHomeContainerMinimize {
-    grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(1,  1fr);
 
     }
 }
