@@ -12,13 +12,41 @@
         flex-direction: column;
         /* flex-grow: 1; */
         /* background: white; */
-        width: 640px;
+        min-width: 640px;
+        max-width: 640px;
         height: 360px;
         border-radius: 8px;   
         margin: 0 auto;
     }
+    
 }
 
+@media screen and (max-width: 725px) {
+    .videoPlayer {
+        min-width: 0px;
+        max-width: 640px;
+        margin: 0 0;
+        height: 47.5dvw;
+
+    }
+}
+
+@media screen and (max-width: 885px) {
+
+.subContainer1Main {
+    display: block;
+}
+
+}
+
+@media screen and (min-width: 885px) {
+
+.subContainer1Main {
+    display: flex;
+    justify-content: space-between;
+}
+
+}
 
 .leftContainer {
     display: flex;
@@ -53,6 +81,7 @@
    /* min-height: 360px;
    max-height: 720px; */
     }
+
     .leftContainer {
         flex-grow: 1;
         min-width: 640px;
@@ -90,10 +119,7 @@
     margin: 8px 8px 4px 1px;
 }
 
-.subContainer1Main {
-    display: flex;
-    justify-content: space-between;
-}
+
 
 .subContainer1LeftPart {
     display: flex;
@@ -132,7 +158,7 @@
     
 }
 
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1280px) and (min-width: 1016px) {
     .downloadBtn {
         display: none !important;
     }
