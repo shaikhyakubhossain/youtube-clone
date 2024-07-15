@@ -11,6 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MicIcon from "@mui/icons-material/Mic";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Nav = (props) => {
   const internalSearchIconRef = useRef(null);
@@ -19,7 +20,7 @@ const Nav = (props) => {
   const textFieldContainerRef = useRef(null)
   
 
-  const [screenSize, setscreenSize] = useState({
+  const [screenSize, setScreenSize] = useState({
     width: window.innerWidth
   })
 
@@ -47,8 +48,18 @@ const Nav = (props) => {
 
   }
 
+  const searchRequest = () => {
+    const searchQ = TextFieldRef.current.children[0].children[1].value;
+    // console.log(searchQ);
+
+    axios.post('http://localhost:4000/searchVideos', {searchQ})
+    .then((response) => {
+      console.log(response.json)
+    })
+  };
+
   const handleResize = () => {
-    setscreenSize({
+    setScreenSize({
       width: window.innerWidth
     })
   } 
@@ -79,7 +90,7 @@ const Nav = (props) => {
           <TextField
             onFocus={toggleSearchIcon}
             onBlur={toggleSearchIcon}
-            inputref={TextFieldRef}
+            ref={TextFieldRef}
             placeholder="Search"
             size="small"
             sx={{
@@ -101,6 +112,7 @@ const Nav = (props) => {
         </div>
         <Button
           ref={externalSearchIconRef}
+          onClick={searchRequest}
           // size="small"
           sx={{
             borderRadius: "0 40px 40px 0",
