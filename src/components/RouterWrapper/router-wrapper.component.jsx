@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "../../pages/Home/home.component";
-import WatchVideo from "../../pages/WatchVideo/watch-video.component"
+import WatchVideo from "../../pages/WatchVideo/watch-video.component";
+import SearchVideos from "../../pages/SearchVideos/search-videos.component.jsx";
 import Nav from '../Nav/nav.component.jsx'
 import LeftMenuForDesktop from "../LeftMenu/desktop/left-menu.component.jsx";
 import LeftMenuForMobile from "../LeftMenu/mobile/left-menu.component.jsx"
@@ -143,6 +144,7 @@ const RouterWrapper = (props) => {
     <Routes>
       <Route path="/" element={<div ref={homeComponent}><Home /></div>} />
       <Route path="watch-video/:id" element={<WatchVideo />} />
+      <Route path="search-videos" element={<SearchVideos />} />
     </Routes>
     </>
   );
