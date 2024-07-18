@@ -79,10 +79,22 @@
 
 }
 
+@media screen and (max-width: 1312px){
+    .mainHomeContainerExpand{
+        grid-template-columns: repeat(3,  1fr);
+    }
+
+    .mainHomeContainerMinimize {
+        grid-template-columns: repeat(3,  1fr);
+    
+        }
+
+}
+
 
 @media screen and (max-width: 1080px){
     .mainHomeContainerExpand{
-        grid-template-columns: repeat(3,  1fr);
+        grid-template-columns: repeat(2,  1fr);
     }
 
     .mainHomeContainerMinimize {

@@ -4,7 +4,7 @@ import styles from './searched-video-card.module.css'
 function SearchedVideoCard(props) {
   return (
     <div className={`${styles.mainContainer} ${styles.flex}`}>
-        <div><img src={props.thumbnail} alt="" /></div>
+        <div className={`${styles.thumbnailContainer}`}><img src={props.thumbnail} alt="" /></div>
         <div>
             <div>{props.title}</div>
             <div className={`${styles.viewAndDateContainer} ${styles.flex}`}>
@@ -21,4 +21,4 @@ function SearchedVideoCard(props) {
   )
 }
 
-export default SearchedVideoCard
+export default SearchedVideoCard;

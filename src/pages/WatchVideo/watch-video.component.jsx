@@ -10,7 +10,7 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import shortNumber from "short-number";
 import { subContainer1RightPart } from "../../constants/btn-list";
-import { localReactJSVideos, localVideoDetail, globalReactJSVideos, globalvideoDetail } from "../../constants/url-list";
+import { localReactJSVideos, localVideoDetail, globalReactJSVideos, globalVideoDetail } from "../../constants/url-list";
 import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
 import Skeleton from '@mui/material/Skeleton';
 import {Link} from 'react-router-dom';
@@ -22,7 +22,7 @@ const WatchVideo = (props) => {
   const [apiDataVideoDetail, setApiDataVideoDetail] = useState(null);
   const [apiDataReactJSVideos, setApiDataReactJSVideos] = useState(null);
   const [urlsForReactJSVideos, setUrlsForReactJSVideos] = useState([globalReactJSVideos, localReactJSVideos])
-  const [urlsForVideoDetail, setUrlsForVideoDetail] = useState([globalvideoDetail, localVideoDetail])
+  const [urlsForVideoDetail, setUrlsForVideoDetail] = useState([globalVideoDetail, localVideoDetail])
   const [urlListForAxios, setUrlListForAxios] = useState([toggleURL(urlsForReactJSVideos), toggleURL(urlsForVideoDetail) + params.id]);
 
   const descriptionRef = useRef(null);

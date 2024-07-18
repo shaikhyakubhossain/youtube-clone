@@ -11,7 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MicIcon from "@mui/icons-material/Mic";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { localPostSearchVideosReq, globalPostSearchVideosReq } from '../../constants/url-list';
 
 const Nav = (props) => {
   const internalSearchIconRef = useRef(null);
@@ -22,7 +22,8 @@ const Nav = (props) => {
 
   const [screenSize, setScreenSize] = useState({
     width: window.innerWidth
-  })
+  });
+  const [searchQuery, setSearchQuery] = useState("");
 
   const toggleSearchIcon = () => {
     if (internalSearchIconRef.current.style.display === "block") {
@@ -48,15 +49,9 @@ const Nav = (props) => {
 
   }
 
-  const searchRequest = () => {
-    const searchQ = TextFieldRef.current.children[0].children[1].value;
-    // console.log(searchQ);
-
-    axios.post('http://localhost:4000/searchVideos', {searchQ})
-    .then((response) => {
-      console.log(response.json)
-    })
-  };
+  const handleOnChange = (e) => {
+    setSearchQuery(e.target.value);
+  }
 
   const handleResize = () => {
     setScreenSize({
@@ -68,7 +63,7 @@ const Nav = (props) => {
     internalSearchIconRef.current.style.display = "none";
     window.addEventListener('resize', handleResize);
     toggleSearchBarMobile();
-    // TextFieldRef.current;
+    console.log("input: ", TextFieldRef.current.children[0].children[1]);    
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -90,6 +85,7 @@ const Nav = (props) => {
           <TextField
             onFocus={toggleSearchIcon}
             onBlur={toggleSearchIcon}
+            onChange={handleOnChange}
             ref={TextFieldRef}
             placeholder="Search"
             size="small"
@@ -110,9 +106,9 @@ const Nav = (props) => {
             }}
           />
         </div>
+        <Link to={'search-videos/' + searchQuery} reloadDocument>
         <Button
           ref={externalSearchIconRef}
-          onClick={searchRequest}
           // size="small"
           sx={{
             borderRadius: "0 40px 40px 0",
@@ -123,6 +119,7 @@ const Nav = (props) => {
         >
           <SearchIcon fontSize="medium" sx={{ color: "#f1f1f1" }} />
         </Button>
+        </Link>
         <IconButton sx={{marginLeft:"6px", background:"rgba(88,88,88, 0.1)"}} >
           <MicIcon sx={{color:"white"}}/>
         </IconButton>

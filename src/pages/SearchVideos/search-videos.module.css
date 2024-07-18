@@ -1,0 +1,8 @@
+.mainContainer {
+    position: absolute;
+    top: 56px;
+    /* right: 0; */
+    bottom: 0;
+    left: 244px;
+    margin: 10px;
+}
