@@ -4,5 +4,12 @@
     /* right: 0; */
     bottom: 0;
     left: 244px;
-    margin: 10px;
+    right: 0;
+}
+
+.searchedVideoCardContainer {
+    width: 1280px;
+    height: 100%;
+    margin: 10px auto 0 auto;
+
 }

@@ -4,7 +4,7 @@ import SearchedVideoCard from '../../components/SearchedVideoCard/searched-video
 import axios from 'axios';
 import { localSearchVideos, globalSearchVideos } from '../../constants/url-list' ;
 import { toggleURL } from '../../constants/utils';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const SearchVideos = () => {
 
@@ -31,12 +31,17 @@ const SearchVideos = () => {
 
   return (
     <div className={styles.mainContainer}>
+      <div className={styles.searchedVideoCardContainer}>
       {apiData ? apiData.map((item, index) => {
         return(
-          <SearchedVideoCard key={index} title={item.title} thumbnail={item.thumbnails.medium.url} viewCount={item.viewCount} />
+          <Link to={'/watch-video/' + item.videoId} style={{textDecoration: "none"}}>
+          <SearchedVideoCard key={index} title={item.title} thumbnail={item.thumbnails.medium.url} viewCount={item.viewCount} channelTitle={item.channelTitle} description={item.description}/>
+          </Link>
         )
       }) :
       <h1>Loading</h1>}
+      </div>
+      
       
     </div>
   )
