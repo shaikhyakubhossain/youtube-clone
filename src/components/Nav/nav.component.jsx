@@ -39,7 +39,7 @@ const Nav = (props) => {
   };
 
   const toggleSearchBarMobile = () => {
-    if(screenSize.width <= 650){
+    if(screenSize.width <= 650 && shouldKeepMobileSearchBarOn === false){
       // textFieldContainerRef.current.style.display = "none";
       // // externalSearchIconRef.current.style.borderRadius = "40px 40px 40px 40px";
       // externalSearchIconRef.current.style.borderRadius = "100%";
@@ -52,6 +52,7 @@ const Nav = (props) => {
 
     }
     if(screenSize.width >= 650){
+      handleMobileSearchBarOff();
       // textFieldContainerRef.current.style.display = "block";
       // externalSearchIconRef.current.style.borderRadius = "0 40px 40px 0";
       leftContainerRef.current.style.display = "flex"
