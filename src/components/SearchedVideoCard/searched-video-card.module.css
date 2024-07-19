@@ -4,9 +4,58 @@
 
 .mainContainer {
     color: white;
+    max-width: 1250px;
+    min-width: 0px;
+    margin-top: 16px;
 }
 
-.thumbnailContainer, .thumbnailContainer > img {
-    width: 500px;
-    height: 280px;
+
+.thumbnailContainer {
+    margin-right: 16px;
+}
+
+.thumbnailContainer > img {
+    border-radius: 18px;
+}
+
+@media screen and (min-width: 1135px){
+    .thumbnailContainer, .thumbnailContainer > img {
+        min-width: 500px;
+        height: 280px;
+    }
+
+    .videoDetailContainer {
+        max-width: 734px;
+
+        flex-grow: 1;
+    }
+}
+
+@media screen and (max-width: 1135px){
+    .thumbnailContainer, .thumbnailContainer > img {
+        width: 44dvw;
+        /* height: 20dvw; */
+        height: 24.8dvw;
+
+    }
+
+    .videoDetailContainer {
+        max-width: 734px;
+
+        flex-grow: 1;
+    }
+}
+
+@media screen and (max-width: 980px){
+    /* .mainContainer {
+        min-width: 860px;
+    } */
+    
+    .videoDetailContainer {
+        font-size: 1.64dvw;
+    }
+
+    .thumbnailContainer > img {
+        border-radius: 2dvw;
+    }
 }

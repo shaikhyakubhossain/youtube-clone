@@ -1,15 +1,54 @@
-.mainContainer {
-    position: absolute;
-    top: 56px;
-    /* right: 0; */
-    bottom: 0;
-    left: 244px;
-    right: 0;
+
+
+
+
+@media screen and (max-width: 1312px){
+    .mainContainer { 
+        position: absolute;
+        top: 56px;
+        /* right: 0; */
+        bottom: 0;
+        left: 64px;
+        right: 0;
+    }
+
+    .searchedVideoCardContainer {
+        max-width: 1280px;
+        min-width: 0px;
+        /* height: 100%; */
+        padding: 4px 18px 4px 18px;
+        margin: 10px auto 0 auto;
+    
+    }
 }
 
-.searchedVideoCardContainer {
-    width: 1280px;
-    height: 100%;
-    margin: 10px auto 0 auto;
+@media screen and (max-width: 650px){
+    .mainContainer {
+        position: absolute;
+        top: 56px;
+        /* right: 0; */
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
 
+@media screen and (min-width: 1312px){
+    .mainContainer { 
+        position: absolute;
+        top: 56px;
+        /* right: 0; */
+        bottom: 0;
+        left: 244px;
+        right: 0;
+    }
+
+    .searchedVideoCardContainer {
+        max-width: 1280px;
+        min-width: 0px;
+        /* height: 100%; */
+        padding: 4px 18px 4px 18px;
+        margin: 10px auto 0 auto;
+    
+    }
 }

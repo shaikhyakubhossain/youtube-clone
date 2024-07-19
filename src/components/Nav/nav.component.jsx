@@ -63,7 +63,7 @@ const Nav = (props) => {
     internalSearchIconRef.current.style.display = "none";
     window.addEventListener('resize', handleResize);
     toggleSearchBarMobile();
-    console.log("input: ", TextFieldRef.current.children[0].children[1]);    
+    // console.log("input: ", TextFieldRef.current.children[0].children[1]);    
     return () => {
       window.removeEventListener('resize', handleResize);
     };

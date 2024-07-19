@@ -5,7 +5,7 @@ function SearchedVideoCard(props) {
   return (
     <div className={`${styles.mainContainer} ${styles.flex}`}>
         <div className={`${styles.thumbnailContainer}`}><img src={props.thumbnail} alt="" /></div>
-        <div>
+        <div className={`${styles.videoDetailContainer}`}>
             <div>{props.title}</div>
             <div className={`${styles.viewAndDateContainer} ${styles.flex}`}>
                 <div>{props.viewCount} views</div>
@@ -15,7 +15,9 @@ function SearchedVideoCard(props) {
                 {/* <div>{props.channelLogo}</div> */}
                 <div>{props.channelTitle}</div>
             </div>
-            <div>{props.description}</div>
+            <div>{
+              props.description.length >= 126 ? props.description.slice(0, 125) + "..." : props.description
+            }</div>
         </div>
     </div>
   )

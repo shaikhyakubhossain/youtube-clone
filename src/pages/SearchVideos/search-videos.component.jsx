@@ -22,9 +22,9 @@ const SearchVideos = () => {
   const fetchData = () => {
     axios.get(toggleURL(urls) + searchQuery)
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       // setApiData
-      setApiData(response.data, console.log(response.data));
+      setApiData(response.data);
     })
 
   }
@@ -34,8 +34,8 @@ const SearchVideos = () => {
       <div className={styles.searchedVideoCardContainer}>
       {apiData ? apiData.map((item, index) => {
         return(
-          <Link to={'/watch-video/' + item.videoId} style={{textDecoration: "none"}}>
-          <SearchedVideoCard key={index} title={item.title} thumbnail={item.thumbnails.medium.url} viewCount={item.viewCount} channelTitle={item.channelTitle} description={item.description}/>
+          <Link key={index} to={'/watch-video/' + item.videoId} style={{textDecoration: "none"}}>
+          <SearchedVideoCard  title={item.title} thumbnail={item.thumbnails.medium.url} viewCount={item.viewCount} channelTitle={item.channelTitle} description={item.description}/>
           </Link>
         )
       }) :
