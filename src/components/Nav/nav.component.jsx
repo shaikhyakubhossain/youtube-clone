@@ -10,20 +10,25 @@ import { InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MicIcon from "@mui/icons-material/Mic";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from "react-router-dom";
-import { localPostSearchVideosReq, globalPostSearchVideosReq } from '../../constants/url-list';
 
 const Nav = (props) => {
   const internalSearchIconRef = useRef(null);
-  const externalSearchIconRef = useRef(null)
+  const externalSearchIconRef = useRef(null);
   const TextFieldRef = useRef(null);
-  const textFieldContainerRef = useRef(null)
+  const textFieldContainerRef = useRef(null);
+  const mobileSearchBtnRef = useRef(null);
+  const leftContainerRef = useRef(null);
+  const middleContainerRef = useRef(null);
+  const rightContainerRef = useRef(null);
   
 
   const [screenSize, setScreenSize] = useState({
     width: window.innerWidth
   });
   const [searchQuery, setSearchQuery] = useState("");
+  const [shouldKeepMobileSearchBarOn, setShouldKeepMobileSearchBarOn] = useState(false);
 
   const toggleSearchIcon = () => {
     if (internalSearchIconRef.current.style.display === "block") {
@@ -34,16 +39,25 @@ const Nav = (props) => {
   };
 
   const toggleSearchBarMobile = () => {
-    if(screenSize.width < 650){
-      textFieldContainerRef.current.style.display = "none";
-      // externalSearchIconRef.current.style.borderRadius = "40px 40px 40px 40px";
-      externalSearchIconRef.current.style.borderRadius = "100%";
+    if(screenSize.width <= 650){
+      // textFieldContainerRef.current.style.display = "none";
+      // // externalSearchIconRef.current.style.borderRadius = "40px 40px 40px 40px";
+      // externalSearchIconRef.current.style.borderRadius = "100%";
+
+      middleContainerRef.current.style.display = "none";
+      // middleContainerRef.current.style.justifyContent = "space-between";
+      mobileSearchBtnRef.current.style.display = "block"; 
+
 
 
     }
     if(screenSize.width >= 650){
-      textFieldContainerRef.current.style.display = "block";
-      externalSearchIconRef.current.style.borderRadius = "0 40px 40px 0";
+      // textFieldContainerRef.current.style.display = "block";
+      // externalSearchIconRef.current.style.borderRadius = "0 40px 40px 0";
+      leftContainerRef.current.style.display = "flex"
+      middleContainerRef.current.style.display = "flex";
+      rightContainerRef.current.style.display = "flex"
+      mobileSearchBtnRef.current.style.display = "none";
 
     }
 
@@ -51,6 +65,20 @@ const Nav = (props) => {
 
   const handleOnChange = (e) => {
     setSearchQuery(e.target.value);
+  }
+
+  const handleMobileSearchBarOn = () => {
+    leftContainerRef.current.style.display = "none";
+    rightContainerRef.current.style.display = "none";
+    middleContainerRef.current.style.display = "flex";
+    setShouldKeepMobileSearchBarOn(true);
+  }
+
+  const handleMobileSearchBarOff = () => {
+    leftContainerRef.current.style.display = "flex";
+    rightContainerRef.current.style.display = "flex";
+    middleContainerRef.current.style.display = "none";
+    setShouldKeepMobileSearchBarOn(false);
   }
 
   const handleResize = () => {
@@ -71,7 +99,7 @@ const Nav = (props) => {
 
   return (
     <div className={`${styles.mainContainer} ${styles.allContainers}`}>
-      <div className={`${styles.leftContainer} ${styles.allContainers}`}>
+      <div ref={leftContainerRef} className={`${styles.leftContainer} ${styles.allContainers}`}>
         <IconButton id="LeftMenuController" onClick={props.toggleMinMax}>
           <MenuIcon />
         </IconButton>
@@ -80,7 +108,12 @@ const Nav = (props) => {
           <div>YouTube-Clone</div>
         </Link>
       </div>
-      <div className={`${styles.middleContainer} ${styles.allContainers}`}>
+      <div className={`${styles.middleContainer} ${styles.allContainers}`} ref={middleContainerRef}>
+        <div className={styles.mobileSearchBackBtn} onClick={handleMobileSearchBarOff}>
+          <IconButton >
+            <ArrowBackIcon />
+          </IconButton>
+        </div>
         <div className={styles.textFieldContainer} ref={textFieldContainerRef}>
           <TextField
             onFocus={toggleSearchIcon}
@@ -124,10 +157,17 @@ const Nav = (props) => {
           <MicIcon sx={{color:"white"}}/>
         </IconButton>
       </div>
-      <div className={`${styles.rightContainer} ${styles.allContainers}`}>
+      <div ref={rightContainerRef} className={`${styles.rightContainer} ${styles.allContainers}`}>
+        <div ref={mobileSearchBtnRef} onClick={handleMobileSearchBarOn}>
+        <IconButton >
+          <SearchIcon/>
+        </IconButton>
+        </div>
+        <div>
         <IconButton>
           <MoreVertIcon />
         </IconButton>
+        </div>
       </div>
     </div>
   );

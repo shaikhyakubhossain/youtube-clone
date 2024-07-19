@@ -5,8 +5,10 @@ import axios from 'axios';
 import { localSearchVideos, globalSearchVideos } from '../../constants/url-list' ;
 import { toggleURL } from '../../constants/utils';
 import { useParams, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setFalse } from '../../redux';
 
-const SearchVideos = () => {
+const SearchVideos = (props) => {
 
   const param = useParams();
   const [searchQuery, setSearchQuery] = useState(param.search_query);
@@ -15,6 +17,7 @@ const SearchVideos = () => {
 
   useEffect(() => {
     // console.log("hhhhhhiiiiii");
+    props.setFalse();
     fetchData();
     
   }, []);
@@ -45,6 +48,13 @@ const SearchVideos = () => {
       
     </div>
   )
-}
+};
 
-export default SearchVideos;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFalse: () => dispatch(setFalse()),
+  };
+};
+
+
+export default connect(null, mapDispatchToProps)(SearchVideos);

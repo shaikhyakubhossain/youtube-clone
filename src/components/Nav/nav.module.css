@@ -2,8 +2,6 @@
   display: flex;
 }
 
-
-
 .mainContainer {
   position: fixed;
   background: #121212;
@@ -41,14 +39,26 @@
 
   /* margin: auto; */
 }
+@media screen and (min-width: 650px){
+  .mobileSearchBackBtn {
+    display: none;
+  }
+
+}
+
 
 @media screen and (max-width: 650px){
 .middleContainer {
   /* flex-start: right; */
-  flex-grow: 0;
+  /* flex-grow: 0; */
 
 
 }
+
+.mobileSearchBackBtn {
+  display: block;
+}
+
 .mainContainer {
   /* justify-content: start; */
 }
@@ -63,6 +73,7 @@
 .allContainers:nth-child(3) {
   margin-right: 0;
 }
+
 }
 
 .textFieldContainer {
@@ -70,5 +81,6 @@
 }
 
 .rightContainer {
-
+  
 }
+
