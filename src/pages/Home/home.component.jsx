@@ -8,10 +8,9 @@ import { setFalse } from '../../redux/index';
 import axios from "axios";
 import { globalReactJSVideos, localReactJSVideos } from "../../constants/url-list";
 import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
-
+import { dummyArrayForLoading } from "../../constants/utils";
 const Home = (props) => {
   const [apiData, setApiData] = useState(null);
-  const [dummyArrayForLoading, setDummyArrayForLoading] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15])
   const [urls, setUrl] = useState([globalReactJSVideos, localReactJSVideos])
   useEffect(() => {
     props.setFalse();
