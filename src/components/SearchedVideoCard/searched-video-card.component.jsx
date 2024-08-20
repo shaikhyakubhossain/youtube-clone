@@ -12,7 +12,7 @@ const SearchedVideoCard = (props) => {
                 {/* <div></div> */}
             </div>
             <div className={`${styles.channelLogoAndTitleContainer} ${styles.flex}`}>
-                {/* <div>{props.channelLogo}</div> */}
+                <div className={`${styles.channelLogo}`}><img src={props.channelLogo} alt="" /></div>
                 <div>{props.channelTitle}</div>
             </div>
             <div>{
