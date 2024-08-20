@@ -18,6 +18,10 @@
     border-radius: 18px;
 }
 
+.videoDetailContainer > div {
+    margin-bottom: 8px;
+}
+
 @media screen and (min-width: 1135px){
     .thumbnailContainer, .thumbnailContainer > img {
         min-width: 500px;

@@ -7,6 +7,8 @@ import { toggleURL } from '../../constants/utils';
 import { useParams, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setFalse } from '../../redux';
+import SearchedVideoCardLoading from '../../components/SearchedVideoCard/searched-video-card.loading';
+import { dummyArrayForLoading } from '../../constants/utils';
 
 const SearchVideos = (props) => {
 
@@ -41,8 +43,14 @@ const SearchVideos = (props) => {
           <SearchedVideoCard  title={item.title} thumbnail={item.thumbnails.medium.url} viewCount={item.viewCount} channelTitle={item.channelTitle} description={item.description}/>
           </Link>
         )
-      }) :
-      <h1>Loading</h1>}
+      }) : dummyArrayForLoading.map((item, index) => {
+        return (
+          <div key={index}>
+            <SearchedVideoCardLoading/>
+          </div>
+          
+        )
+      })}
       </div>
       
       

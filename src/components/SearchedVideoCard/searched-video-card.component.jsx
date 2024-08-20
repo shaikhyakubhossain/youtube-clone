@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './searched-video-card.module.css'
 
-function SearchedVideoCard(props) {
+const SearchedVideoCard = (props) => {
   return (
     <div className={`${styles.mainContainer} ${styles.flex}`}>
         <div className={`${styles.thumbnailContainer}`}><img src={props.thumbnail} alt="" /></div>
