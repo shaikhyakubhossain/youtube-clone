@@ -226,12 +226,16 @@
     padding: 4px;
 }
 
-.channelLogo {
+.channelLogo, .channelLogo > img {
     background: white;
     min-width: 36px;
     height: 36px;
     border-radius: 50%;
+}
+
+.channelLogo {
     margin: 4px;
+
 }
 
 .cardDetailContainer {

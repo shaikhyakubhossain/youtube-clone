@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './searched-video-card.module.css'
+import styles from './searched-video-card.module.css';
 
 const SearchedVideoCard = (props) => {
   return (

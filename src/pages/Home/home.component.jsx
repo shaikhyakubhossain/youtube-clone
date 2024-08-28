@@ -9,6 +9,7 @@ import axios from "axios";
 import { globalReactJSVideos, localReactJSVideos } from "../../constants/url-list";
 import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
 import { dummyArrayForLoading } from "../../constants/utils";
+
 const Home = (props) => {
   const [apiData, setApiData] = useState(null);
   const [urls, setUrl] = useState([globalReactJSVideos, localReactJSVideos])
@@ -59,6 +60,7 @@ const Home = (props) => {
       { apiData && apiData.map ? apiData.map((item, index) => {
         // console.log("apiData.lenght", apiData.items.lenght);
         // if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
+        
           return (
             <Link key={index} to={"/watch-video/" + item.videoId} className={styles.containerCard}>
                   <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} >
@@ -66,7 +68,7 @@ const Home = (props) => {
                     <div className={styles.videoDuration}>{ videoDurationCalculator(item.duration) }</div>
                   </div>
                   <div className={styles.mainCardDetailContainerFlex}>
-                  <div className={styles.channelLogo}></div>
+                  <div className={styles.channelLogo}><img src={item.channelLogo} alt="" /></div>
                   <div className={styles.cardDetailContainer}>
                   <div className={styles.videoTitle}>{item.title.length > 58 ? item.title.slice(0, 57) + "...": item.title }</div>
                   <div className={styles.channelTitle}>{item.channelTitle}</div>
