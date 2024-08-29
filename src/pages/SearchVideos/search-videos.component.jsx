@@ -40,7 +40,7 @@ const SearchVideos = (props) => {
       {apiData ? apiData.map((item, index) => {
         return(
           <Link key={index} to={'/watch-video/' + item.videoId} style={{textDecoration: "none"}}>
-          <SearchedVideoCard  title={item.title} thumbnail={item.thumbnails.medium.url} viewCount={item.viewCount} channelTitle={item.channelTitle} description={item.description}/>
+          <SearchedVideoCard  title={item.title} thumbnail={item.thumbnails.medium.url} viewCount={item.viewCount} channelTitle={item.channelTitle} description={item.description} channelLogo={item.channelLogo}/>
           </Link>
         )
       }) : dummyArrayForLoading.map((item, index) => {
