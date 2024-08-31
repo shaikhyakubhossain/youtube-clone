@@ -107,7 +107,7 @@ const WatchVideo = (props) => {
         <div className={styles.title}>{apiDataVideoDetail && apiDataVideoDetail.title}</div>
         <div className={styles.subContainer1Main}>
           <div className={styles.subContainer1LeftPart}>
-            <div className={styles.channelLogo}></div>
+            <div className={styles.channelLogo}><img src={apiDataVideoDetail.channelLogo} alt="" /></div>
             <div className={styles.channelTitleAndSubscribersCountContainer}>
               <div className={styles.channelTitle}>
                 {apiDataVideoDetail.channelTitle}
