@@ -14,6 +14,7 @@ import { localReactJSVideos, localVideoDetail, globalReactJSVideos, globalVideoD
 import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
 import Skeleton from '@mui/material/Skeleton';
 import {Link} from 'react-router-dom';
+import CommentCard from "../../components/CommentCard/comment-card.component";
 
 
 const WatchVideo = (props) => {
@@ -53,7 +54,7 @@ const WatchVideo = (props) => {
   });
 
   useEffect(() => {
-    console.log("watch");
+    // console.log("watch");
     props.setFalse();
     fetchData();
     // console.log("videoId ",videoId);
@@ -66,7 +67,7 @@ const WatchVideo = (props) => {
     axios.all(urlListForAxios.map((endpoint) => axios.get(endpoint))).then(
       (response) => {
         // console.log(response[0].data);
-        // console.log(response[0].data);
+        // console.log(response[1].data);
         setApiDataReactJSVideos(response[0].data);
         setApiDataVideoDetail(response[1].data);
       }
@@ -190,6 +191,13 @@ const WatchVideo = (props) => {
         </div>
         <div className={styles.subContainer3}>
           <div className={styles.commentCount}>{apiDataVideoDetail.commentCount} Comments</div>
+          <div className={styles.commentListContainer}>
+          {
+            apiDataVideoDetail.commentList.map((item, index) => {
+              return <CommentCard key={index} commentMessage={item.snippet.topLevelComment.snippet.textOriginal} commentAuthorName={item.snippet.topLevelComment.snippet.authorDisplayName} commentAuthorChannelLogo={item.snippet.topLevelComment.snippet.authorProfileImageUrl} commentAuthorChannelUrl={item.snippet.topLevelComment.snippet.authorChannelUrl} commentMessageLikeCount={item.snippet.topLevelComment.snippet.likeCount} />
+            })
+          }
+          </div>
         </div>
       </>
     );
