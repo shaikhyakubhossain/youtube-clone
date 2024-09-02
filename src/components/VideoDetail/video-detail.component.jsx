@@ -5,7 +5,7 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import { subContainer1RightPart } from "../../constants/btn-list";
 import CommentCard from "../../components/CommentCard/comment-card.component";
-import {subscribeBtnSX, subContainer1RightPartStaticBtnSX} from "../../constants/custom-sx-for-mui";
+import {subscribeBtnSX, subContainer1RightPartStaticBtnSX, likeBtnSX, dislikeBtnSX} from "../../constants/custom-sx-for-mui";
 import shortNumber from "short-number";
 
 
@@ -63,16 +63,7 @@ const VideoDetail = (props) => {
               <div className={styles.rightPartBtn}>
                 <Button
                   startIcon={<ThumbUpOutlinedIcon />}
-                  sx={{
-                    ...subscribeBtnSX,
-                    background: "rgba(255, 255, 255, 0.1)",
-                    color: "white",
-                    borderTopRightRadius: "0",
-                    borderBottomRightRadius: "0",
-                    ":hover": {
-                      background: "rgba(255, 255, 255, 0.2)",
-                    },
-                  }}
+                  sx={likeBtnSX}
                 >
                   {shortNumber(parseInt(props.likeCount))}
                 </Button>
@@ -80,16 +71,7 @@ const VideoDetail = (props) => {
               <div className={styles.rightPartBtn}>
                 <Button
                   startIcon={<ThumbDownOutlinedIcon />}
-                  sx={{
-                    ...subscribeBtnSX,
-                    background: "rgba(255, 255, 255, 0.1)",
-                    color: "white",
-                    borderTopLeftRadius: "0",
-                    borderBottomLeftRadius: "0",
-                    ":hover": {
-                      background: "rgba(255, 255, 255, 0.2)",
-                    },
-                  }}
+                  sx={dislikeBtnSX}
                 />
               </div>
               {subContainer1RightPart

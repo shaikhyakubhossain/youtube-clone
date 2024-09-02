@@ -20,4 +20,26 @@ const subContainer1RightPartStaticBtnSX = {
     }
   };
 
-  export {subscribeBtnSX, subContainer1RightPartStaticBtnSX}
+  const likeBtnSX = {
+    ...subscribeBtnSX,
+    background: "rgba(255, 255, 255, 0.1)",
+    color: "white",
+    borderTopRightRadius: "0",
+    borderBottomRightRadius: "0",
+    ":hover": {
+      background: "rgba(255, 255, 255, 0.2)",
+    },
+  }
+
+  const dislikeBtnSX = {
+    ...subscribeBtnSX,
+    background: "rgba(255, 255, 255, 0.1)",
+    color: "white",
+    borderTopLeftRadius: "0",
+    borderBottomLeftRadius: "0",
+    ":hover": {
+      background: "rgba(255, 255, 255, 0.2)",
+    },
+  }
+
+  export {subscribeBtnSX, subContainer1RightPartStaticBtnSX, likeBtnSX, dislikeBtnSX}

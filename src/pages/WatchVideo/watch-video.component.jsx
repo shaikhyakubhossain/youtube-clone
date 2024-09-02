@@ -1,16 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./watch-video.module.css";
 import VideoPlayer from "../../components/VideoPlayer/video-player.component";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { setFalse } from "../../redux/index";
 import axios from "axios";
-import shortNumber from "short-number";
+import { toggleURL, checkIfMaxResAvailableInAllItems } from "../../constants/utils";
 import { localReactJSVideos, localVideoDetail, globalReactJSVideos, globalVideoDetail } from "../../constants/url-list";
-import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
-import {Link} from 'react-router-dom';
 import VideoDetail from "../../components/VideoDetail/video-detail.component";
 import VideoDetailLoading from "../../components/VideoDetail/video-detail.loading";
+import VideoSuggestion from "../../components/VideoSuggestion/video-suggestion.component";
 
 const WatchVideo = (props) => {
   const params = useParams();
@@ -20,6 +19,8 @@ const WatchVideo = (props) => {
   const [urlsForReactJSVideos, setUrlsForReactJSVideos] = useState([globalReactJSVideos, localReactJSVideos])
   const [urlsForVideoDetail, setUrlsForVideoDetail] = useState([globalVideoDetail, localVideoDetail])
   const [urlListForAxios, setUrlListForAxios] = useState([toggleURL(urlsForReactJSVideos), toggleURL(urlsForVideoDetail) + params.id]);
+
+  const [isMaxresAvailable, setIsMaxresAvailable] = useState(null);
 
   useEffect(() => {
     // console.log("watch");
@@ -38,50 +39,11 @@ const WatchVideo = (props) => {
         // console.log(response[1].data);
         setApiDataReactJSVideos(response[0].data);
         setApiDataVideoDetail(response[1].data);
+        setIsMaxresAvailable(checkIfMaxResAvailableInAllItems(response[0].data));
       }
     );
 }
 
-
-  const whenVideoDetailIsLoaded = () => {
-    
-  };
-
-  const whenVideoDetailIsLoading = () => {
-    
-  };
-
-  const whenVideoSuggestionIsLoaded = () => {
-    // console.log("apiDataReactJSVideos: ", apiDataReactJSVideos);
-    return apiDataReactJSVideos.map((item, index) => {
-      return (
-        <Link key={index} to={"/watch-video/" + item.videoId} style={{textDecoration: "none"}} reloadDocument >
-        <div className={styles.videoSuggestionItemContainer}>
-          <div className={styles.videoSuggestionThumbnail}>
-            <img src={checkIfMaxResAvailableInAllItems(apiDataReactJSVideos) ? item.thumbnails.maxres.url : item.thumbnails.medium.url } />
-            <div className={styles.videoDuration}>{ videoDurationCalculator(item.duration) }</div>
-          </div>
-          <div className={styles.videoSuggestionDetailContainer}>
-          {item.title.length >= 58 ? <div className={styles.videoSuggestionTitle}>{item.title.slice(0, 57)}...</div> : <div className={styles.videoSuggestionTitle}>{item.title}</div>}
-          <div className={styles.videoSuggestionChannelName}>{item.channelTitle}</div>
-          <div className={styles.videoSuggestionViewAndTimeContainer} >
-            <div>{shortNumber(parseInt(item.viewCount))} views</div>
-            {/* <div>Video Upload Time here</div> */}
-          </div>
-          </div>
-        </div>
-        </Link>
-      )
-    })
-   
-  }
-
-  const whenVideoSuggestionIsLoading = () => {
-    return (
-      <>
-      </>
-    )
-  }
 
   return (
     <div className={styles.mainContainer}>
@@ -92,11 +54,16 @@ const WatchVideo = (props) => {
         </div>
       </div>
       <div className={styles.rightContainer}>
-      {apiDataReactJSVideos && apiDataReactJSVideos.length > 14 ? whenVideoSuggestionIsLoaded() : whenVideoSuggestionIsLoading()}
+      {apiDataReactJSVideos && isMaxresAvailable !== null ?
+       apiDataReactJSVideos.map((item, index) => {
+        return <VideoSuggestion key={index} videoId={item.videoId} title={item.title} channelTitle={item.channelTitle} viewCount={item.viewCount} duration={item.duration} thumbnail={isMaxresAvailable ? item.thumbnails.maxres.url : item.thumbnails.medium.url }  />
+      })
+      : null}
       </div>
     </div>
   );
 };
+
 
 const mapDispatchToProps = (dispatch) => {
   return {
