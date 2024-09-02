@@ -4,9 +4,6 @@ import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import { IconButton } from "@mui/material";
 
 
-
-
-
 const CommentCard = (props) => {
     return (
         <div className={styles.mainContainer}>
