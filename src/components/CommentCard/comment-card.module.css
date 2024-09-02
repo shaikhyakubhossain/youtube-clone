@@ -1,5 +1,8 @@
-.mainContainer {
+.mainContainer, .reactionContainer {
     display: flex;
+}
+
+.mainContainer {
     margin: 8px 0 8px 0;
 }
 

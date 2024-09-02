@@ -1,4 +1,9 @@
 import styles from './comment-card.module.css';
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
+import { IconButton } from "@mui/material";
+
+
 
 
 
@@ -12,9 +17,9 @@ const CommentCard = (props) => {
                     <div></div>
                 </div>
                 <div>{props.commentMessage}</div>
-                <div>
-                    <div></div>
-                    <div></div>
+                <div className={styles.reactionContainer}>
+                    <div><IconButton><ThumbUpOutlinedIcon /></IconButton> {props.commentMessageLikeCount > 0 ? props.commentMessageLikeCount : null}</div>
+                    <div><IconButton><ThumbDownOutlinedIcon /></IconButton></div>
                     <div></div>
                     <div></div>
                 </div>
