@@ -1,22 +1,26 @@
 import { useEffect, useState } from "react";
 import styles from './home.module.css';
 import { connect } from "react-redux";
-import shortNumber from 'short-number';
 import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
 import { setFalse } from '../../redux/index';
 import axios from "axios";
 import { globalReactJSVideos, localReactJSVideos } from "../../constants/url-list";
-import { checkIfMaxResAvailableInAllItems, toggleURL, videoDurationCalculator } from "../../constants/utils";
+import { checkIfMaxResAvailableInAllItems, toggleURL } from "../../constants/utils";
 import { dummyArrayForLoading } from "../../constants/utils";
+import VideoCard from "../../components/VideoCard/video-card.component";
 
 const Home = (props) => {
   const [apiData, setApiData] = useState(null);
-  const [urls, setUrl] = useState([globalReactJSVideos, localReactJSVideos])
+  const [urls, setUrl] = useState([globalReactJSVideos, localReactJSVideos]);
+
+  const [isMaxresAvailable, setIsMaxresAvailable] = useState(null);
+
+
   useEffect(() => {
     props.setFalse();
     apiData === null  && fetchData();
-    console.log(apiData);
+    // console.log(apiData);
   }, [apiData]);
 
  
@@ -25,9 +29,9 @@ const Home = (props) => {
     
     .then((response) => {
       const json = response.data;
-      if(response.status === 200){
+        // console.log(json);
         setApiData(json);
-    }
+        setIsMaxresAvailable(checkIfMaxResAvailableInAllItems(json));
     })
     
 }
@@ -57,26 +61,23 @@ const Home = (props) => {
 
   return (
     <div className={props.isMaximized ? styles.mainHomeContainerExpand : styles.mainHomeContainerMinimize}>
-      { apiData && apiData.map ? apiData.map((item, index) => {
+      { apiData && apiData[0].errorMessageWithCode 
+      ? 
+      <div className={styles.errorContainer}>
+        <div>{apiData[0].errorMessageWithCode}</div>
+        <div>{apiData[0].errorCause}</div>
+      </div>
+      : 
+      apiData && apiData.map ? apiData.map((item, index) => {
         // console.log("apiData.lenght", apiData.items.lenght);
         // if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
+        return(
+          <Link to={"/watch-video/" + item.videoId} className={styles.containerCard}>
+            <VideoCard key={index} isMaximized={props.isMaximized} duration={item.duration} thumbnail={ props.isMaxresAvailable ? item.thumbnails.maxres.url : item.thumbnails.medium.url } title={item.title} channelTitle={item.channelTitle} channelLogo={item.channelLogo} viewCount={item.viewCount} />
+          </Link>
+        )
         
-          return (
-            <Link key={index} to={"/watch-video/" + item.videoId} className={styles.containerCard}>
-                  <div className={props.isMaximized ? styles.cardImgExpand : styles.cardImgMinimize} >
-                    <img src={ checkIfMaxResAvailableInAllItems(apiData) ? item.thumbnails.maxres.url : item.thumbnails.medium.url } />
-                    <div className={styles.videoDuration}>{ videoDurationCalculator(item.duration) }</div>
-                  </div>
-                  <div className={styles.mainCardDetailContainerFlex}>
-                  <div className={styles.channelLogo}><img src={item.channelLogo} alt="" /></div>
-                  <div className={styles.cardDetailContainer}>
-                  <div className={styles.videoTitle}>{item.title.length > 58 ? item.title.slice(0, 57) + "...": item.title }</div>
-                  <div className={styles.channelTitle}>{item.channelTitle}</div>
-                  <div className={styles.viewCount}>{ shortNumber(parseInt(item.viewCount))} views</div>
-                  </div>
-                  </div>
-            </Link>
-           ); 
+         
         // }
       }) :  dummyArrayForLoading.map((items, index) => {
         return (
