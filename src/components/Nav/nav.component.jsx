@@ -52,7 +52,7 @@ const Nav = (props) => {
 
     }
     if(screenSize.width >= 650){
-      handleMobileSearchBarOff();
+      handleMobileSearchBarOnOff("flex", "none", false);
       // textFieldContainerRef.current.style.display = "block";
       // externalSearchIconRef.current.style.borderRadius = "0 40px 40px 0";
       leftContainerRef.current.style.display = "flex"
@@ -68,18 +68,11 @@ const Nav = (props) => {
     setSearchQuery(e.target.value);
   }
 
-  const handleMobileSearchBarOn = () => {
-    leftContainerRef.current.style.display = "none";
-    rightContainerRef.current.style.display = "none";
-    middleContainerRef.current.style.display = "flex";
-    setShouldKeepMobileSearchBarOn(true);
-  }
-
-  const handleMobileSearchBarOff = () => {
-    leftContainerRef.current.style.display = "flex";
-    rightContainerRef.current.style.display = "flex";
-    middleContainerRef.current.style.display = "none";
-    setShouldKeepMobileSearchBarOn(false);
+  const handleMobileSearchBarOnOff = (leftRight, middle, setShouldKeepMobileSearchBarOnBoolean) => {
+    leftContainerRef.current.style.display = leftRight;
+    rightContainerRef.current.style.display = leftRight;
+    middleContainerRef.current.style.display = middle;
+    setShouldKeepMobileSearchBarOn(setShouldKeepMobileSearchBarOnBoolean);
   }
 
   const handleResize = () => {
@@ -110,7 +103,7 @@ const Nav = (props) => {
         </Link>
       </div>
       <div className={`${styles.middleContainer} ${styles.allContainers}`} ref={middleContainerRef}>
-        <div className={styles.mobileSearchBackBtn} onClick={handleMobileSearchBarOff}>
+        <div className={styles.mobileSearchBackBtn} onClick={() => handleMobileSearchBarOnOff("flex", "none", false)}>
           <IconButton >
             <ArrowBackIcon />
           </IconButton>
@@ -159,7 +152,7 @@ const Nav = (props) => {
         </IconButton>
       </div>
       <div ref={rightContainerRef} className={`${styles.rightContainer} ${styles.allContainers}`}>
-        <div ref={mobileSearchBtnRef} onClick={handleMobileSearchBarOn}>
+        <div ref={mobileSearchBtnRef} onClick={() => handleMobileSearchBarOnOff("none", "flex", true)}>
         <IconButton >
           <SearchIcon/>
         </IconButton>
