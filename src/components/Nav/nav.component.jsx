@@ -22,7 +22,7 @@ const Nav = (props) => {
   const leftContainerRef = useRef(null);
   const middleContainerRef = useRef(null);
   const rightContainerRef = useRef(null);
-  
+
 
   const [screenSize, setScreenSize] = useState({
     width: window.innerWidth
@@ -75,6 +75,19 @@ const Nav = (props) => {
     setShouldKeepMobileSearchBarOn(setShouldKeepMobileSearchBarOnBoolean);
   }
 
+  const navigateToSearchPage = () => {
+    if(searchQuery !== ""){
+      console.log("Enter");
+      window.location.href = (`/search-videos/${searchQuery}`);
+    }
+  }
+
+  const handleNavigateToSearchPageOnEnter = (event) => {
+    if(event.key === "Enter"){
+      navigateToSearchPage();
+    }
+  }
+
   const handleResize = () => {
     setScreenSize({
       width: window.innerWidth
@@ -90,6 +103,13 @@ const Nav = (props) => {
       window.removeEventListener('resize', handleResize);
     };
   }, [screenSize]);
+
+  useEffect(() => {
+    document.addEventListener('keyup', (event) => handleNavigateToSearchPageOnEnter(event));
+      return () => {
+        document.removeEventListener('keyup', (event) => handleNavigateToSearchPageOnEnter(event))
+      }
+  }, [searchQuery])
 
   return (
     <div className={`${styles.mainContainer} ${styles.allContainers}`}>
@@ -133,8 +153,9 @@ const Nav = (props) => {
             }}
           />
         </div>
-        <Link to={'search-videos/' + searchQuery} reloadDocument>
+        {/* <Link to={'search-videos/' + searchQuery} reloadDocument> */}
         <Button
+          onClick={navigateToSearchPage}
           ref={externalSearchIconRef}
           // size="small"
           sx={{
@@ -146,7 +167,7 @@ const Nav = (props) => {
         >
           <SearchIcon fontSize="medium" sx={{ color: "#f1f1f1" }} />
         </Button>
-        </Link>
+        {/* </Link> */}
         <IconButton sx={{marginLeft:"6px", background:"rgba(88,88,88, 0.1)"}} >
           <MicIcon sx={{color:"white"}}/>
         </IconButton>
