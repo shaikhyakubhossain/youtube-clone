@@ -16,14 +16,12 @@ const Home = (props) => {
 
   const [isMaxresAvailable, setIsMaxresAvailable] = useState(null);
 
-
   useEffect(() => {
     props.setFalse();
     apiData === null  && fetchData();
     // console.log(apiData);
   }, [apiData]);
 
- 
   const fetchData = () => {
     axios.get(toggleURL(urls))
     
@@ -33,13 +31,9 @@ const Home = (props) => {
         setApiData(json);
         setIsMaxresAvailable(checkIfMaxResAvailableInAllItems(json));
     })
-    
 }
 
-
-
   const loadMuiSkeletonForVideo = () => {
-    
       return (
         <>
           <div className={props.isMaximized ? styles.cardImgSkeletonExpand : styles.cardImgSkeletonMinimize} > <Skeleton sx={{background: "grey"}} variant="rounded" width={"100%"} height={"100%"}/> </div>
@@ -47,17 +41,12 @@ const Home = (props) => {
           <Skeleton sx={{background: "grey", margin: "15px 4px 4px 4px"}} variant="circular" width={40} height={40}/>
           <div className={styles.cardDetailContainer}>
           <Skeleton sx={{background: "grey", margin: "4px"}} variant="text" width={"250px"} height={40}/>
-
           <Skeleton sx={{background: "grey", margin: "4px"}} variant="text" width={"150px"} height={40}/>
           </div>
           </div>
-          </>
-
+        </>
       )
   }
-
-  
-  
 
   return (
     <div className={props.isMaximized ? styles.mainHomeContainerExpand : styles.mainHomeContainerMinimize}>
@@ -76,24 +65,20 @@ const Home = (props) => {
             <VideoCard key={index} isMaximized={props.isMaximized} duration={item.duration} thumbnail={ props.isMaxresAvailable ? item.thumbnails.maxres.url : item.thumbnails.medium.url } title={item.title} channelTitle={item.channelTitle} channelLogo={item.channelLogo} viewCount={item.viewCount} />
           </Link>
         )
-        
-         
         // }
-      }) :  dummyArrayForLoading.map((items, index) => {
+      }) :  dummyArrayForLoading.map((item) => {
         return (
-          <div key={index} className={styles.containerCard}>
+          <div key={item} className={styles.containerCard}>
             {loadMuiSkeletonForVideo()}
           </div>
         )
       })
-      
-      }
+    }
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-
   return {
     isMaximized: state.isMaximized
   }

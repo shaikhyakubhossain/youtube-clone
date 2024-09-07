@@ -18,6 +18,19 @@
     border-radius: 18px;
 }
 
+.primaryText {
+    font-size: 18px;
+}
+
+.secondaryText {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.channelTitle:hover {
+    color: rgba(255, 255, 255, 1.0);
+}
+
 .videoDetailContainer > div {
     margin-bottom: 8px;
 }
