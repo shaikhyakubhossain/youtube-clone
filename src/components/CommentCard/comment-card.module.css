@@ -13,3 +13,8 @@
 .logoContainer, .logoContainer > img {
     border-radius: 50%;
 }
+
+.commentAuthorNameText {
+    padding: 4px;
+    border-radius: 12px;
+}

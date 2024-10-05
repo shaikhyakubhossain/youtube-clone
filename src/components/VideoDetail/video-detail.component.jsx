@@ -115,7 +115,7 @@ const VideoDetail = (props) => {
             <div className={styles.commentListContainer}>
             {
               props.commentList.map((item, index) => {
-                return <CommentCard key={index} commentMessage={item.snippet.topLevelComment.snippet.textOriginal} commentAuthorName={item.snippet.topLevelComment.snippet.authorDisplayName} commentAuthorChannelLogo={item.snippet.topLevelComment.snippet.authorProfileImageUrl} commentAuthorChannelUrl={item.snippet.topLevelComment.snippet.authorChannelUrl} commentMessageLikeCount={item.snippet.topLevelComment.snippet.likeCount} />
+                return <CommentCard key={index} commentMessage={item.snippet.topLevelComment.snippet.textOriginal} commentAuthorName={item.snippet.topLevelComment.snippet.authorDisplayName} commentAuthorChannelLogo={item.snippet.topLevelComment.snippet.authorProfileImageUrl} commentAuthorChannelUrl={item.snippet.topLevelComment.snippet.authorChannelUrl} commentMessageLikeCount={item.snippet.topLevelComment.snippet.likeCount} channelTitle={props.channelTitle} />
               })
             }
             </div>

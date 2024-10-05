@@ -5,12 +5,17 @@ import { IconButton } from "@mui/material";
 
 
 const CommentCard = (props) => {
+
+    let channelTitle = props.channelTitle;
+    channelTitle = channelTitle.replace(/\s/g, '');
+    const commentAuthorName = props.commentAuthorName.slice(1, props.commentAuthorName.length);
+
     return (
         <div className={styles.mainContainer}>
             <div className={styles.logoContainer}><img src={props.commentAuthorChannelLogo} alt="" /></div>
             <div>
                 <div>
-                    <div>{props.commentAuthorName}</div>
+                    <div className={styles.commentAuthorNameContainer}><span className={styles.commentAuthorNameText} style={{background: channelTitle === commentAuthorName ? "rgba(136, 136, 136, 1.000)" : "black"}}>{props.commentAuthorName}</span></div>
                     <div></div>
                 </div>
                 <div>{props.commentMessage}</div>
