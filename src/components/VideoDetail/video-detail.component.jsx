@@ -14,7 +14,6 @@ const VideoDetail = (props) => {
   const descriptionRef = useRef(null);
   const descriptionShowLessBtnRef = useRef(null);
   const [shouldToggleDescriptionWindow, SetShouldToggleDescriptionWindow] = useState(true);
-
   const descriptionStyle = () => {
     // console.log("descriptionStyle");
     
@@ -27,7 +26,6 @@ const VideoDetail = (props) => {
       descriptionShowLessBtnRef.current.parentNode.className = styles.subContainer2MainExpand;
         SetShouldToggleDescriptionWindow(false);
     }
-    
   };
 
   const descriptionShowLessBtnStyle = () => {
@@ -38,7 +36,6 @@ const VideoDetail = (props) => {
       descriptionShowLessBtnRef.current.parentNode.className = styles.subContainer2MainMinimize;
       SetShouldToggleDescriptionWindow(true);
     }
-    
   };
 
     return (

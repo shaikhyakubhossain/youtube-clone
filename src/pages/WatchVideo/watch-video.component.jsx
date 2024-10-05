@@ -3,7 +3,7 @@ import styles from "./watch-video.module.css";
 import VideoPlayer from "../../components/VideoPlayer/video-player.component";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { setFalse } from "../../redux/index";
+import { setFalse, setTopLoadingFalse } from "../../redux/index";
 import axios from "axios";
 import { toggleURL, checkIfMaxResAvailableInAllItems } from "../../constants/utils";
 import { localReactJSVideos, localVideoDetail, globalReactJSVideos, globalVideoDetail } from "../../constants/url-list";
@@ -40,6 +40,7 @@ const WatchVideo = (props) => {
         setApiDataReactJSVideos(response[0].data);
         setApiDataVideoDetail(response[1].data);
         setIsMaxresAvailable(checkIfMaxResAvailableInAllItems(response[0].data));
+        props.setTopLoadingFalse();
       }
     );
 }
@@ -68,6 +69,7 @@ const WatchVideo = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setFalse: () => dispatch(setFalse()),
+    setTopLoadingFalse: () => dispatch(setTopLoadingFalse())
   };
 };
 

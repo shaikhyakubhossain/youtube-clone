@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { toggleMinMax } from "../../redux/index";
+import { toggleMinMax, setTopLoadingTrue } from "../../redux/index";
 import styles from "../Nav/nav.module.css";
 import { Button, IconButton } from "@mui/material/";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -125,6 +125,8 @@ const Nav = (props) => {
         </IconButton>
         <Link
           to="/"
+          reloadDocument
+          onClick={() => props.setTopLoadingTrue()}
           className={`${styles.youtubeLogoIcon} ${styles.allContainers}`}
         >
           <YouTubeIcon fontSize="large" sx={{ color: "red" }} />
@@ -214,6 +216,7 @@ const Nav = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleMinMax: () => dispatch(toggleMinMax()),
+    setTopLoadingTrue: () => dispatch(setTopLoadingTrue()),
   };
 };
 

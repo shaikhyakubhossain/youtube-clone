@@ -134,7 +134,7 @@ function LeftMenuForMobile() {
 
 const mapStateToProps = (state) => {
   return {
-    isMaximized: state.isMaximized
+    isMaximized: state.leftMenu.isMaximized
   }
 }
 

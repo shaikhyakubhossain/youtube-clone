@@ -134,7 +134,7 @@ function LeftMenu(props) {
 
 const mapStateToProps = (state) => {
   return {
-    isMaximized: state.isMaximized
+    isMaximized: state.leftMenu.isMaximized
   }
 }
 

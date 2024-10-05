@@ -3,7 +3,7 @@ import styles from './home.module.css';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Skeleton from '@mui/material/Skeleton';
-import { setFalse } from '../../redux/index';
+import { setFalse, setTopLoadingTrue, setTopLoadingFalse } from '../../redux/index';
 import axios from "axios";
 import { globalReactJSVideos, localReactJSVideos } from "../../constants/url-list";
 import { checkIfMaxResAvailableInAllItems, toggleURL } from "../../constants/utils";
@@ -18,6 +18,7 @@ const Home = (props) => {
 
   useEffect(() => {
     props.setFalse();
+    props.setTopLoadingFalse();
     apiData === null  && fetchData();
     // console.log(apiData);
   }, [apiData]);
@@ -61,7 +62,7 @@ const Home = (props) => {
         // console.log("apiData.lenght", apiData.items.lenght);
         // if (apiData.items[index].snippet && apiData.items[index].snippet.thumbnails){
         return(
-          <Link to={"/watch-video/" + item.videoId} className={styles.containerCard}>
+          <Link to={"/watch-video/" + item.videoId} className={styles.containerCard} onClick={() => props.setTopLoadingTrue()}>
             <VideoCard key={index} isMaximized={props.isMaximized} duration={item.duration} thumbnail={ props.isMaxresAvailable ? item.thumbnails.maxres.url : item.thumbnails.medium.url } title={item.title} channelTitle={item.channelTitle} channelLogo={item.channelLogo} viewCount={item.viewCount} />
           </Link>
         )
@@ -80,14 +81,15 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    isMaximized: state.isMaximized
+    isMaximized: state.leftMenu.isMaximized
   }
-
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setFalse: () => dispatch(setFalse())
+    setFalse: () => dispatch(setFalse()),
+    setTopLoadingTrue: () => dispatch(setTopLoadingTrue()),
+    setTopLoadingFalse: () => dispatch(setTopLoadingFalse())
   }
 }
 
