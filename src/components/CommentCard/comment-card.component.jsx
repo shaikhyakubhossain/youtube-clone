@@ -3,7 +3,6 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
 import { IconButton } from "@mui/material";
 
-
 const CommentCard = (props) => {
 
     let channelTitle = props.channelTitle;

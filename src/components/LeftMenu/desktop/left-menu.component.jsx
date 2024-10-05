@@ -1,11 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
 import { setFalse } from "../../../redux";
 import styles from "./left-menu.module.css";
 import { Button } from "@mui/material";
 import { leftMenuMainSectionRow1 } from "../../../constants/btn-list";
 import { useLocation, Link } from "react-router-dom";
- 
+
 
 // desktop left menu component
 function LeftMenuForDesktop() {
