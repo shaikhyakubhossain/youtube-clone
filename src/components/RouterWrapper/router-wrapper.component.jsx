@@ -5,7 +5,8 @@ import WatchVideo from "../../pages/WatchVideo/watch-video.component";
 import SearchVideos from "../../pages/SearchVideos/search-videos.component.jsx";
 import Nav from '../Nav/nav.component.jsx'
 import LeftMenuForDesktop from "../LeftMenu/desktop/left-menu.component.jsx";
-import LeftMenuForMobile from "../LeftMenu/mobile/left-menu.component.jsx"
+import LeftMenuForMobile from "../LeftMenu/mobile/left-menu.component.jsx";
+import TopLoading from "../TopLoading/top-loading.component.jsx";
 import { connect } from "react-redux";
 import { setFalse } from "../../redux";
 import styles from './router-wrapper.module.css';
@@ -161,6 +162,7 @@ const RouterWrapper = (props) => {
 
   return (
     <>
+    <TopLoading />
     <Nav />
     <div className={styles.LeftMenuForDesktopInactive} ref={leftMenuForDesktopRef}><LeftMenuForDesktop /></div>
     <div ref={leftMenuForMobileRef}><LeftMenuForMobile /></div>
