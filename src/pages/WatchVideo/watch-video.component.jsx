@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
 import styles from "./watch-video.module.css";
-import VideoPlayer from "../../components/VideoPlayer/video-player.component";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { setFalse, setTopLoadingFalse } from "../../redux/index";
-import axios from "axios";
+import { setFalse, setTopLoadingFalse, setTopLoadingTrue } from "../../redux/index";
 import { toggleURL, checkIfMaxResAvailableInAllItems } from "../../constants/utils";
 import { localReactJSVideos, localVideoDetail, globalReactJSVideos, globalVideoDetail } from "../../constants/url-list";
+import VideoPlayer from "../../components/VideoPlayer/video-player.component";
 import VideoDetail from "../../components/VideoDetail/video-detail.component";
 import VideoDetailLoading from "../../components/VideoDetail/video-detail.loading";
 import VideoSuggestion from "../../components/VideoSuggestion/video-suggestion.component";
@@ -56,8 +57,12 @@ const WatchVideo = (props) => {
       </div>
       <div className={styles.rightContainer}>
       {apiDataReactJSVideos && isMaxresAvailable !== null ?
-       apiDataReactJSVideos.map((item, index) => {
-        return <VideoSuggestion key={index} videoId={item.videoId} title={item.title} channelTitle={item.channelTitle} viewCount={item.viewCount} duration={item.duration} thumbnail={isMaxresAvailable ? item.thumbnails.maxres.url : item.thumbnails.medium.url }  />
+       apiDataReactJSVideos.map((item) => {
+        return (
+        <Link to={"/watch-video/" + item.videoId} style={{textDecoration: "none"}} reloadDocument onClick={() => props.setTopLoadingTrue()}>
+          <VideoSuggestion key={item.videoId} title={item.title} channelTitle={item.channelTitle} viewCount={item.viewCount} duration={item.duration} thumbnail={isMaxresAvailable ? item.thumbnails.maxres.url : item.thumbnails.medium.url }  />
+        </Link>
+        );
       })
       : null}
       </div>
@@ -69,7 +74,8 @@ const WatchVideo = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setFalse: () => dispatch(setFalse()),
-    setTopLoadingFalse: () => dispatch(setTopLoadingFalse())
+    setTopLoadingFalse: () => dispatch(setTopLoadingFalse()),
+    setTopLoadingTrue: () => dispatch(setTopLoadingTrue()),
   };
 };
 

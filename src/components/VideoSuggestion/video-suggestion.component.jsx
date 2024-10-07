@@ -7,7 +7,6 @@ import { videoDurationCalculator } from "../../constants/utils";
 
 const VideoSuggestion = (props) => {
     return (
-        <Link to={"/watch-video/" + props.videoId} style={{textDecoration: "none"}} reloadDocument >
         <div className={styles.videoSuggestionItemContainer}>
           <div className={styles.videoSuggestionThumbnail}>
             <img src={props.thumbnail} />
@@ -22,7 +21,6 @@ const VideoSuggestion = (props) => {
           </div>
           </div>
         </div>
-        </Link>
       )
 }
 
