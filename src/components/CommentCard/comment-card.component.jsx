@@ -6,7 +6,7 @@ import { IconButton } from "@mui/material";
 const CommentCard = (props) => {
 
     let channelTitle = props.channelTitle;
-    channelTitle = channelTitle.replace(/\s/g, '');
+    channelTitle = channelTitle.replace(/[\s\-]/g, '');
     const commentAuthorName = props.commentAuthorName.slice(1, props.commentAuthorName.length);
 
     return (

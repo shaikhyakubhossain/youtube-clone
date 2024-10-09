@@ -8,18 +8,16 @@ import CommentCard from "../../components/CommentCard/comment-card.component";
 import {subscribeBtnSX, subContainer1RightPartStaticBtnSX, likeBtnSX, dislikeBtnSX} from "../../constants/custom-sx-for-mui";
 import shortNumber from "short-number";
 
-
 const VideoDetail = (props) => {
 
   const descriptionRef = useRef(null);
   const descriptionShowLessBtnRef = useRef(null);
   const [shouldToggleDescriptionWindow, SetShouldToggleDescriptionWindow] = useState(true);
+
   const descriptionStyle = () => {
     // console.log("descriptionStyle");
-    
     if (shouldToggleDescriptionWindow) {
       // console.log("if");
-
       descriptionRef.current.className = styles.descriptionExpand;
       descriptionShowLessBtnRef.current.className =
         styles.descriptionShowLessBtnEnabled;
