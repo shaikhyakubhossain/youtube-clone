@@ -6,7 +6,7 @@ import { localSearchVideos, globalSearchVideos } from '../../constants/url-list'
 import { toggleURL } from '../../constants/utils';
 import { useParams, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setFalse } from '../../redux';
+import { setFalse, setTopLoadingTrue } from '../../redux';
 import SearchedVideoCardLoading from '../../components/SearchedVideoCard/searched-video-card.loading';
 import { dummyArrayForLoading } from '../../constants/utils';
 
@@ -39,7 +39,7 @@ const SearchVideos = (props) => {
       <div className={styles.searchedVideoCardContainer}>
       {apiData ? apiData.map((item, index) => {
         return(
-          <Link key={index} to={'/watch-video/' + item.videoId} style={{textDecoration: "none"}}>
+          <Link key={index} to={'/watch-video/' + item.videoId} style={{textDecoration: "none"}} onClick={props.setTopLoadingTrue}>
           <SearchedVideoCard  title={item.title} thumbnail={item.thumbnails.medium.url} viewCount={item.viewCount} channelTitle={item.channelTitle} description={item.description} channelLogo={item.channelLogo}/>
           </Link>
         )
@@ -61,6 +61,7 @@ const SearchVideos = (props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     setFalse: () => dispatch(setFalse()),
+    setTopLoadingTrue: () => dispatch(setTopLoadingTrue())
   };
 };
 
