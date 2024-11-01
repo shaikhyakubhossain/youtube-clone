@@ -38,7 +38,7 @@ const Home = (props) => {
       return (
         <>
           <div className={props.isMaximized ? styles.cardImgSkeletonExpand : styles.cardImgSkeletonMinimize} > <Skeleton sx={{background: "grey"}} variant="rounded" width={"100%"} height={"100%"}/> </div>
-          <div className={styles.mainCardDetailContainerFlex}>
+          <div className={styles.mainCardDetailContainerFlex} style={{display: "flex"}}>
           <Skeleton sx={{background: "grey", margin: "15px 4px 4px 4px"}} variant="circular" width={40} height={40}/>
           <div className={styles.cardDetailContainer}>
           <Skeleton sx={{background: "grey", margin: "4px"}} variant="text" width={"250px"} height={40}/>

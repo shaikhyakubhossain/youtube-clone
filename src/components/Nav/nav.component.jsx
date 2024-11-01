@@ -129,8 +129,11 @@ const Nav = (props) => {
           onClick={() => props.setTopLoadingTrue()}
           className={`${styles.youtubeLogoIcon} ${styles.allContainers}`}
         >
-          <YouTubeIcon fontSize="large" sx={{ color: "red" }} />
-          <div>YouTube-Clone</div>
+          <div style={{position: "relative", display: "flex", alignItems: "center" }}>
+          <YouTubeIcon fontSize="large" sx={{ color: "red", zIndex: "1" }} />
+          <div style={{position: "absolute", top: "30%", left: "30%", width: "15px", height: "15px", backgroundColor: "white"}}></div>
+          </div>
+          <div style={{fontWeight: "semibold", color: "white", fontFamily: "monospace"}}>YouTube-Clone</div>
         </Link>
       </div>
       <div
