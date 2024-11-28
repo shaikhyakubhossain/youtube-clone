@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import { InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import GitHubIcon from '@mui/icons-material/GitHub';
 import MicIcon from "@mui/icons-material/Mic";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
@@ -27,8 +28,8 @@ const Nav = (props) => {
     width: window.innerWidth,
   });
   const [searchQuery, setSearchQuery] = useState("");
-  const [shouldKeepMobileSearchBarOn, setShouldKeepMobileSearchBarOn] =
-    useState(false);
+  const [shouldKeepMobileSearchBarOn, setShouldKeepMobileSearchBarOn] = useState(false);
+  const [showDropDown, setShowDropDown] = useState(false);
 
   const toggleSearchIcon = () => {
     if (internalSearchIconRef.current.style.display === "block") {
@@ -208,9 +209,21 @@ const Nav = (props) => {
         </div>
         <div>
           <IconButton>
-            <MoreVertIcon />
+            <MoreVertIcon onClick={() => setShowDropDown(!showDropDown)} />
           </IconButton>
         </div>
+        { showDropDown &&
+          <div className={styles.dropDown}>
+          <div>
+            <Link to="https://github.com/shaikhyakubhossain/youtube-clone">
+            <Button sx={{color: "white"}} startIcon={<GitHubIcon />}>
+              Source Code
+            </Button>
+            </Link>
+          </div>
+        </div>
+        }
+        
       </div>
     </div>
   );

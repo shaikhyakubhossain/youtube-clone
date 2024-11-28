@@ -80,7 +80,15 @@
   width: 100%;
 }
 
-.rightContainer {
-  
+.dropDown {
+  position: absolute;
+  top: 60px;
+  right: 24px;
+  background: #121212;
+  padding: 12px;
+  z-index: 2;
 }
 
+.dropDown > div {
+  margin: 2px 0;
+}

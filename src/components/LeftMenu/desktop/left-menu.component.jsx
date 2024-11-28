@@ -4,13 +4,11 @@ import { setFalse } from "../../../redux";
 import styles from "./left-menu.module.css";
 import { Button } from "@mui/material";
 import { leftMenuMainSectionRow1 } from "../../../constants/btn-list";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 // desktop left menu component
 function LeftMenuForDesktop() {
-  const location = useLocation();
-  const btnContainerMain = useRef(null);
   const mainSection = useRef(null)
 
   const [btnStyle, setBtnStyle] = useState({
@@ -23,18 +21,6 @@ function LeftMenuForDesktop() {
   });
   const [previousElemInBtnList, setPreviousElemInBtnList] = useState(null);
 
-  // useEffect(() => {
-  //   toggleMaxMinOfLeftMenu();
-  //   // console.log("location", location.pathname.slice(1, 12));
-  //   window.addEventListener('click', (e) => {
-  //     if(location.pathname.slice(1, 12) === "watch-video" && e.target.id !== "LeftMenuController" && e.target.parentNode.id !== "LeftMenuController" && e.target.parentNode.parentNode.id !== "LeftMenuController" && e.target !== mainSection.current && props.isMaximized === true){
-  //       props.setFalse();
-  //       console.log(e.target, " ", props.isMaximized);
-  //     }
-
-  //   });
-  // }, [props.isMaximized, location.pathname]);
-
   const toggleActiveLeftMenuBtn = (e) => {
     if (previousElemInBtnList !== null) {
       previousElemInBtnList.style.background = "rgb(15, 15, 15)";
@@ -43,59 +29,6 @@ function LeftMenuForDesktop() {
     // console.log("this", e.currentTarget, "style", e.currentTarget.style);
     setPreviousElemInBtnList(e.currentTarget);
   };
-
-  // const toggleMaxMinOfLeftMenu = () => {
-    
-  //   if(location.pathname.slice(1, 12) === "watch-video"){
-  //     if(!props.isMaximized){
-  //       mainSection.current.className = styles.mainSectionHidden;
-  //       leftMenuMainSectionRow1.forEach((item, index) => {
-  //         mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnContainerMainMax;
-  //         mainSection.current.children[0].children[0].children[index].children[0].children[0].children[0].className = styles.btnIconContainerMax;
-  //       });
-  //     }
-  //     if(props.isMaximized){
-  //       mainSection.current.className = styles.mainSectionExpand;
-  //       leftMenuMainSectionRow1.forEach((item, index) => {
-  //         mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnContainerMainMax;
-  //         mainSection.current.children[0].children[0].children[index].children[0].children[0].children[0].className = styles.btnIconContainerMax;
-  //       });
-  //     }
-  //   }
-  //   else{
-  //     if(!props.isMaximized){
-  //       mainSection.current.className = styles.mainSectionExpand;
-  //       leftMenuMainSectionRow1.forEach((item, index) => {
-  //         mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnContainerMainMax;
-  //         mainSection.current.children[0].children[0].children[index].children[0].children[0].children[0].className = styles.btnIconContainerMax;
-  
-  //       });
-  
-        
-  
-  //       // console.log(mainSection.current.className);
-  //     }
-  //     if(props.isMaximized){
-  //       mainSection.current.className = styles.mainSectionMinimize;
-  //       leftMenuMainSectionRow1.forEach((item, index) => {
-  //         mainSection.current.children[0].children[0].children[index].children[0].children[0].className = styles.btnContainerMainMin;
-  //         mainSection.current.children[0].children[0].children[index].children[0].children[0].children[0].className = styles.btnIconContainerMin;
-          
-  //       });
-  //       // console.log(mainSection.current.className);
-  
-       
-  
-  //     }
-  //   }
-
-    
-  //   // console.log(mainSection.current.children[0].children[0].children[2].children[0]);
-
-    
-  // }
- 
-  // console.log(props.isMaximized);
 
   return (
     <>
